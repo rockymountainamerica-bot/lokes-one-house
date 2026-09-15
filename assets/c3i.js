@@ -37,7 +37,7 @@
 
   const replies = {
     help() {
-      say("Commands: help · c3i · desk · whoami · odin · vanism · book · doors · ride · film · press · clear");
+      say("Commands: help · c3i · desk · whoami · odin · vanism · book · doors · ride · film · press · coin · clear");
       say("I’m the desk greeter. Warm, short, real. Not a fake AGI.");
     },
     c3i() {
@@ -84,6 +84,13 @@
     },
     mail() {
       replies.press();
+    },
+    coin() {
+      say("Credit accepted. Player 1 — you’re at the desk.");
+      say("1970s cabinet, futuristic shell. Type help for the map.");
+    },
+    insert() {
+      replies.coin();
     },
     clear() {
       out.innerHTML = "";
@@ -148,6 +155,10 @@
     e.preventDefault();
     focusDoor();
     run("book");
+  });
+  document.getElementById("insert-coin").addEventListener("click", function () {
+    focusDoor();
+    run("coin");
   });
 
   // Deep-link #c3i

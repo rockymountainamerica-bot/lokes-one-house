@@ -72,6 +72,20 @@ body::after{
 
 .screen{padding:20px 20px 26px;position:relative}
 
+/* 70s cabinet scoreline */
+.scoreline{
+  display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;
+  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--green-dim);margin:0 0 16px;
+}
+.scoreline .lbl{color:var(--amber)}
+.coin{
+  margin-left:auto;background:none;border:0;padding:0;cursor:pointer;
+  font:inherit;color:var(--green-dim);letter-spacing:inherit;text-transform:inherit;
+}
+.coin:hover,.coin:focus-visible{color:var(--green);outline:none}
+.coin-blink{color:var(--amber);animation:blink 1.1s step-end infinite}
+
 /* hero: Odin + wordmark */
 .hero-row{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
 .rabbit-wrap{
@@ -117,6 +131,7 @@ body::after{
   font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
   padding:5px 9px;border:1px solid var(--line);
   background:rgba(0,0,0,0.35);color:var(--green-dim);
+  box-shadow:2px 2px 0 rgba(0,0,0,0.55); /* chunky cartridge-label offset */
 }
 .chip.on{color:var(--green);border-color:rgba(57,255,136,0.45)}
 .chip.warn{color:var(--amber);border-color:rgba(255,184,74,0.4)}
@@ -164,8 +179,10 @@ a.entry:hover .name{color:var(--green);text-shadow:var(--glow)}
   margin-left:auto;font-family:inherit;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
   background:transparent;color:var(--cyan);border:1px solid rgba(93,255,239,0.4);
   padding:4px 8px;cursor:pointer;
+  box-shadow:2px 2px 0 rgba(0,0,0,0.55); /* arcade button */
 }
 .c3i-door .door-head button:hover{background:rgba(93,255,239,0.1);color:var(--green)}
+.c3i-door .door-head button:active{transform:translate(2px,2px);box-shadow:none}
 .term-out{min-height:110px;max-height:240px;overflow-y:auto;padding:10px 14px;font-size:12px;line-height:1.55;color:var(--green-dim)}
 .term-out .sys{color:var(--mute)}
 .term-out .me{color:var(--cyan)}
@@ -199,6 +216,8 @@ a.entry:hover .name{color:var(--green);text-shadow:var(--glow)}
 @media (max-width:480px){
   .shell{margin:10px auto 40px}
   .screen{padding:16px 12px 22px}
+  .scoreline{font-size:9px;gap:4px 14px;justify-content:center}
+  .coin{margin-left:0}
   .titlebar{padding:8px 10px;gap:6px;font-size:10px;flex-wrap:nowrap}
   .titlebar .path{margin-left:6px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .titlebar .desk-badge{margin-left:6px;white-space:nowrap}
@@ -217,4 +236,5 @@ a.entry:hover .name{color:var(--green);text-shadow:var(--glow)}
   .rabbit{animation:none;left:50%;transform:none}
   .laser-line{animation:none;opacity:0.4}
   .titlebar .desk-badge .pulse{animation:none}
+  .coin-blink{animation:none}
 }

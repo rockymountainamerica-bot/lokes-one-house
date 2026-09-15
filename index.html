@@ -67,11 +67,29 @@
     </div>
     <div class="laser" aria-hidden="true"></div>
 
+    <!-- MARQUEE: the cabinet's name plate sits above the screen, never inside it -->
+    <section class="marquee" aria-label="LOKES ONE">
+      <div class="mark">
+        <svg class="wordmark" viewBox="0 0 29 7" role="img" aria-label="LOKES"><use href="assets/sprite.svg#i-lokes"/></svg>
+        <div class="wordmark-sub">one · brand house</div>
+      </div>
+      <div class="marquee-copy">
+        <div class="chips" id="chips">
+          <span class="chip on">C3i online</span>
+          <span class="chip on">3 holdings live</span>
+          <span class="chip warn">shop parked</span>
+          <span class="chip mute">lab closed</span>
+        </div>
+        <p class="koan">Gold is earned. Shop parked. House online. Odin holds the door. Desk: <span class="am">C3i</span>.</p>
+        <p class="meta">founder · rider · hurricane ut · neo-tradition</p>
+      </div>
+      <button type="button" class="play arcade-btn" id="play" title="Play: Odin vs the invaders">▶ start<span class="blink">_</span></button>
+    </section>
+
     <!-- STAGE: the arcade is the centerpiece. Attract mode plays itself; one tap starts a run. -->
     <section class="hero" id="hero" aria-label="arcade stage · odin vs the invaders">
       <canvas id="invaders" aria-hidden="true"></canvas>
       <div class="stage-tag" id="stage-tag" aria-hidden="true"><span class="label">stage</span><span class="mode" id="stage-mode">demo</span></div>
-      <button type="button" class="play arcade-btn" id="play" title="Play: Odin vs the invaders">▶ start<span class="blink">_</span></button>
       <div class="game-msg" id="game-msg" aria-live="polite"></div>
       <div class="pops" id="pops" aria-hidden="true"></div>
 
@@ -103,19 +121,6 @@
         </div>
         <div class="ground" aria-hidden="true"><span class="shadow"></span></div>
         <div class="cap"><span class="label">C3i · Odin</span><span class="hint" id="odin-hint">tap to hop</span></div>
-      </div>
-
-      <div class="hero-copy">
-        <svg class="wordmark" viewBox="0 0 29 7" role="img" aria-label="LOKES"><use href="assets/sprite.svg#i-lokes"/></svg>
-        <div class="wordmark-sub">one · brand house</div>
-        <div class="chips" id="chips">
-          <span class="chip on">C3i online</span>
-          <span class="chip on">3 holdings live</span>
-          <span class="chip warn">shop parked</span>
-          <span class="chip mute">lab closed</span>
-        </div>
-        <p class="koan">Gold is earned. Shop parked. House online. Odin holds the door. Desk: <span class="am">C3i</span>.</p>
-        <p class="meta">founder · rider · hurricane ut · neo-tradition</p>
       </div>
     </section>
 
@@ -150,10 +155,10 @@
           <span class="desc">the man · first person</span>
           <span class="perm">drwxr-xr-x</span><span class="lvl">02</span>
         </a>
-        <a class="door token soon" href="#c3i" id="open-book" title="The book is real. The buy door isn’t open yet.">
+        <a class="door token soon" href="https://bloodmutant.com/" id="open-book" target="_blank" rel="noopener" title="The book is real. The buy door isn’t open yet — bloodmutant.com is.">
           <svg class="icon" viewBox="0 0 16 16"><use href="assets/sprite.svg#i-book"/></svg>
           <span class="name">book/blood-mutant</span>
-          <span class="desc">the book · door soon</span>
+          <span class="desc">the book · bloodmutant.com · buy door soon</span>
           <span class="perm">-r--r--r--</span><span class="lvl">03</span>
         </a>
         <a class="door token" href="https://www.youtube.com/@lokes_one" target="_blank" rel="noopener">
@@ -186,7 +191,7 @@
           Splitboard · van · desk.<br/>
           This is the <span class="am">mark</span> — neo-tradition under a compute shell — not a cart.<br/>
           Three doors: <a href="https://vanism.ai" target="_blank" rel="noopener">vanism.ai</a> (product) · <a href="https://me.lokes.one" target="_blank" rel="noopener">me.lokes.one</a> (man) · <span class="hl">lokes.one</span> (house).<br/>
-          Book door soon — no cart, no invented ASIN. Shop parked. Lab closed.<br/>
+          Book: <a href="https://bloodmutant.com/" target="_blank" rel="noopener">bloodmutant.com</a> — buy door soon, no cart, no invented ASIN. Shop parked. Lab closed.<br/>
           When a drop is real, I’ll say so. <span class="gr">C3i</span> greets at the door — warm, concise, not a fake AGI claim.
         </div>
       </div>

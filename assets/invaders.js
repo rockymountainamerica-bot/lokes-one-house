@@ -183,6 +183,7 @@
     hero.classList.toggle("playing", m === "play");
     hero.classList.toggle("attract", m === "attract");
     document.body.classList.toggle("playing", m === "play");
+    document.body.classList.toggle("attract", m === "attract");
     if (scoreline) scoreline.classList.toggle("demo", m !== "play");
     if (stageMode) stageMode.textContent = m === "play" ? "live" : m === "attract" ? "demo" : "idle";
     if (playBtn) playBtn.innerHTML = m === "play" ? "■ stop<span class=\"blink\">_</span>" : "▶ start<span class=\"blink\">_</span>";
@@ -282,6 +283,7 @@
     emit("hiscore", { initials: name, rank: table.indexOf(row) + 1 });
   }
   if (iniForm) iniForm.addEventListener("submit", function (e) { e.preventDefault(); submitInitials(); });
+  function settleInitials() { if (initialsOpen) submitInitials(); }   // leaving the screen still writes the row
 
   // --- screens: over / win ---------------------------------------------------------------
   function stat(k, v) { return "<div><dt>" + k + "</dt><dd>" + v + "</dd></div>"; }
@@ -353,8 +355,8 @@
 
   // --- fleet -----------------------------------------------------------------------------
   function bossScale() { return S * 2; }
-  // the sky: room for the mystery ship, and on phones room for the start button
-  function skyTop() { return W < 600 ? 52 : 4; }
+  // the sky: nothing but stars up here — the stage tag lives at the bottom and the start button on the marquee
+  function skyTop() { return 4; }
   function laneTop() { return skyTop() + 9 * S; }
   function spawnFleet() {
     fleet = [];
@@ -688,11 +690,12 @@
   }
   function waveCleared() {
     var done = wave;
-    wave++;
-    emit("wave", { cleared: done });
+    var winning = done === WIN_WAVE && mode === "play";
+    if (!winning) wave++;   // the win screen reports sector 09; overtime bumps the sector in resume()
+    emit("wave", { cleared: done, next: done + 1, win: winning });
     odinReact("cheer");
     carrots = []; bolts = [];
-    if (done === WIN_WAVE && mode === "play") { win(); return; }
+    if (winning) { win(); return; }
     renderSector();
     var next = sectorOf(wave);
     showMsg("sector " + pad2(done) + " cleared<small>" + sectorOf(done).tag + " holds</small>", "green", 1300);
@@ -730,8 +733,10 @@
   }
   function resume() {
     // after a win: same run, faster sectors
+    settleInitials();
     hideScreen();
     over = false;
+    wave++;
     renderSector();
     showMsg("sector " + pad2(wave) + " · " + sectorOf(wave).name + "<small>overtime</small>", "", 1400);
     spawnFleet();
@@ -798,7 +803,8 @@
     measureOdin();
     placeOdin(Math.max(0, Math.min(W - odinW, was === "attract" ? odinX : odinBaseLeft)));
     spawnFleet();
-    showMsg("sector " + pad2(wave) + " · " + sectorOf(wave).name + "<small>← → move · space fire · esc exit</small>", "green", 2200);
+    var coarse = window.matchMedia("(pointer: coarse)").matches;
+    showMsg("sector " + pad2(wave) + " · " + sectorOf(wave).name + "<small>" + (coarse ? "◄ ► move · ● fire · esc exits" : "← → move · space fire · esc exit") + "</small>", "green", 2200);
     var r = hero.getBoundingClientRect();
     if (r.top < -24 || r.top > window.innerHeight * 0.5) hero.scrollIntoView({ behavior: reduced.matches ? "auto" : "smooth", block: "start" });
     ensureLoop();
@@ -806,6 +812,7 @@
   }
   function stop() {
     if (mode !== "play") return;
+    settleInitials();
     auto = false;
     setMode("idle");
     resetRun();
@@ -819,6 +826,7 @@
   function replay() {
     auto = false;
     if (screenTitle && screenTitle.textContent === "empire secured" && over) { resume(); return; }
+    settleInitials();
     if (mode === "play") setMode("idle");
     start();
   }
@@ -835,7 +843,11 @@
     var onControl = tag === "BUTTON" || tag === "A" || odin.contains(e.target);   // let buttons, links and Odin keep Enter/Space
     var activate = e.key === "Enter" || e.key === " ";
     if (screen && !screen.hidden && mode === "play") {
-      if (initialsOpen) { if (activate && tag === "BUTTON") return; initialsKey(e); return; }
+      if (initialsOpen) {
+        if (e.key === "Escape") { stop(); e.preventDefault(); return; }   // saves the row on the way out
+        if (activate && tag === "BUTTON") return;
+        initialsKey(e); return;
+      }
       if (e.key === "Escape") { stop(); e.preventDefault(); return; }
       if (activate && !onControl) { e.preventDefault(); replay(); }
       return;
@@ -859,6 +871,7 @@
   hero.addEventListener("pointermove", function (e) {
     if (mode !== "play" || over || e.pointerType === "touch" && e.buttons === 0) return;
     if (screen && !screen.hidden) return;
+    auto = false;
     var hr = hero.getBoundingClientRect();
     var nx = Math.max(0, Math.min(W - odinW, e.clientX - hr.left - odinW / 2));
     if (Math.abs(nx - odinX) > 1) face(nx > odinX ? 1 : -1);
@@ -875,6 +888,7 @@
     }
     if (mode !== "play" || over) return;
     e.preventDefault();
+    auto = false;
     fire();
   });
   if (playBtn) playBtn.addEventListener("click", function (e) { e.stopPropagation(); toggle(); });
@@ -891,9 +905,9 @@
     btn.addEventListener("lostpointercapture", release);
     btn.addEventListener("contextmenu", function (e) { e.preventDefault(); });
   }
-  hold(padL, function () { moveDir = -1; }, function () { if (moveDir < 0) moveDir = 0; });
-  hold(padR, function () { moveDir = 1; }, function () { if (moveDir > 0) moveDir = 0; });
-  hold(padF, function () { firing = true; fire(); }, function () { firing = false; });
+  hold(padL, function () { auto = false; moveDir = -1; }, function () { if (moveDir < 0) moveDir = 0; });
+  hold(padR, function () { auto = false; moveDir = 1; }, function () { if (moveDir > 0) moveDir = 0; });
+  hold(padF, function () { auto = false; firing = true; fire(); }, function () { firing = false; });
   if (padQ) padQ.addEventListener("click", function () { stop(); });
   if (padEl) padEl.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
 

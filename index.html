@@ -14,14 +14,14 @@
 <meta property="og:site_name" content="LOKES ONE"/>
 <meta property="og:url" content="https://lokes.one/"/>
 <meta property="og:title" content="LOKES ONE — brand house"/>
-<meta property="og:description" content="Some lines you ride. Some you write. Neo-tradition under a compute shell. Desk: C3i."/>
+<meta property="og:description" content="Neo-tradition under a compute shell. Shop parked. Lab closed. Desk: C3i."/>
 <meta property="og:image" content="https://lokes.one/assets/og-card.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:alt" content="LOKES ONE brand house. Phosphor terminal with Odin, the pixel rabbit."/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="LOKES ONE — brand house"/>
-<meta name="twitter:description" content="Some lines you ride. Some you write. Neo-tradition under a compute shell. Desk: C3i."/>
+<meta name="twitter:description" content="Neo-tradition under a compute shell. Shop parked. Lab closed. Desk: C3i."/>
 <meta name="twitter:image" content="https://lokes.one/assets/og-card.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="assets/house.css"/>
 </head>
 <body>
+  <canvas id="binary-snow" aria-hidden="true"></canvas>
   <div class="shell" role="main">
     <div class="pixel-grid" aria-hidden="true"></div>
     <span class="pixel-corner tl" aria-hidden="true"></span>
@@ -50,7 +51,16 @@
           </div>
           <div class="rabbit-cap">C3i · Odin</div>
         </div>
-        <div style="flex:1;min-width:200px">
+        <div class="hero-main">
+          <pre class="ascii">
+ ██╗      ██████╗ ██╗  ██╗███████╗███████╗
+ ██║     ██╔═══██╗██║ ██╔╝██╔════╝██╔════╝
+ ██║     ██║   ██║█████╔╝ █████╗  ███████╗
+ ██║     ██║   ██║██╔═██╗ ██╔══╝  ╚════██║
+ ███████╗╚██████╔╝██║  ██╗███████╗███████║
+ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
+        O N E   ·   b r a n d   h o u s e
+</pre>
           <div class="boot" id="boot"></div>
           <div class="status-strip" aria-label="system status">
             <span class="chip on">C3i online</span>
@@ -61,22 +71,25 @@
         </div>
       </div>
 
+      <!-- Interactive C3i door -->
+      <div class="c3i-door" id="c3i">
+        <div class="door-head">
+          <span>▸ door /c3i — desk greeter</span>
+          <button type="button" id="c3i-focus" title="Focus the prompt">open door</button>
+        </div>
+        <div class="term-out" id="term-out" aria-live="polite"></div>
+        <form class="term-in" id="term-form" autocomplete="off">
+          <span class="ps1">c3i&gt;</span>
+          <input id="term-input" type="text" spellcheck="false" aria-label="C3i command input"
+                 placeholder="type help · whoami · doors · vanism · book …" />
+        </form>
+      </div>
+
       <div class="prompt-line">
         <span><span class="who">nicholas</span><span class="at">@</span><span class="host">lokes</span>:<span class="dir">~</span>$</span>
         <span class="cmd">whoami --verbose</span><span class="cursor" aria-hidden="true"></span>
       </div>
 
-      <pre class="ascii">
- ██╗      ██████╗ ██╗  ██╗███████╗███████╗
- ██║     ██╔═══██╗██║ ██╔╝██╔════╝██╔════╝
- ██║     ██║   ██║█████╔╝ █████╗  ███████╗
- ██║     ██║   ██║██╔═██╗ ██╔══╝  ╚════██║
- ███████╗╚██████╔╝██║  ██╗███████╗███████║
- ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
-        O N E   ·   b r a n d   h o u s e
-</pre>
-
-      <h1>Some lines you ride.<br/>Some you write.</h1>
       <p class="koan">Gold is earned. Shop process parked. House online. Desk: C3i.</p>
       <p class="meta">founder · rider · hurricane ut · neo-tradition</p>
 
@@ -130,20 +143,6 @@
         </div>
       </div>
 
-      <!-- Interactive C3i door -->
-      <div class="c3i-door" id="c3i">
-        <div class="door-head">
-          <span>▸ door /c3i — desk greeter</span>
-          <button type="button" id="c3i-focus" title="Focus the prompt">open door</button>
-        </div>
-        <div class="term-out" id="term-out" aria-live="polite"></div>
-        <form class="term-in" id="term-form" autocomplete="off">
-          <span class="ps1">c3i&gt;</span>
-          <input id="term-input" type="text" spellcheck="false" aria-label="C3i command input"
-                 placeholder="type help · whoami · doors · vanism · book …" />
-        </form>
-      </div>
-
       <div class="footer">
         <span>© LOKES ONE LIMITED CO LLC</span>
         <a href="mailto:nicholasacord@outlook.com">mail</a>
@@ -152,6 +151,7 @@
       </div>
     </div>
   </div>
+<script src="assets/snow.js"></script>
 <script src="assets/c3i.js"></script>
 </body>
 </html>

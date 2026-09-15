@@ -91,8 +91,31 @@
   // --- replies ----------------------------------------------------------------------
   const replies = {
     help() {
-      say("Commands: help · c3i · desk · whoami · odin · hop · play · coin · vanism · book · doors · ride · film · press · credits · clear");
+      say("Commands: help · c3i · desk · whoami · odin · hop · play · pilot · scores · sectors · coin · vanism · book · doors · ride · film · press · credits · clear");
       say("I’m the desk greeter. Warm, short, real. Not a fake AGI.");
+    },
+    scores() {
+      const t = (window.LOKES && window.LOKES.game && window.LOKES.game.table()) || [];
+      if (!t.length) { say("Table’s empty. Type play — first run writes the first line."); return; }
+      say("House table: " + t.map((r, i) => (i + 1) + ". " + r.i + " " + String(r.s).padStart(4, "0") + " (sector " + String(r.w || 1).padStart(2, "0") + ")").join(" · "));
+    },
+    hi() { replies.scores(); },
+    table() { replies.scores(); },
+    sectors() {
+      say("Nine sectors, three holdings, on loop: lokes.one (house) → me.lokes.one (man) → vanism.ai (product).");
+      say("Every third sector the cart shows up. Odin sends it back. Shop stays parked. Clear 09 and the empire is secured.");
+    },
+    sector() { replies.sectors(); },
+    holdings() { replies.sectors(); },
+    boss() {
+      say("The cart. Big, slow, wants in. It never gets in. That’s the whole brand, playable.");
+    },
+    pilot() {
+      const g = window.LOKES && window.LOKES.game;
+      if (!g) { say("The arcade is offline on this device."); return; }
+      const on = g.auto(!g.auto());
+      if (on && !g.isPlaying()) g.start();
+      say(on ? "Odin drives. Watch. Arrow keys or space hand it back." : "Pilot off. Your hands.");
     },
     c3i() {
       say("Door open. I’m C3i — Nicholas’s desk. Ask whoami, doors, vanism, or book.");
@@ -129,7 +152,7 @@
     play() {
       if (window.LOKES && window.LOKES.game) {
         window.LOKES.game.start();
-        say("Invaders inbound. Odin has carrots. ← → to move, space to fire, esc to quit.");
+        say("Sector 01. Odin has carrots. ← → move, space fires, esc quits. Phones get a pad.");
       } else {
         say("The arcade is offline on this device.");
       }
@@ -155,7 +178,7 @@
     },
     coin() {
       say("Credit accepted. Player 1 — you’re at the desk.");
-      say("1970s cabinet, futuristic shell. Type play to defend the house, or help for the map.");
+      say("1970s cabinet, futuristic shell. Type play to hold the house, scores for the table, or help for the map.");
     },
     insert() { replies.coin(); },
     clear() {
@@ -234,15 +257,23 @@
       say("Konami. 1UP. Odin spins for the old code.");
     }
   });
+  const SECTOR_NAMES = ["lokes.one", "me.lokes.one", "vanism.ai"];
   document.addEventListener("lokes:game", function (e) {
     const d = e.detail || {};
+    if (d.mode && d.mode !== "play" && d.type !== "stop") return;   // the demo plays quietly
     switch (d.type) {
-      case "start": sys("— arcade mode · odin vs the invaders —"); break;
+      case "start": sys("— arcade live · odin vs the invaders —"); break;
       case "hit": say(d.lives > 0 ? "Odin took one. Unbothered. Lives: " + d.lives + "." : "Odin is down."); break;
-      case "wave": say("Wave cleared. Odin holds the house. Score " + d.score + "."); break;
+      case "wave": say("Sector " + String(d.cleared || d.wave - 1).padStart(2, "0") + " held. Next: " + SECTOR_NAMES[(d.wave - 1) % 3] + ". Score " + d.score + "."); break;
+      case "boss": say("The cart wants in. It never gets in."); break;
+      case "bosskill": say("Cart rejected. Shop stays parked. That’s the law."); break;
+      case "combo": say("Combo ×" + d.mult + ". Odin is on one."); break;
+      case "ufo": say("Mystery ship. +" + d.pts + ". Nobody knows who sent it."); break;
+      case "win": say("Empire secured. Nine sectors, three holdings, one rabbit. Keep going if you want overtime."); break;
       case "over": say("Game over — " + d.why + ". Score " + d.score + ". Shop still parked."); break;
-      case "stop": sys("— arcade closed · house calm —"); break;
-      case "kill": break;
+      case "hiscore": say(d.rank === 1 ? d.initials + " tops the house table." : d.initials + " is on the table at " + d.rank + "."); break;
+      case "stop": sys("— arcade back to demo · house calm —"); break;
+      case "kill": case "attract": break;
       default: break;
     }
   });

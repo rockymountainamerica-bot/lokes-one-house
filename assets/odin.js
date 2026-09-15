@@ -68,7 +68,7 @@
     }
   });
 
-  function spin() {
+  function spin(reason) {
     restart(odin, "spin");
     popHearts(6);
     if (!oneUp && chips) {
@@ -78,9 +78,16 @@
       c.textContent = "1UP · odin";
       chips.appendChild(c);
     }
-    emit("konami");
+    emit(reason === "win" ? "spin" : "konami");
   }
 
+  // the arcade makes him happy: hearts when a sector falls, a big burst when the cart is sent back
+  document.addEventListener("lokes:game", function (e) {
+    var d = e.detail || {};
+    if (d.type === "wave") popHearts(d.mode === "play" ? 3 : 1);
+    else if (d.type === "bosskill") popHearts(5);
+  });
+
   window.LOKES = window.LOKES || {};
-  window.LOKES.odin = { hop: hop, spin: spin };
+  window.LOKES.odin = { hop: hop, spin: spin, hearts: popHearts };
 })();

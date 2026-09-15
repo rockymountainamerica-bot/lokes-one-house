@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>E cartridge HUD</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Silkscreen&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#030403;--panel:#080A08;--ink:#F2F4F1;--dim:#A6AEA8;--mute:#5F6A62;--line:#242A26;--green:#39FF88;--pink:#FF4FD2;--amber:#FFB84A;--px:"Silkscreen",monospace}
+body{font-family:"IBM Plex Mono",monospace;background:var(--bg);color:var(--ink);min-height:100vh;padding:28px}
+.frame{max-width:960px;margin:0 auto;position:relative;border:2px solid var(--line);background:var(--panel)}
+.frame::after{content:"";position:absolute;inset:-6px;pointer-events:none;--m:linear-gradient(var(--dim),var(--dim));
+  background:var(--m) top left/12px 2px,var(--m) top left/2px 12px,var(--m) top right/12px 2px,var(--m) top right/2px 12px,
+  var(--m) bottom left/12px 2px,var(--m) bottom left/2px 12px,var(--m) bottom right/12px 2px,var(--m) bottom right/2px 12px;background-repeat:no-repeat}
+.bar{display:flex;gap:16px;padding:10px 14px;border-bottom:2px solid var(--line);font-family:var(--px);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.bar .on{color:var(--green)}.bar .warn{color:var(--amber)}.bar .r{margin-left:auto;color:var(--mute)}
+.pad{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end}
+.odin{display:block;width:min(100%,420px);image-rendering:pixelated;filter:drop-shadow(6px 6px 0 rgba(57,255,136,.16))}
+.wm{width:min(100%,360px);color:var(--ink);fill:currentColor;display:block}
+.sub{font-family:var(--px);font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--green);margin:6px 0 14px}
+.chip{display:inline-block;font-family:var(--px);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border:2px solid var(--line);margin:0 6px 6px 0;
+  clip-path:polygon(8px 0,calc(100% - 8px) 0,calc(100% - 8px) 8px,100% 8px,100% calc(100% - 8px),calc(100% - 8px) calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,8px calc(100% - 8px),0 calc(100% - 8px),0 8px,8px 8px)}
+.chip.on{color:var(--green)}.chip.warn{color:var(--amber)}.chip.mute{color:var(--mute)}
+.koan{font-size:15px;line-height:1.55;max-width:40ch;margin:10px 0 6px}
+.meta{color:var(--mute);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.laser{height:2px;margin:0 24px;background:linear-gradient(90deg,transparent,var(--pink) 20%,var(--pink) 80%,transparent);opacity:.5}
+.back{display:inline-block;margin-bottom:12px;font-size:11px;color:var(--mute);text-decoration:none}
+@media (max-width:700px){.pad{grid-template-columns:1fr}}
+</style></head><body>
+<a class="back" href="gallery.html">← samples</a>
+<div class="frame">
+  <div class="bar"><span>■ LOKES ONE · brand house</span><span class="on">desk C3i online</span><span class="warn">shop parked</span><span class="r">score 0000 · 37.17°N 113.29°W</span></div>
+  <div class="laser"></div>
+  <div class="pad">
+    <img class="odin" src="../assets/pixel-rabbit-portrait.png" alt="Odin, pixel rabbit"/>
+    <div>
+      <svg class="wm" viewBox="0 0 29 7" role="img" aria-label="LOKES"><use href="../assets/sprite.svg#i-lokes"/></svg>
+      <div class="sub">one · brand house</div>
+      <span class="chip on">C3i online</span><span class="chip warn">shop parked</span><span class="chip mute">lab closed</span>
+      <p class="koan">Sample E · Cartridge HUD. Defense-grade black and white, crop-mark frames, notched game tokens, Space Invaders in the lane, Odin huge for the smile.</p>
+      <p class="meta">production: <a href="../index.html" style="color:var(--green)">../index.html</a></p>
+    </div>
+  </div>
+</div>
+</body></html>

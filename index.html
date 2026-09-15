@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>LOKES ONE — brand house</title>
 <meta name="description" content="LOKES ONE brand house. Neo-tradition under a compute shell. Vanism · man · book. Shop parked. Lab closed."/>
-<meta name="theme-color" content="#050805"/>
+<meta name="theme-color" content="#030403"/>
 <link rel="canonical" href="https://lokes.one/"/>
 <link rel="icon" href="assets/favicon.ico" sizes="48x48"/>
 <link rel="icon" type="image/svg+xml" href="assets/pixel-rabbit.svg"/>
@@ -18,140 +18,199 @@
 <meta property="og:image" content="https://lokes.one/assets/og-card.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="LOKES ONE brand house. Phosphor terminal with Odin, the pixel rabbit."/>
+<meta property="og:image:alt" content="LOKES ONE brand house. Odin, the huge pixel rabbit, under a marching invader formation. 1UP · HI-SCORE · insert coin."/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="LOKES ONE — brand house"/>
 <meta name="twitter:description" content="Neo-tradition under a compute shell. Desk: C3i. Shop parked. Lab closed."/>
 <meta name="twitter:image" content="https://lokes.one/assets/og-card.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/house.css"/>
 </head>
 <body>
-  <canvas id="matrix" aria-hidden="true"></canvas>
+  <canvas id="stars" aria-hidden="true"></canvas>
 
   <div class="shell" role="main">
-    <div class="titlebar">
-      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <span class="path">lokes@one:~ /house — bash 5.2</span>
-      <span class="desk-badge"><span class="pulse" aria-hidden="true"></span>desk: C3i · online</span>
+
+    <!-- HUD -->
+    <header class="hud frame">
+      <div class="cart">
+        <span class="bit" aria-hidden="true"></span>
+        <span>LOKES ONE</span>
+        <span class="sub">· brand house</span>
+      </div>
+      <div class="readouts" aria-label="holdings status">
+        <span class="ro on"><span class="pip"></span><span class="k">desk</span> C3i online</span>
+        <span class="ro on"><span class="pip"></span><span class="k">product</span> vanism.ai</span>
+        <span class="ro on"><span class="pip"></span><span class="k">man</span> me.lokes.one</span>
+        <span class="ro warn"><span class="pip"></span><span class="k">shop</span> parked</span>
+        <span class="ro off"><span class="pip"></span><span class="k">lab</span> closed</span>
+      </div>
+    </header>
+
+    <!-- 70s cabinet scoreline · mission control -->
+    <div class="score" id="scoreline" aria-label="arcade readout">
+      <span><span class="k">1up</span> <span class="v" id="score">0000</span></span>
+      <span><span class="k">hi-score</span> <span class="v" id="hiscore">0000</span> <span class="ini" id="hiscore-ini"></span></span>
+      <span><span class="k">lives</span> <span class="lives" id="lives" aria-label="three lives">
+        <svg viewBox="0 0 7 6"><use href="assets/sprite.svg#i-heart"/></svg>
+        <svg viewBox="0 0 7 6"><use href="assets/sprite.svg#i-heart"/></svg>
+        <svg viewBox="0 0 7 6"><use href="assets/sprite.svg#i-heart"/></svg>
+      </span></span>
+      <span><span class="k">sector</span> <span class="v" id="sector">01</span> <span class="ini" id="sector-name">lokes.one</span></span>
+      <span class="combo" id="combo" aria-live="off"><span class="k">combo</span> <span class="v">×1</span></span>
+      <span class="coord">37.17°N 113.29°W · hurricane ut</span>
+      <button type="button" class="coin right" id="insert-coin" title="Drop a coin — opens the C3i desk">
+        <span class="k">credit 01</span> · insert coin <span class="coin-blink" aria-hidden="true">▮</span>
+      </button>
     </div>
-    <div class="laser-line" aria-hidden="true"></div>
+    <div class="laser" aria-hidden="true"></div>
 
-    <div class="screen">
+    <!-- STAGE: the arcade is the centerpiece. Attract mode plays itself; one tap starts a run. -->
+    <section class="hero" id="hero" aria-label="arcade stage · odin vs the invaders">
+      <canvas id="invaders" aria-hidden="true"></canvas>
+      <div class="stage-tag" id="stage-tag" aria-hidden="true"><span class="label">stage</span><span class="mode" id="stage-mode">demo</span></div>
+      <button type="button" class="play arcade-btn" id="play" title="Play: Odin vs the invaders">▶ start<span class="blink">_</span></button>
+      <div class="game-msg" id="game-msg" aria-live="polite"></div>
+      <div class="pops" id="pops" aria-hidden="true"></div>
 
-      <!-- 70s cabinet scoreline -->
-      <div class="scoreline">
-        <span><span class="lbl">1UP</span> 000100</span>
-        <span><span class="lbl">HI-SCORE</span> 002600</span>
-        <button type="button" class="coin" id="insert-coin" title="Drop a coin — opens the C3i desk">
-          <span class="lbl">CREDIT 01</span> · INSERT COIN <span class="coin-blink" aria-hidden="true">▮</span>
-        </button>
-      </div>
-
-      <!-- hero: Odin + LOKES wordmark, same row -->
-      <div class="hero-row">
-        <div class="rabbit-wrap" title="Odin — walk + spin">
-          <div class="rabbit-stage" aria-hidden="true">
-            <img class="rabbit" src="assets/pixel-rabbit-portrait.png" onerror="this.onerror=null;this.src='assets/pixel-rabbit.svg'" width="160" height="160" alt="Odin — LOKES pixel rabbit, in memory"/>
-          </div>
-          <div class="rabbit-cap">C3i · Odin</div>
-        </div>
-        <div class="hero-right">
-          <pre class="ascii">
- ██╗      ██████╗ ██╗  ██╗███████╗███████╗
- ██║     ██╔═══██╗██║ ██╔╝██╔════╝██╔════╝
- ██║     ██║   ██║█████╔╝ █████╗  ███████╗
- ██║     ██║   ██║██╔═██╗ ██╔══╝  ╚════██║
- ███████╗╚██████╔╝██║  ██╗███████╗███████║
- ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
-        O N E   ·   b r a n d   h o u s e
-</pre>
-          <div class="status-strip" aria-label="system status">
-            <span class="chip on">C3i online</span>
-            <span class="chip warn">shop parked</span>
-            <span class="chip mute">lab closed</span>
-            <span class="chip on">doors live</span>
-          </div>
-          <p class="koan">Gold is earned. Shop process parked. House online. Desk: C3i.</p>
-          <p class="meta">founder · rider · hurricane ut · neo-tradition</p>
-        </div>
-      </div>
-
-      <!-- interactive C3i door — right below the header/hero -->
-      <div class="c3i-door" id="c3i">
-        <div class="door-head">
-          <span>▸ door /c3i — desk greeter</span>
-          <button type="button" id="c3i-focus" title="Focus the prompt">open door</button>
-        </div>
-        <div class="term-out" id="term-out" aria-live="polite"></div>
-        <form class="term-in" id="term-form" autocomplete="off">
-          <span class="ps1">c3i&gt;</span>
-          <input id="term-input" type="text" spellcheck="false" aria-label="C3i command input"
-                 placeholder="type help · whoami · doors · vanism · book …" />
+      <!-- over / win screen -->
+      <div class="screen frame" id="screen" hidden>
+        <div class="screen-title" id="screen-title">game over</div>
+        <div class="screen-sub" id="screen-sub"></div>
+        <dl class="stats" id="screen-stats"></dl>
+        <form class="initials" id="initials" hidden autocomplete="off">
+          <span class="label">new high · your initials</span>
+          <div class="slots" id="slots"></div>
+          <button type="submit" class="arcade-btn ok" id="initials-ok">ok</button>
         </form>
+        <ol class="table" id="hi-table"></ol>
+        <div class="screen-actions">
+          <button type="button" class="arcade-btn go" id="screen-replay">▶ play again</button>
+          <button type="button" class="arcade-btn" id="screen-exit">esc · back to the house</button>
+        </div>
       </div>
 
-      <hr class="hr"/>
+      <div class="odin" id="odin" tabindex="0" role="button" aria-label="Odin — the LOKES pixel rabbit. Tap to hop.">
+        <div class="hearts" id="hearts" aria-hidden="true"></div>
+        <div class="stage">
+          <div class="flip">
+            <div class="body">
+              <img id="odin-img" src="assets/pixel-rabbit-portrait.png" onerror="this.onerror=null;this.src='assets/pixel-rabbit.svg'" width="560" height="560" alt="Odin — LOKES pixel rabbit, in memory" decoding="async" fetchpriority="high"/>
+            </div>
+          </div>
+        </div>
+        <div class="ground" aria-hidden="true"><span class="shadow"></span></div>
+        <div class="cap"><span class="label">C3i · Odin</span><span class="hint" id="odin-hint">tap to hop</span></div>
+      </div>
 
-      <div class="block-label">$ ls -la ./doors/</div>
-      <div class="ls">
-        <a class="entry" href="https://vanism.ai" target="_blank" rel="noopener">
-          <span class="perm">drwxr-xr-x</span>
+      <div class="hero-copy">
+        <svg class="wordmark" viewBox="0 0 29 7" role="img" aria-label="LOKES"><use href="assets/sprite.svg#i-lokes"/></svg>
+        <div class="wordmark-sub">one · brand house</div>
+        <div class="chips" id="chips">
+          <span class="chip on">C3i online</span>
+          <span class="chip on">3 holdings live</span>
+          <span class="chip warn">shop parked</span>
+          <span class="chip mute">lab closed</span>
+        </div>
+        <p class="koan">Gold is earned. Shop parked. House online. Odin holds the door. Desk: <span class="am">C3i</span>.</p>
+        <p class="meta">founder · rider · hurricane ut · neo-tradition</p>
+      </div>
+    </section>
+
+    <!-- C3i dialog box -->
+    <section class="dialog frame" id="c3i" aria-label="C3i desk greeter">
+      <div class="head">
+        <span class="arrow" aria-hidden="true">▸</span>
+        <span class="label">door /c3i — desk greeter</span>
+        <button type="button" id="c3i-focus" class="arcade-btn" title="Focus the prompt">open door</button>
+      </div>
+      <div class="term-out" id="term-out" aria-live="polite"></div>
+      <form class="term-in" id="term-form" autocomplete="off">
+        <label class="ps1" for="term-input">c3i&gt;</label>
+        <input id="term-input" type="text" spellcheck="false" aria-label="C3i command input"
+               placeholder="type help · whoami · doors · vanism · book · play …"/>
+      </form>
+    </section>
+
+    <!-- Doors: level select -->
+    <section class="section" aria-label="doors">
+      <div class="section-head"><span class="label">level select · ./doors/</span><span class="rule" aria-hidden="true"></span><span class="label">6 doors</span></div>
+      <div class="doors">
+        <a class="door token" href="https://vanism.ai" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 16 16"><use href="assets/sprite.svg#i-van"/></svg>
           <span class="name">vanism.ai</span>
           <span class="desc">product · travel OS</span>
+          <span class="perm">drwxr-xr-x</span><span class="lvl">01</span>
         </a>
-        <a class="entry" href="https://me.lokes.one" target="_blank" rel="noopener">
-          <span class="perm">drwxr-xr-x</span>
+        <a class="door token" href="https://me.lokes.one" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 16 16"><use href="assets/sprite.svg#i-man"/></svg>
           <span class="name">me.lokes.one</span>
           <span class="desc">the man · first person</span>
+          <span class="perm">drwxr-xr-x</span><span class="lvl">02</span>
         </a>
-        <a class="entry" href="#c3i" id="open-book" title="The book is real. The buy door isn’t open yet.">
-          <span class="perm">-r--r--r--</span>
+        <a class="door token soon" href="#c3i" id="open-book" title="The book is real. The buy door isn’t open yet.">
+          <svg class="icon" viewBox="0 0 16 16"><use href="assets/sprite.svg#i-book"/></svg>
           <span class="name">book/blood-mutant</span>
           <span class="desc">the book · door soon</span>
+          <span class="perm">-r--r--r--</span><span class="lvl">03</span>
         </a>
-        <a class="entry" href="https://www.youtube.com/@lokes_one" target="_blank" rel="noopener">
-          <span class="perm">-rw-r--r--</span>
+        <a class="door token" href="https://www.youtube.com/@lokes_one" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 16 16"><use href="assets/sprite.svg#i-film"/></svg>
           <span class="name">youtube/@lokes_one</span>
           <span class="desc">film · real places</span>
+          <span class="perm">-rw-r--r--</span><span class="lvl">04</span>
         </a>
-        <a class="entry" href="https://apps.apple.com/us/app/vanism/id6786479632" target="_blank" rel="noopener">
-          <span class="perm">-rwxr-xr-x</span>
+        <a class="door token" href="https://apps.apple.com/us/app/vanism/id6786479632" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 16 16"><use href="assets/sprite.svg#i-app"/></svg>
           <span class="name">appstore/vanism</span>
           <span class="desc">id 6786479632</span>
+          <span class="perm">-rwxr-xr-x</span><span class="lvl">05</span>
         </a>
-        <a class="entry" href="#c3i" id="open-c3i">
-          <span class="perm">crw-rw-rw-</span>
+        <a class="door token" href="#c3i" id="open-c3i">
+          <svg class="icon" viewBox="0 0 16 16"><use href="assets/sprite.svg#i-c3i"/></svg>
           <span class="name">door/c3i</span>
           <span class="desc">interactive desk · type here</span>
+          <span class="perm">crw-rw-rw-</span><span class="lvl">06</span>
         </a>
       </div>
+    </section>
 
-      <div class="cat">
-        <div><span class="hl">$</span> cat ./README.txt</div>
-        <div style="margin-top:8px">
+    <!-- README scroll -->
+    <section class="section" aria-label="readme">
+      <div class="scroll frame">
+        <div class="cmd">$ cat ./README.txt</div>
+        <div>
           I didn’t leave the streets. I transmuted them.<br/>
           Splitboard · van · desk.<br/>
           This is the <span class="am">mark</span> — neo-tradition under a compute shell — not a cart.<br/>
-          Three doors: <span class="hl">vanism.ai</span> (product) · <span class="hl">me.lokes.one</span> (man) · <span class="hl">lokes.one</span> (house).<br/>
+          Three doors: <a href="https://vanism.ai" target="_blank" rel="noopener">vanism.ai</a> (product) · <a href="https://me.lokes.one" target="_blank" rel="noopener">me.lokes.one</a> (man) · <span class="hl">lokes.one</span> (house).<br/>
           Book door soon — no cart, no invented ASIN. Shop parked. Lab closed.<br/>
-          When a drop is real, I’ll say so. C3i greets at the door — warm, concise, not a fake AGI claim.
+          When a drop is real, I’ll say so. <span class="gr">C3i</span> greets at the door — warm, concise, not a fake AGI claim.
         </div>
       </div>
+    </section>
 
-      <div class="footer">
-        <span>© LOKES ONE LIMITED CO LLC</span>
-        <a href="mailto:nicholasacord@outlook.com">mail</a>
-        <a href="samples/gallery.html">samples</a>
-        <span>1970s cabinet · futuristic desk</span>
-        <span>host: GitHub Pages · $0 · no shopify</span>
-      </div>
-    </div>
+    <footer class="credits">
+      <span>© LOKES ONE LIMITED CO LLC</span>
+      <a href="mailto:nicholasacord@outlook.com">mail</a>
+      <a href="samples/gallery.html">samples</a>
+      <span class="right">host: GitHub Pages · $0 · no shopify · insert coin</span>
+    </footer>
   </div>
 
-<script src="assets/matrix.js"></script>
+  <!-- on-screen pad: phones and any coarse pointer, during play only. Outside .shell so position:fixed is never caught by the stage shake. -->
+  <div class="pad" id="pad" aria-label="touch controls">
+    <button type="button" class="token" id="pad-left" aria-label="move left">◄</button>
+    <button type="button" class="token" id="pad-right" aria-label="move right">►</button>
+    <button type="button" class="token fire" id="pad-fire" aria-label="fire">●</button>
+    <button type="button" class="token quit" id="pad-quit" aria-label="exit game">esc</button>
+  </div>
+
+<script src="assets/stars.js"></script>
+<script src="assets/invaders.js"></script>
+<script src="assets/odin.js"></script>
 <script src="assets/c3i.js"></script>
 </body>
 </html>

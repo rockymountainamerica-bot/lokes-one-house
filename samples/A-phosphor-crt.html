@@ -38,7 +38,7 @@ h1{font-size:clamp(22px,5vw,36px);line-height:1.1;margin:10px 0}
 <div class="ls">
 <a href="https://vanism.ai" target="_blank" rel="noopener">vanism.ai/ · product</a>
 <a href="https://me.lokes.one" target="_blank" rel="noopener">me.lokes.one/ · the man</a>
-<a href="https://bloodmutant.com/" target="_blank" rel="noopener">book/blood-mutant · Buy on Amazon →</a>
+<span style="opacity:.7">book/blood-mutant · door soon · no cart</span>
 <a href="../index.html#c3i">door/c3i · interactive desk</a>
 </div>
 <div class="c3i-door" id="c3i">
@@ -48,14 +48,14 @@ h1{font-size:clamp(22px,5vw,36px);line-height:1.1;margin:10px 0}
 </div></div></div>
 <script>
 (function(){
-const L={vanism:"https://vanism.ai",me:"https://me.lokes.one",book:"https://bloodmutant.com/"};
+const L={vanism:"https://vanism.ai",me:"https://me.lokes.one"};
 const out=document.getElementById("term-out"),input=document.getElementById("term-input"),form=document.getElementById("term-form");
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
 function link(h,l){return '<a href="'+esc(h)+'" target="_blank" rel="noopener">'+esc(l)+'</a>';}
 function print(html,cls){const d=document.createElement("div");if(cls)d.className=cls;d.innerHTML=html;out.appendChild(d);out.scrollTop=out.scrollHeight;}
 function say(t){print('<span class="c3i">C3i · </span>'+esc(t),"c3i");}
 function sayH(h){print('<span class="c3i">C3i · </span>'+h,"c3i");}
-const R={help(){say("help · c3i · desk · whoami · vanism · book · doors · clear");},c3i(){say("Door open. I’m C3i — Nicholas’s desk.");},desk(){say("desk: C3i · online. Shop parked. Art dark.");},whoami(){say("Nicholas Acord — founder · rider · Hurricane UT.");},vanism(){sayH("Vanism → "+link(L.vanism,"vanism.ai"));},book(){sayH("Blood Mutant → "+link(L.book,"bloodmutant.com")+" (Buy on Amazon).");},doors(){sayH("Doors: "+link(L.vanism,"vanism.ai")+" · "+link(L.me,"me.lokes.one")+" · lokes.one");say("Shop parked. No ART.");},clear(){out.innerHTML="";say("cleared.");}};
+const R={help(){say("help · c3i · desk · whoami · vanism · book · doors · clear");},c3i(){say("Door open. I’m C3i — Nicholas’s desk.");},desk(){say("desk: C3i · online. Shop parked. Art dark.");},whoami(){say("Nicholas Acord — founder · rider · Hurricane UT.");},vanism(){sayH("Vanism → "+link(L.vanism,"vanism.ai"));},book(){say("Blood Mutant — book door soon. No cart, no invented ASIN.");},doors(){sayH("Doors: "+link(L.vanism,"vanism.ai")+" · "+link(L.me,"me.lokes.one")+" · lokes.one");say("Shop parked. No ART.");},clear(){out.innerHTML="";say("cleared.");}};
 print('<span class="sys">— c3i door —</span>');say("Type help.");
 form.addEventListener("submit",e=>{e.preventDefault();const v=input.value.trim();input.value="";if(!v)return;print('<span class="me">you&gt;</span> '+esc(v),"me");const k=v.toLowerCase().split(/\s+/)[0];(R[k]||(()=>say("Unknown. Try help.")))();});
 document.getElementById("c3i-focus").addEventListener("click",()=>{input.focus();say("Door focused.");});

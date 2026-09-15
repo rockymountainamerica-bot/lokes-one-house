@@ -7,29 +7,6 @@
     mail: "mailto:nicholasacord@outlook.com",
   };
 
-  const bootLines = [
-    { t: "LOKES BIOS v1.0 — neo-tradition kernel", c: "ok" },
-    { t: "mount /doors ................. ok", c: "ok" },
-    { t: "desk: C3i .................... online", c: "cyan" },
-    { t: "shopd ........................ parked (exit 0)", c: "warn" },
-    { t: "lab .......................... closed", c: "warn" },
-    { t: "odin ......................... loaded (in memory)", c: "ok" },
-    { t: "vanism.link .................. live", c: "ok" },
-    { t: "ready. type `c3i` or open the door below.", c: "ok" },
-  ];
-  const bootEl = document.getElementById("boot");
-  let bi = 0;
-  function bootTick() {
-    if (bi >= bootLines.length) return;
-    const row = document.createElement("div");
-    row.className = bootLines[bi].c;
-    row.textContent = "> " + bootLines[bi].t;
-    bootEl.appendChild(row);
-    bi++;
-    setTimeout(bootTick, 110 + Math.random() * 100);
-  }
-  bootTick();
-
   const out = document.getElementById("term-out");
   const input = document.getElementById("term-input");
   const form = document.getElementById("term-form");
@@ -78,7 +55,7 @@
     },
     book() {
       say("Blood Mutant. The book is real. The buy door isn’t open yet.");
-      say("bloodmutant.com is the mark, not a checkout. When the door opens, this line changes.");
+      say("No cart, no invented ASIN. When the door opens, this line changes.");
     },
     doors() {
       sayHtml("Three doors: " + link(LINKS.vanism, "vanism.ai") + " (product) · " +
@@ -95,7 +72,6 @@
     },
     ride() {
       say("Rider first. Hurricane, Utah. Splitboard when it snows, van when it doesn’t.");
-      say("Some lines you ride. Some you write.");
     },
     van() {
       replies.vanism();

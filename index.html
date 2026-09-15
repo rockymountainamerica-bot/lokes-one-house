@@ -3,207 +3,136 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LOKES ONE</title>
-<meta name="description" content="LOKES ONE — founder · artist · rider. Some lines you ride. Some you write."/>
-<meta name="theme-color" content="#0b0f13"/>
+<title>LOKES ONE — brand house</title>
+<meta name="description" content="LOKES ONE brand house — neo-tradition under a compute shell. Vanism · man · book. Shop parked. No ART."/>
+<meta name="theme-color" content="#050805"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --void: #07090c;
-    --ink: #0b0f13;
-    --cream: #e6e1d8;
-    --rust: #c46a3a;
-    --gold: #d4a84b;
-    --moss: #6b7f5a;
-    --lidar: #7ec8c3;
-    --grid: rgba(126,200,195,0.12);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    background: var(--void);
-    color: var(--cream);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  .grid-bg {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(196,106,58,0.18), transparent 55%),
-      radial-gradient(ellipse 60% 40% at 85% 70%, rgba(126,200,195,0.12), transparent 50%),
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: auto, auto, 48px 48px, 48px 48px;
-  }
-  .qubit {
-    position: fixed; width: 3px; height: 3px; border-radius: 50%;
-    background: var(--gold); box-shadow: 0 0 12px var(--gold); opacity: 0.55;
-    animation: drift 18s linear infinite; z-index: 0; pointer-events: none;
-  }
-  @keyframes drift {
-    from { transform: translateY(110vh) translateX(0); opacity: 0; }
-    10% { opacity: 0.6; }
-    to { transform: translateY(-10vh) translateX(40px); opacity: 0; }
-  }
-  .wrap { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 28px 22px 80px; }
-  header {
-    display: flex; justify-content: space-between; align-items: baseline;
-    border-bottom: 1px solid rgba(230,225,216,0.12); padding-bottom: 18px; margin-bottom: 48px;
-  }
-  .mark {
-    font-family: Syne, system-ui, sans-serif; font-weight: 800; letter-spacing: 0.08em;
-    font-size: 13px; color: var(--gold);
-  }
-  .loc { font-size: 11px; color: rgba(230,225,216,0.45); letter-spacing: 0.06em; }
-  .hero { margin: 56px 0 64px; }
-  .eyebrow {
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--lidar); margin-bottom: 18px;
-  }
-  h1 {
-    font-family: Syne, system-ui, sans-serif; font-weight: 800;
-    font-size: clamp(42px, 9vw, 88px); line-height: 0.95; letter-spacing: -0.03em;
-    margin-bottom: 22px;
-  }
-  h1 span.rust { color: var(--rust); }
-  h1 span.gold { color: var(--gold); }
-  .koan {
-    font-size: clamp(16px, 2.4vw, 20px); max-width: 28ch; line-height: 1.45;
-    color: rgba(230,225,216,0.82); margin-bottom: 28px;
-  }
-  .roles { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(230,225,216,0.5); }
-  .rooms {
-    display: grid; gap: 14px;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    margin: 48px 0;
-  }
-  a.room {
-    display: block; text-decoration: none; color: inherit;
-    border: 1px solid rgba(230,225,216,0.14);
-    background: rgba(11,15,19,0.72);
-    padding: 22px 20px 20px; border-radius: 4px;
-    transition: border-color 0.2s, transform 0.2s, background 0.2s;
-    position: relative; overflow: hidden;
-  }
-  a.room::before {
-    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-    background: var(--accent, var(--rust));
-  }
-  a.room:hover {
-    border-color: rgba(212,168,75,0.45);
-    transform: translateY(-2px);
-    background: rgba(11,15,19,0.92);
-  }
-  a.room .tag {
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent, var(--rust)); margin-bottom: 10px;
-  }
-  a.room h2 {
-    font-family: Syne, system-ui, sans-serif; font-weight: 700;
-    font-size: 22px; margin-bottom: 8px; letter-spacing: -0.02em;
-  }
-  a.room p { font-size: 13px; line-height: 1.45; color: rgba(230,225,216,0.62); }
-  a.room .go {
-    margin-top: 16px; font-size: 11px; letter-spacing: 0.12em;
-    color: var(--gold); text-transform: uppercase;
-  }
-  .story {
-    border-top: 1px solid rgba(230,225,216,0.12);
-    padding-top: 40px; margin-top: 20px;
-    display: grid; gap: 28px;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 720px) {
-    .story { grid-template-columns: 1fr 1.2fr; }
-  }
-  .story h3 {
-    font-family: Syne, system-ui, sans-serif; font-size: 14px;
-    letter-spacing: 0.16em; text-transform: uppercase; color: var(--moss);
-  }
-  .story p { font-size: 15px; line-height: 1.6; color: rgba(230,225,216,0.75); max-width: 42ch; }
-  footer {
-    margin-top: 72px; padding-top: 22px;
-    border-top: 1px solid rgba(230,225,216,0.1);
-    display: flex; flex-wrap: wrap; gap: 12px 28px;
-    font-size: 11px; color: rgba(230,225,216,0.4); letter-spacing: 0.06em;
-  }
-  footer a { color: rgba(230,225,216,0.55); text-decoration: none; }
-  footer a:hover { color: var(--gold); }
-  .note {
-    margin-top: 36px; padding: 14px 16px;
-    border: 1px dashed rgba(126,200,195,0.35);
-    font-size: 12px; color: rgba(230,225,216,0.55); line-height: 1.5;
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/house.css"/>
 </head>
 <body>
-  <div class="grid-bg" aria-hidden="true"></div>
-  <span class="qubit" style="left:12%; animation-delay:0s"></span>
-  <span class="qubit" style="left:38%; animation-delay:4s; background:#7ec8c3; box-shadow:0 0 12px #7ec8c3"></span>
-  <span class="qubit" style="left:67%; animation-delay:9s"></span>
-  <span class="qubit" style="left:84%; animation-delay:13s; background:#c46a3a; box-shadow:0 0 12px #c46a3a"></span>
+  <div class="shell" role="main">
+    <div class="pixel-grid" aria-hidden="true"></div>
+    <span class="pixel-corner tl" aria-hidden="true"></span>
+    <span class="pixel-corner tr" aria-hidden="true"></span>
+    <span class="pixel-corner bl" aria-hidden="true"></span>
+    <span class="pixel-corner br" aria-hidden="true"></span>
 
-  <div class="wrap">
-    <header>
-      <div class="mark">LOKES ONE</div>
-      <div class="loc">HURRICANE · UTAH</div>
-    </header>
-
-    <section class="hero">
-      <div class="eyebrow">House · not a cart</div>
-      <h1>Some lines you <span class="rust">ride</span>.<br/>Some you <span class="gold">write</span>.</h1>
-      <p class="koan">I build the trip OS, the music, the film. Gold is earned. The shop sleeps until the mark is ready again.</p>
-      <p class="roles">Founder · Artist · Rider · Nicholas Acord</p>
-    </section>
-
-    <section class="rooms" aria-label="Doors">
-      <a class="room" style="--accent:#7ec8c3" href="https://vanism.ai">
-        <div class="tag">01 · Product</div>
-        <h2>Vanism</h2>
-        <p>Travel OS for multi-day van and overland. Live on the App Store. CarPlay shipping.</p>
-        <div class="go">vanism.ai →</div>
-      </a>
-      <a class="room" style="--accent:#d4a84b" href="https://me.lokes.one">
-        <div class="tag">02 · The man</div>
-        <h2>me.lokes.one</h2>
-        <p>The public face. First person. Earned. Not a brochure.</p>
-        <div class="go">Enter →</div>
-      </a>
-      <a class="room" style="--accent:#c46a3a" href="https://www.youtube.com/@lokes_one">
-        <div class="tag">03 · Film</div>
-        <h2>YouTube</h2>
-        <p>Real places. Real lines. THANKS FOR WATCHING.</p>
-        <div class="go">@lokes_one →</div>
-      </a>
-      <a class="room" style="--accent:#6b7f5a" href="https://www.amazon.com/s?k=Blood+Mutant+Nicholas+Acord">
-        <div class="tag">04 · Book</div>
-        <h2>Blood Mutant</h2>
-        <p>On Amazon KDP. One room in the house.</p>
-        <div class="go">Find it →</div>
-      </a>
-    </section>
-
-    <section class="story">
-      <h3>Neo · tradition</h3>
-      <div>
-        <p>I didn’t leave the streets. I transmuted them. Splitboard, van, desk. This house is the mark — compute grid under canyon dust — not a subscription storefront.</p>
-        <p style="margin-top:14px">Shop is parked. When a drop is real, I’ll say so.</p>
-      </div>
-    </section>
-
-    <div class="note">
-      Draft brand house · $0 hosting target (static). No Shopify. No ART. Founder stamps domain cutover when ready.
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="path">lokes@one:~ /house — bash 5.2</span>
+      <span class="desk-badge"><span class="pulse" aria-hidden="true"></span>desk: C3i · online</span>
     </div>
 
-    <footer>
-      <span>© LOKES ONE LIMITED CO LLC</span>
-      <a href="https://www.instagram.com/nicholas_thayne_acord/">Instagram</a>
-      <a href="https://apps.apple.com/us/app/vanism/id6786479632">App Store</a>
-      <a href="mailto:nicholasacord@outlook.com">Contact</a>
-    </footer>
+    <div class="screen">
+      <div class="hero-row">
+        <div class="rabbit-wrap">
+          <img class="rabbit" src="assets/pixel-rabbit.svg" width="96" height="96" alt="LOKES pixel white rabbit mascot"/>
+          <div class="rabbit-cap">pixel rabbit</div>
+        </div>
+        <div style="flex:1;min-width:200px">
+          <div class="boot" id="boot"></div>
+          <div class="status-strip" aria-label="system status">
+            <span class="chip on">C3i online</span>
+            <span class="chip warn">shop parked</span>
+            <span class="chip mute">art dark</span>
+            <span class="chip on">doors live</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-line">
+        <span><span class="who">nicholas</span><span class="at">@</span><span class="host">lokes</span>:<span class="dir">~</span>$</span>
+        <span class="cmd">whoami --verbose</span><span class="cursor" aria-hidden="true"></span>
+      </div>
+
+      <pre class="ascii">
+ ██╗      ██████╗ ██╗  ██╗███████╗███████╗
+ ██║     ██╔═══██╗██║ ██╔╝██╔════╝██╔════╝
+ ██║     ██║   ██║█████╔╝ █████╗  ███████╗
+ ██║     ██║   ██║██╔═██╗ ██╔══╝  ╚════██║
+ ███████╗╚██████╔╝██║  ██╗███████╗███████║
+ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
+        O N E   ·   b r a n d   h o u s e
+</pre>
+
+      <h1>Some lines you ride.<br/>Some you write.</h1>
+      <p class="koan">Gold is earned. Shop process parked. House online. Desk: C3i.</p>
+      <p class="meta">founder · rider · hurricane ut · neo-tradition</p>
+
+      <div class="pixel-zone" aria-hidden="true"></div>
+
+      <hr class="hr"/>
+
+      <div class="block-label">$ ls -la ./doors/</div>
+      <div class="ls">
+        <a class="entry" href="https://vanism.ai" target="_blank" rel="noopener">
+          <span class="perm">drwxr-xr-x</span>
+          <span class="name">vanism.ai</span>
+          <span class="desc">product · travel OS</span>
+        </a>
+        <a class="entry" href="https://me.lokes.one" target="_blank" rel="noopener">
+          <span class="perm">drwxr-xr-x</span>
+          <span class="name">me.lokes.one</span>
+          <span class="desc">the man · first person</span>
+        </a>
+        <a class="entry" href="https://bloodmutant.com/" target="_blank" rel="noopener">
+          <span class="perm">-rw-r--r--</span>
+          <span class="name">book/blood-mutant</span>
+          <span class="desc">Buy on Amazon →</span>
+        </a>
+        <a class="entry" href="https://www.youtube.com/@lokes_one" target="_blank" rel="noopener">
+          <span class="perm">-rw-r--r--</span>
+          <span class="name">youtube/@lokes_one</span>
+          <span class="desc">film · real places</span>
+        </a>
+        <a class="entry" href="https://apps.apple.com/us/app/vanism/id6786479632" target="_blank" rel="noopener">
+          <span class="perm">-rwxr-xr-x</span>
+          <span class="name">appstore/vanism</span>
+          <span class="desc">id 6786479632</span>
+        </a>
+        <a class="entry" href="#c3i" id="open-c3i">
+          <span class="perm">crw-rw-rw-</span>
+          <span class="name">door/c3i</span>
+          <span class="desc">interactive desk · type here</span>
+        </a>
+      </div>
+
+      <div class="cat">
+        <div><span class="hl">$</span> cat ./README.txt</div>
+        <div style="margin-top:8px">
+          I didn’t leave the streets. I transmuted them.<br/>
+          Splitboard · van · desk.<br/>
+          This is the <span class="am">mark</span> — neo-tradition under a compute shell — not a cart.<br/>
+          Three doors: <span class="hl">vanism.ai</span> (product) · <span class="hl">me.lokes.one</span> (man) · <span class="hl">lokes.one</span> (house).<br/>
+          Shop parked. No ART. When a drop is real, I’ll say so.<br/>
+          C3i greets at the door — warm, concise, not a fake AGI claim.
+        </div>
+      </div>
+
+      <!-- Interactive C3i door -->
+      <div class="c3i-door" id="c3i">
+        <div class="door-head">
+          <span>▸ door /c3i — desk greeter</span>
+          <button type="button" id="c3i-focus" title="Focus the prompt">open door</button>
+        </div>
+        <div class="term-out" id="term-out" aria-live="polite"></div>
+        <form class="term-in" id="term-form" autocomplete="off">
+          <span class="ps1">c3i&gt;</span>
+          <input id="term-input" type="text" spellcheck="false" aria-label="C3i command input"
+                 placeholder="type help · whoami · doors · vanism · book …" />
+        </form>
+      </div>
+
+      <div class="footer">
+        <span>© LOKES ONE LIMITED CO LLC</span>
+        <a href="mailto:nicholasacord@outlook.com">mail</a>
+        <a href="samples/gallery.html">samples</a>
+        <span>host: GitHub Pages · $0 · no shopify</span>
+      </div>
+    </div>
   </div>
+<script src="assets/c3i.js"></script>
 </body>
 </html>

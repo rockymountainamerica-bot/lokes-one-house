@@ -7,6 +7,7 @@
     youtube: "https://www.youtube.com/@lokes_one",
     app: "https://apps.apple.com/us/app/vanism/id6786479632",
     mail: "mailto:nicholasacord@outlook.com",
+    book: "https://bloodmutant.com/",
   };
 
   const out = document.getElementById("term-out");
@@ -30,6 +31,7 @@
   // --- typewriter queue -------------------------------------------------------
   const queue = [];
   let busy = false;
+  let gen = 0;   // bumped by clear(); an in-flight tick from an older generation stops
   function print(html, cls) {
     const d = document.createElement("div");
     if (cls) d.className = cls;
@@ -46,6 +48,7 @@
     const item = queue.shift();
     if (!item) { busy = false; return; }
     busy = true;
+    const g = gen;
     const d = print(item.prefix, "c3i typing");
     if (reduced.matches) {
       d.innerHTML = item.prefix + item.html;
@@ -59,6 +62,7 @@
     const parts = Array.from(tmp.childNodes);
     let pi = 0, ci = 0;
     const tick = () => {
+      if (g !== gen) return;
       if (pi >= parts.length) {
         d.classList.remove("typing");
         setTimeout(drain, 60);
@@ -91,7 +95,7 @@
   // --- replies ----------------------------------------------------------------------
   const replies = {
     help() {
-      say("Commands: help · c3i · desk · whoami · odin · hop · play · pilot · scores · sectors · coin · vanism · book · doors · ride · film · press · credits · clear");
+      say("Commands: help · c3i · desk · whoami · odin · hop · play · stop · pilot · scores · sectors · boss · coin · vanism · book · doors · ride · film · press · credits · clear");
       say("I’m the desk greeter. Warm, short, real. Not a fake AGI.");
     },
     scores() {
@@ -131,7 +135,7 @@
       sayHtml("Vanism — travel OS. Door → " + link(LINKS.vanism, "vanism.ai"));
     },
     book() {
-      say("Blood Mutant. The book is real. The buy door isn’t open yet.");
+      sayHtml("Blood Mutant. The book is real → " + link(LINKS.book, "bloodmutant.com") + ". The buy door isn’t open yet.");
       say("No cart, no invented ASIN. When the door opens, this line changes.");
     },
     doors() {
@@ -182,6 +186,9 @@
     },
     insert() { replies.coin(); },
     clear() {
+      gen++;
+      queue.length = 0;
+      busy = false;
       out.innerHTML = "";
       say("screen cleared. Still here.");
     },
@@ -235,9 +242,8 @@
     focusDoor();
     run("c3i");
   });
-  document.getElementById("open-book").addEventListener("click", function (e) {
-    e.preventDefault();
-    focusDoor();
+  document.getElementById("open-book").addEventListener("click", function () {
+    // the door opens bloodmutant.com in a new tab; the desk explains the buy door is still soon
     run("book");
   });
   const coinBtn = document.getElementById("insert-coin");
@@ -264,7 +270,7 @@
     switch (d.type) {
       case "start": sys("— arcade live · odin vs the invaders —"); break;
       case "hit": say(d.lives > 0 ? "Odin took one. Unbothered. Lives: " + d.lives + "." : "Odin is down."); break;
-      case "wave": say("Sector " + String(d.cleared || d.wave - 1).padStart(2, "0") + " held. Next: " + SECTOR_NAMES[(d.wave - 1) % 3] + ". Score " + d.score + "."); break;
+      case "wave": if (!d.win) say("Sector " + String(d.cleared).padStart(2, "0") + " held. Next: " + SECTOR_NAMES[(d.next - 1) % 3] + ". Score " + d.score + "."); break;
       case "boss": say("The cart wants in. It never gets in."); break;
       case "bosskill": say("Cart rejected. Shop stays parked. That’s the law."); break;
       case "combo": say("Combo ×" + d.mult + ". Odin is on one."); break;

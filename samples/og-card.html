@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>LOKES ONE — OG card source (1200×630)</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/house.css"/>
+<style>
+  /* Source for assets/og-card.png. Render headless at exactly 1200×630, no scrollbars:
+     google-chrome --headless=new --window-size=1200,630 --screenshot=../assets/og-card.png samples/og-card.html */
+  html,body{width:1200px;height:630px;overflow:hidden;background:var(--bg)}
+  body::before{display:none}
+  .card{position:relative;width:1200px;height:630px;overflow:hidden}
+  .card .frame{position:absolute;inset:24px;background:transparent;border-color:var(--line-hi)}
+  .hud{position:absolute;left:48px;right:48px;top:48px;padding:0;background:none;border:0}
+  .hud::after{display:none}
+  .hud .cart{font-size:14px}
+  .ro{font-size:11px}
+  .score{position:absolute;left:48px;right:48px;top:96px;padding:0;font-size:13px}
+  .rule{position:absolute;left:48px;right:48px;top:128px;height:2px;background:var(--pink);opacity:0.6}
+  #fleet{position:absolute;left:56px;top:152px;image-rendering:pixelated}
+  .copy{position:absolute;left:64px;top:296px;display:flex;flex-direction:column;gap:20px}
+  .copy .wordmark{width:440px}
+  .copy .wordmark-sub{font-size:16px;letter-spacing:0.5em;margin-top:-8px}
+  .copy .chips .chip{font-size:11px;padding:8px 12px}
+  .odin-og{position:absolute;right:48px;bottom:36px;width:460px;height:460px}
+  .odin-og img{width:460px;height:460px;image-rendering:pixelated;display:block;filter:drop-shadow(8px 8px 0 rgba(57,255,136,0.18))}
+  .start{
+    position:absolute;left:64px;bottom:56px;
+    font-family:var(--font-px);font-size:16px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);
+    padding:12px 20px;border:2px solid var(--green);background:var(--bg);clip-path:var(--notch);
+    display:flex;align-items:baseline;gap:16px;
+  }
+  .start small{font-size:9px;color:var(--ink-dim);letter-spacing:0.1em}
+  .lasers span{position:absolute;width:4px;height:16px;background:var(--pink)}
+  .lasers span::before{content:"";position:absolute;left:1px;top:0;width:1px;height:8px;background:var(--ink)}
+  .credit{position:absolute;left:64px;bottom:40px;font-family:var(--font-px);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="card">
+  <canvas id="stars" width="1200" height="630" style="position:absolute;inset:0"></canvas>
+  <div class="frame" aria-hidden="true"></div>
+  <header class="hud">
+    <div class="cart"><span class="bit"></span><span>LOKES ONE</span><span class="sub">· brand house</span></div>
+    <div class="readouts">
+      <span class="ro on"><span class="pip"></span><span class="k">desk</span> C3i online</span>
+      <span class="ro on"><span class="pip"></span><span class="k">product</span> vanism.ai</span>
+      <span class="ro on"><span class="pip"></span><span class="k">man</span> me.lokes.one</span>
+      <span class="ro warn"><span class="pip"></span><span class="k">shop</span> parked</span>
+    </div>
+  </header>
+  <div class="score">
+    <span><span class="k">1up</span> <span class="v">0000</span></span>
+    <span><span class="k">hi-score</span> <span class="v">2230</span> <span class="ini">NTA</span></span>
+    <span><span class="k">lives</span> <span class="lives">
+      <svg viewBox="0 0 7 6"><use href="../assets/sprite.svg#i-heart"/></svg>
+      <svg viewBox="0 0 7 6"><use href="../assets/sprite.svg#i-heart"/></svg>
+      <svg viewBox="0 0 7 6"><use href="../assets/sprite.svg#i-heart"/></svg>
+    </span></span>
+    <span><span class="k">sector</span> <span class="v">01</span> <span class="ini">lokes.one</span></span>
+    <span class="coord right">credit 01 · insert coin</span>
+  </div>
+  <div class="rule"></div>
+  <canvas id="fleet" width="560" height="128"></canvas>
+  <div class="lasers" aria-hidden="true">
+    <span style="left:236px;top:278px"></span><span style="left:472px;top:262px"></span><span style="left:640px;top:330px"></span><span style="left:600px;top:470px"></span>
+  </div>
+  <div class="start">▶ press start<small>odin vs the invaders · lokes.one</small></div>
+  <div class="copy">
+    <svg class="wordmark" viewBox="0 0 29 7" role="img" aria-label="LOKES"><use href="../assets/sprite.svg#i-lokes"/></svg>
+    <div class="wordmark-sub">one · brand house</div>
+    <div class="chips">
+      <span class="chip on">C3i online</span>
+      <span class="chip on">3 holdings live</span>
+      <span class="chip warn">shop parked</span>
+    </div>
+  </div>
+  <div class="odin-og"><img src="../assets/pixel-rabbit-portrait.png" alt="Odin, the LOKES pixel rabbit"/></div>
+</div>
+<script>
+  // pixel stars + a small fleet, same sprites as assets/invaders.js
+  (function () {
+    var s = document.getElementById("stars").getContext("2d");
+    var rnd = function (seed) { return function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }; }(7);
+    s.fillStyle = "#030403"; s.fillRect(0, 0, 1200, 630);
+    for (var i = 0; i < 140; i++) { var z = rnd() < 0.7 ? 1 : rnd() < 0.7 ? 2 : 3; s.fillStyle = "rgba(242,244,241," + (0.2 + z * 0.1) + ")"; s.fillRect(Math.floor(rnd() * 1200), Math.floor(rnd() * 630), z, z); }
+    var SQUID = ["...XX...", "..XXXX..", ".XXXXXX.", "XX.XX.XX", "XXXXXXXX", "..X..X..", ".X.XX.X.", "X.X..X.X"];
+    var CRAB = ["..X.....X..", "...X...X...", "..XXXXXXX..", ".XX.XXX.XX.", "XXXXXXXXXXX", "X.XXXXXXX.X", "X.X.....X.X", "...XX.XX..."];
+    var OCTO = ["....XXXX....", ".XXXXXXXXXX.", "XXXXXXXXXXXX", "XXX..XX..XXX", "XXXXXXXXXXXX", "...XX..XX...", "..XX.XX.XX..", "XX........XX"];
+    var c = document.getElementById("fleet").getContext("2d");
+    var S = 3, CW = 52, CH = 40, rows = [[SQUID, "255,79,210"], [CRAB, "242,244,241"], [OCTO, "242,244,241"]];
+    for (var r = 0; r < rows.length; r++) {
+      var g = rows[r][0], w = g[0].length * S;
+      for (var col = 0; col < 10; col++) {
+        var x = 8 + col * CW + Math.floor((CW - w) / 2), y = 8 + r * CH;
+        c.fillStyle = "rgba(" + rows[r][1] + ",0.95)";
+        for (var yy = 0; yy < g.length; yy++) for (var xx = 0; xx < g[0].length; xx++) if (g[yy][xx] === "X") c.fillRect(x + xx * S, y + yy * S, S, S);
+      }
+    }
+  })();
+</script>
+</body>
+</html>

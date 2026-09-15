@@ -10,8 +10,8 @@ Static LOKES ONE brand house. **Better than Shopify vibe — without Shopify.** 
   - **C3i desk** online in boot + interactive CLI door (client-side greeter)
   - Commands: `help` · `c3i` · `desk` · `whoami` · `vanism` · `book` · `doors` · `clear`
   - Hard links: [vanism.ai](https://vanism.ai) · [me.lokes.one](https://me.lokes.one) · [Blood Mutant](https://bloodmutant.com/)
-- `assets/` — rabbit sprites
-- `samples/` — phosphor / amber / cyan / brutal variants + `gallery.html` + screenshots (`.png` + `.svg` mirrors)
+- `assets/` — `pixel-rabbit.svg` · `house.css` · `c3i.js` (+ `.png` sprites locally)
+- `samples/` — phosphor / amber / cyan / brutal variants + `gallery.html` + screenshots
 
 ## Law
 
@@ -39,4 +39,4 @@ python3 -m http.server 8080 -d .
 
 ## Samples
 
-See [`samples/gallery.html`](samples/gallery.html). Screenshots: `samples/*.png` (and `.svg` mirrors for Git-friendly preview).
+See [`samples/gallery.html`](samples/gallery.html). Screenshots live under `samples/*.png` (local) and optional `.svg` mirrors.

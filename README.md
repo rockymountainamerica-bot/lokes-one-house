@@ -22,9 +22,9 @@ Script order matters: `stars.js` → `invaders.js` → `odin.js` → `c3i.js` (`
 
 ## Law
 
-- **Three doors:** vanism.ai (product) · me.lokes.one (man) · lokes.one (this house)
+- **Three doors:** vanism.ai (product) · me.lokes.one (man) · lokes.one (this house). The level select shows six tiles: those three are the **primary** doors; youtube · appstore · c3i · book are **satellites** (book stays soon)
 - **Shop PARKED** until a real drop. The cart in the game is the joke: it never gets in
-- **No ART** anywhere
+- **No cross-brand content** anywhere — the rescue-tech company lives in its own repo; the harness greps this house for its three-letter acronym as a whole word and must find none
 - C3i is a warm concise desk greeter — **not** a fake full-AGI claim
 - Blood Mutant book door → https://bloodmutant.com/ (Buy on Amazon). Do not invent ASINs
 - Design: 8px grid, sharp or stepped corners (no `border-radius`), no blur, `steps()` motion only, green = live, amber = parked, pink = laser / top row / hearts, cyan = links. No build step, no npm

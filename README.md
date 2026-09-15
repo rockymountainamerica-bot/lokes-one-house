@@ -41,6 +41,7 @@ python3 -m http.server 8811 --bind 0.0.0.0
 1. Repo **Settings → Pages → Source:** Deploy from branch `main` / `/ (root)`
 2. Site URL: `https://rockymountainamerica-bot.github.io/lokes-one-house/`
 3. When founder stamps DNS: point `lokes.one` CNAME to `rockymountainamerica-bot.github.io` (or transfer later)
+4. TODO og-card.png: regenerate from `samples/og-card.html` (1200×630) and commit — the current PNG is the old phosphor card
 
 ## Samples
 

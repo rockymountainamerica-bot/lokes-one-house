@@ -4,14 +4,14 @@ Static LOKES ONE brand house. **Better than Shopify vibe — without Shopify.** 
 
 ## What's here
 
-- `index.html` — production phosphor CRT house
-  - Pixel white rabbit mascot (`assets/pixel-rabbit.svg` + `.png` locally)
-  - Pixelated zones / grid / border blocks
-  - **C3i desk** online in boot + interactive CLI door (client-side greeter)
-  - Commands: `help` · `c3i` · `desk` · `whoami` · `vanism` · `book` · `doors` · `clear`
+- `index.html` — production **Cartridge HUD** house: defense-grade black/white surface, crop-mark frames, notched arcade tokens, an 8px grid, `steps()` motion only
+  - **Odin**, the pixel white rabbit, huge in the hero (`assets/pixel-rabbit-portrait.png`, up to 560px). Tap to hop (hearts), Konami code to spin (1UP chip)
+  - **Space Invaders lane** above Odin (`assets/invaders.js`): ambient formation marches; `play` / P / the ▶ button makes Odin the cannon — arrows move, space fires carrots, Esc exits. 1UP / HI-SCORE (localStorage) / lives / INSERT COIN on the 70s cabinet scoreline
+  - **C3i desk** dialog box with typewriter output; it comments on hops and the game
+  - Commands: `help` · `c3i` · `desk` · `whoami` · `odin` · `hop` · `play` · `coin` · `vanism` · `book` · `doors` · `ride` · `film` · `press` · `credits` · `clear`
   - Hard links: [vanism.ai](https://vanism.ai) · [me.lokes.one](https://me.lokes.one) · [Blood Mutant](https://bloodmutant.com/)
-- `assets/` — `pixel-rabbit.svg` · `house.css` · `c3i.js` (+ `.png` sprites locally)
-- `samples/` — phosphor / amber / cyan / brutal variants + `gallery.html` + screenshots
+- `assets/` — `house.css` · `stars.js` (pixel starfield) · `invaders.js` · `odin.js` · `c3i.js` · `sprite.svg` (pixel wordmark, door icons, heart) · `pixel-rabbit.svg` · `pixel-rabbit-portrait.png`
+- `samples/` — cartridge HUD / phosphor / amber / cyan / brutal variants + `gallery.html`
 
 ## Law
 

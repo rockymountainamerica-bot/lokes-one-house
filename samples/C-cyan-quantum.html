@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>C cyan quantum</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#040a12;--fg:#5dffef;--accent:#39ff88;--mute:#3a6a75;--line:rgba(93,255,239,.35)}body{background:var(--bg);color:var(--fg)}
+body{font-family:"IBM Plex Mono",monospace;min-height:100vh;padding:28px}
+.frame{max-width:880px;margin:0 auto;border:2px solid var(--line);background:rgba(0,0,0,.35);padding:0}
+.bar{padding:10px 14px;border-bottom:1px solid var(--line);font-size:11px;color:var(--mute);letter-spacing:.1em}
+.pad{padding:20px}
+.rabbit{width:64px;height:64px;image-rendering:pixelated;display:block}
+.rabbit-wrap{display:inline-block;padding:8px;border:2px solid var(--line);margin-bottom:10px}
+.pixel-bar{height:10px;margin:12px 0;image-rendering:pixelated;border:2px solid var(--line);background:repeating-linear-gradient(90deg,var(--fg) 0 3px,transparent 3px 6px,var(--accent) 6px 9px,transparent 9px 14px);opacity:.4}
+.chip{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border:2px solid var(--line);margin:2px 4px 2px 0}
+h1{font-size:clamp(22px,5vw,36px);line-height:1.1;margin:10px 0}
+.koan{color:var(--accent);font-size:13px;max-width:40ch;margin-bottom:14px}
+.ls a{display:block;color:var(--fg);text-decoration:none;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.ls a:hover{color:var(--accent)}
+.c3i-door{margin-top:16px;border:2px solid var(--line)}
+.door-head{display:flex;padding:8px 10px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.door-head button{margin-left:auto;font:inherit;font-size:10px;background:transparent;color:var(--accent);border:1px solid var(--line);padding:3px 8px;cursor:pointer}
+.term-out{min-height:90px;max-height:180px;overflow:auto;padding:10px;font-size:12px;line-height:1.5}
+.term-out .c3i{color:var(--fg)}.term-out .me{color:var(--accent)}.term-out a{color:var(--accent)}
+.term-in{display:flex;gap:8px;padding:8px 10px;border-top:1px solid var(--line)}
+.term-in input{flex:1;background:transparent;border:0;outline:none;font:inherit;color:var(--fg)}
+.back{display:inline-block;margin-bottom:12px;font-size:11px;color:var(--mute);text-decoration:none}
+</style></head><body>
+<a class="back" href="gallery.html">← samples</a>
+<div class="frame"><div class="bar">SAMPLE C · CYAN QUANTUM · desk: C3i · online</div>
+<div class="pad">
+<div class="rabbit-wrap"><img class="rabbit" src="../assets/pixel-rabbit.svg" alt="pixel rabbit" width="64" height="64"/></div>
+<div class="chip">C3i online</div><div class="chip">shop parked</div><div class="chip">no art</div>
+<div class="pixel-bar"></div>
+<h1>Some lines you ride.<br/>Some you write.</h1>
+<p class="koan">Qubit glow. Neo-tradition under a compute shell.</p>
+<div class="ls">
+<a href="https://vanism.ai" target="_blank" rel="noopener">vanism.ai/ · product</a>
+<a href="https://me.lokes.one" target="_blank" rel="noopener">me.lokes.one/ · the man</a>
+<a href="https://bloodmutant.com/" target="_blank" rel="noopener">book/blood-mutant · Buy on Amazon →</a>
+<a href="../index.html#c3i">door/c3i · interactive desk</a>
+</div>
+<div class="c3i-door" id="c3i">
+<div class="door-head"><span>▸ door /c3i</span><button type="button" id="c3i-focus">open door</button></div>
+<div class="term-out" id="term-out"></div>
+<form class="term-in" id="term-form" autocomplete="off"><span>c3i&gt;</span><input id="term-input" type="text" spellcheck="false" placeholder="help · whoami · doors · vanism · book"/></form>
+</div></div></div>
+<script>
+(function(){
+const L={vanism:"https://vanism.ai",me:"https://me.lokes.one",book:"https://bloodmutant.com/"};
+const out=document.getElementById("term-out"),input=document.getElementById("term-input"),form=document.getElementById("term-form");
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+function link(h,l){return '<a href="'+esc(h)+'" target="_blank" rel="noopener">'+esc(l)+'</a>';}
+function print(html,cls){const d=document.createElement("div");if(cls)d.className=cls;d.innerHTML=html;out.appendChild(d);out.scrollTop=out.scrollHeight;}
+function say(t){print('<span class="c3i">C3i · </span>'+esc(t),"c3i");}
+function sayH(h){print('<span class="c3i">C3i · </span>'+h,"c3i");}
+const R={help(){say("help · c3i · desk · whoami · vanism · book · doors · clear");},c3i(){say("Door open. I’m C3i — Nicholas’s desk.");},desk(){say("desk: C3i · online. Shop parked. Art dark.");},whoami(){say("Nicholas Acord — founder · rider · Hurricane UT.");},vanism(){sayH("Vanism → "+link(L.vanism,"vanism.ai"));},book(){sayH("Blood Mutant → "+link(L.book,"bloodmutant.com")+" (Buy on Amazon).");},doors(){sayH("Doors: "+link(L.vanism,"vanism.ai")+" · "+link(L.me,"me.lokes.one")+" · lokes.one");say("Shop parked. No ART.");},clear(){out.innerHTML="";say("cleared.");}};
+print('<span class="sys">— c3i door —</span>');say("Type help.");
+form.addEventListener("submit",e=>{e.preventDefault();const v=input.value.trim();input.value="";if(!v)return;print('<span class="me">you&gt;</span> '+esc(v),"me");const k=v.toLowerCase().split(/\s+/)[0];(R[k]||(()=>say("Unknown. Try help.")))();});
+document.getElementById("c3i-focus").addEventListener("click",()=>{input.focus();say("Door focused.");});
+})();
+</script>
+</body></html>

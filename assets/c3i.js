@@ -2,9 +2,9 @@
   const LINKS = {
     vanism: "https://vanism.ai",
     me: "https://me.lokes.one",
-    book: "https://bloodmutant.com/",
     youtube: "https://www.youtube.com/@lokes_one",
     app: "https://apps.apple.com/us/app/vanism/id6786479632",
+    mail: "mailto:nicholasacord@outlook.com",
   };
 
   const bootLines = [
@@ -12,7 +12,7 @@
     { t: "mount /doors ................. ok", c: "ok" },
     { t: "desk: C3i .................... online", c: "cyan" },
     { t: "shopd ........................ parked (exit 0)", c: "warn" },
-    { t: "art_module ................... dark", c: "warn" },
+    { t: "lab .......................... closed", c: "warn" },
     { t: "odin ......................... loaded (in memory)", c: "ok" },
     { t: "vanism.link .................. live", c: "ok" },
     { t: "ready. type `c3i` or open the door below.", c: "ok" },
@@ -60,14 +60,14 @@
 
   const replies = {
     help() {
-      say("Commands: help · c3i · desk · whoami · odin · vanism · book · doors · clear");
-      say("I’m the desk greeter — warm, short, real. Not a fake AGI.");
+      say("Commands: help · c3i · desk · whoami · odin · vanism · book · doors · ride · film · press · clear");
+      say("I’m the desk greeter. Warm, short, real. Not a fake AGI.");
     },
     c3i() {
       say("Door open. I’m C3i — Nicholas’s desk. Ask whoami, doors, vanism, or book.");
     },
     desk() {
-      say("desk: C3i · online. Shop parked. Art dark. House listening.");
+      say("desk: C3i · online. Shop parked. Lab closed. House listening.");
     },
     whoami() {
       say("Nicholas Acord — founder · rider · Hurricane UT.");
@@ -77,14 +77,14 @@
       sayHtml("Vanism — travel OS. Door → " + link(LINKS.vanism, "vanism.ai"));
     },
     book() {
-      sayHtml("Blood Mutant — door → " + link(LINKS.book, "bloodmutant.com") + " (Buy on Amazon).");
-      say("No invented ASIN. Real link only.");
+      say("Blood Mutant. The book is real. The buy door isn’t open yet.");
+      say("bloodmutant.com is the mark, not a checkout. When the door opens, this line changes.");
     },
     doors() {
       sayHtml("Three doors: " + link(LINKS.vanism, "vanism.ai") + " (product) · " +
         link(LINKS.me, "me.lokes.one") + " (man) · lokes.one (this house).");
-      sayHtml("Also: " + link(LINKS.book, "Blood Mutant") + " · " + link(LINKS.youtube, "YouTube"));
-      say("Shop: parked. Art: none.");
+      sayHtml("Also: " + link(LINKS.youtube, "YouTube") + " · Blood Mutant (door soon).");
+      say("Shop: parked. Lab: closed.");
     },
     odin() {
       say("Odin. Pixel on the house. C3i · Odin — in memory.");
@@ -92,6 +92,22 @@
     },
     rabbit() {
       replies.odin();
+    },
+    ride() {
+      say("Rider first. Hurricane, Utah. Splitboard when it snows, van when it doesn’t.");
+      say("Some lines you ride. Some you write.");
+    },
+    van() {
+      replies.vanism();
+    },
+    film() {
+      sayHtml("Film lives on YouTube → " + link(LINKS.youtube, "@lokes_one") + ". Real places, no set.");
+    },
+    press() {
+      sayHtml("Mail the house → " + link(LINKS.mail, "nicholasacord@outlook.com") + ". A person answers.");
+    },
+    mail() {
+      replies.press();
     },
     clear() {
       out.innerHTML = "";
@@ -151,6 +167,11 @@
     e.preventDefault();
     focusDoor();
     run("c3i");
+  });
+  document.getElementById("open-book").addEventListener("click", function (e) {
+    e.preventDefault();
+    focusDoor();
+    run("book");
   });
 
   // Deep-link #c3i

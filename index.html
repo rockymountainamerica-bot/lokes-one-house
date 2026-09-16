@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>LOKES ONE — brand house</title>
-<meta name="description" content="LOKES ONE brand house. Neo-tradition under a compute shell. Vanism · man · book. Shop parked. Lab closed."/>
+<meta name="description" content="LOKES ONE brand house. Odin holds the door. Shop parked. Desk: C3i."/>
 <meta name="theme-color" content="#030403"/>
 <link rel="canonical" href="https://lokes.one/"/>
 <link rel="icon" href="assets/favicon.ico" sizes="48x48"/>
@@ -14,19 +14,20 @@
 <meta property="og:site_name" content="LOKES ONE"/>
 <meta property="og:url" content="https://lokes.one/"/>
 <meta property="og:title" content="LOKES ONE — brand house"/>
-<meta property="og:description" content="Neo-tradition under a compute shell. Desk: C3i. Shop parked. Lab closed."/>
+<meta property="og:description" content="Odin holds the door. Shop parked. Desk: C3i."/>
 <meta property="og:image" content="https://lokes.one/assets/og-card.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:alt" content="LOKES ONE brand house. Odin, the huge pixel rabbit, under a marching invader formation. 1UP · HI-SCORE · insert coin."/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="LOKES ONE — brand house"/>
-<meta name="twitter:description" content="Neo-tradition under a compute shell. Desk: C3i. Shop parked. Lab closed."/>
+<meta name="twitter:description" content="Odin holds the door. Shop parked. Desk: C3i."/>
 <meta name="twitter:image" content="https://lokes.one/assets/og-card.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/house.css"/>
+<link rel="stylesheet" href="assets/neon.css"/>
 </head>
 <body>
   <canvas id="stars" aria-hidden="true"></canvas>
@@ -48,8 +49,7 @@
         <span class="ro off"><span class="pip"></span><span class="k">lab</span> closed</span>
       </div>
     </header>
-
-    <!-- 70s cabinet scoreline · mission control -->
+    <!-- scoreline -->
     <div class="score" id="scoreline" aria-label="arcade readout">
       <span><span class="k">1up</span> <span class="v" id="score">0000</span></span>
       <span><span class="k">hi-score</span> <span class="v" id="hiscore">0000</span> <span class="ini" id="hiscore-ini"></span></span>
@@ -66,27 +66,19 @@
       </button>
     </div>
     <div class="laser" aria-hidden="true"></div>
-
-    <!-- MARQUEE: the cabinet's name plate sits above the screen, never inside it -->
+    <!-- marquee -->
     <section class="marquee" aria-label="LOKES ONE">
       <div class="mark">
         <svg class="wordmark" viewBox="0 0 29 7" role="img" aria-label="LOKES"><use href="assets/sprite.svg#i-lokes"/></svg>
         <div class="wordmark-sub">one · brand house</div>
       </div>
       <div class="marquee-copy">
-        <div class="chips" id="chips">
-          <span class="chip on">C3i online</span>
-          <span class="chip on">3 holdings live</span>
-          <span class="chip warn">shop parked</span>
-          <span class="chip mute">lab closed</span>
-        </div>
-        <p class="koan">Gold is earned. Shop parked. House online. Odin holds the door. Desk: <span class="am">C3i</span>.</p>
-        <p class="meta">founder · rider · hurricane ut · neo-tradition</p>
+        <p class="koan">Odin holds the door. Shop parked. Desk: <span class="am">C3i</span>.</p>
+        <p class="meta">founder · rider · hurricane ut</p>
       </div>
       <button type="button" class="play arcade-btn" id="play" title="Play: Odin vs the invaders">▶ start<span class="blink">_</span></button>
     </section>
-
-    <!-- STAGE: the arcade is the centerpiece. Attract mode plays itself; one tap starts a run. -->
+    <!-- stage -->
     <section class="hero" id="hero" aria-label="arcade stage · odin vs the invaders">
       <canvas id="invaders" aria-hidden="true"></canvas>
       <div class="stage-tag" id="stage-tag" aria-hidden="true"><span class="label">stage</span><span class="mode" id="stage-mode">demo</span></div>
@@ -187,12 +179,10 @@
       <div class="scroll frame">
         <div class="cmd">$ cat ./README.txt</div>
         <div>
-          I didn’t leave the streets. I transmuted them.<br/>
-          Splitboard · van · desk.<br/>
-          This is the <span class="am">mark</span> — neo-tradition under a compute shell — not a cart.<br/>
-          Three doors: <a href="https://vanism.ai" target="_blank" rel="noopener">vanism.ai</a> (product) · <a href="https://me.lokes.one" target="_blank" rel="noopener">me.lokes.one</a> (man) · <span class="hl">lokes.one</span> (house).<br/>
-          Book: <a href="https://bloodmutant.com/" target="_blank" rel="noopener">bloodmutant.com</a> — buy door soon, no cart, no invented ASIN. Shop parked. Lab closed.<br/>
-          When a drop is real, I’ll say so. <span class="gr">C3i</span> greets at the door — warm, concise, not a fake AGI claim.
+          Splitboard · van · desk. The mark — not a cart.<br/>
+          Doors: <a href="https://vanism.ai" target="_blank" rel="noopener">vanism.ai</a> · <a href="https://me.lokes.one" target="_blank" rel="noopener">me.lokes.one</a> · <span class="hl">lokes.one</span>.<br/>
+          Book: <a href="https://bloodmutant.com/" target="_blank" rel="noopener">bloodmutant.com</a> · door soon. Shop parked. Lab closed.<br/>
+          <span class="gr">C3i</span> at the desk — warm, short, true.
         </div>
       </div>
     </section>
@@ -204,8 +194,7 @@
       <span class="right">host: GitHub Pages · $0 · no shopify · insert coin</span>
     </footer>
   </div>
-
-  <!-- on-screen pad: phones and any coarse pointer, during play only. Outside .shell so position:fixed is never caught by the stage shake. -->
+  <!-- pad -->
   <div class="pad" id="pad" aria-label="touch controls">
     <button type="button" class="token" id="pad-left" aria-label="move left">◄</button>
     <button type="button" class="token" id="pad-right" aria-label="move right">►</button>

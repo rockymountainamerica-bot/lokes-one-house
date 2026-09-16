@@ -95,8 +95,7 @@
   // --- replies ----------------------------------------------------------------------
   const replies = {
     help() {
-      say("Commands: help · c3i · desk · whoami · odin · hop · play · stop · pilot · scores · sectors · boss · coin · vanism · book · doors · ride · film · press · credits · clear");
-      say("I’m the desk greeter. Warm, short, real. Not a fake AGI.");
+      say("help · c3i · desk · whoami · odin · hop · play · stop · pilot · scores · sectors · boss · coin · vanism · book · doors · ride · film · press · credits · clear");
     },
     scores() {
       const t = (window.LOKES && window.LOKES.game && window.LOKES.game.table()) || [];
@@ -125,7 +124,7 @@
       say("Door open. I’m C3i — Nicholas’s desk. Ask whoami, doors, vanism, or book.");
     },
     desk() {
-      say("desk: C3i · online. Shop parked. Lab closed. House listening.");
+      say("C3i online. Shop parked.");
     },
     whoami() {
       say("Nicholas Acord — founder · rider · Hurricane UT.");
@@ -135,14 +134,13 @@
       sayHtml("Vanism — travel OS. Door → " + link(LINKS.vanism, "vanism.ai"));
     },
     book() {
-      sayHtml("Blood Mutant. The book is real → " + link(LINKS.book, "bloodmutant.com") + ". The buy door isn’t open yet.");
-      say("No cart, no invented ASIN. When the door opens, this line changes.");
+      sayHtml("Blood Mutant → " + link(LINKS.book, "bloodmutant.com") + ". Buy door soon.");
     },
     doors() {
-      sayHtml("Three doors: " + link(LINKS.vanism, "vanism.ai") + " (product) · " +
-        link(LINKS.me, "me.lokes.one") + " (man) · lokes.one (this house).");
-      sayHtml("Also: " + link(LINKS.youtube, "YouTube") + " · Blood Mutant (door soon).");
-      say("Shop: parked. Lab: closed.");
+      sayHtml("Primary: " + link(LINKS.vanism, "vanism.ai") + " · " +
+        link(LINKS.me, "me.lokes.one") + " · lokes.one.");
+      sayHtml("Satellites: " + link(LINKS.youtube, "YouTube") + " · Blood Mutant (soon) · C3i.");
+      say("Shop parked.");
     },
     odin() {
       say("Odin. Pixel on the house. C3i · Odin — in memory.");
@@ -181,8 +179,7 @@
       say("Cast: Nicholas (founder). Odin (rabbit). C3i (desk). Invaders (uninvited).");
     },
     coin() {
-      say("Credit accepted. Player 1 — you’re at the desk.");
-      say("1970s cabinet, futuristic shell. Type play to hold the house, scores for the table, or help for the map.");
+      say("Credit accepted. Type play, scores, or help.");
     },
     insert() { replies.coin(); },
     clear() {
@@ -195,8 +192,8 @@
   };
 
   function greet() {
-    sys("— c3i door mounted —");
-    say("Hey. Desk online. Type help to see the map. Tap Odin, he likes it.");
+    sys("— desk online —");
+    say("Hey. Type help. Tap Odin.");
   }
   greet();
 

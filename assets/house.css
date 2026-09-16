@@ -1,8 +1,7 @@
 /* LOKES ONE — Pixel Cartridge House.
-   Defense-grade austerity (black field, white ink, crop-mark frames, tactical readouts)
-   crossed with Space Invaders (marching formation, score line, notched game tokens).
-   Odin is the comic relief. Grid: 8px. Corners: sharp or stepped, never rounded.
-   Glow: one crisp ring, never a blur. */
+   Tactical black/white frames + arcade tokens + 1980s neon hairlines.
+   Odin is the hero. Grid: 8px. Corners: sharp or stepped, never rounded.
+   Glow: hard-offset drop-shadow only. No blur. */
 
 :root{
   --u:8px;
@@ -58,8 +57,9 @@ body::before{
   opacity:0.22;
 }
 
-/* pixel starfield sits behind everything */
-#stars{position:fixed;inset:0;z-index:0;pointer-events:none;image-rendering:pixelated}
+/* stars far, binary snow mid, shell on top */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none;image-rendering:pixelated;image-rendering:crisp-edges}
+#snow{position:fixed;inset:0;z-index:1;pointer-events:none;image-rendering:pixelated;image-rendering:crisp-edges}
 
 /* ---------- primitives ---------- */
 /* system frame: sharp corners + crop marks (tactical) */
@@ -84,7 +84,7 @@ body::before{
 
 /* ---------- shell ---------- */
 .shell{
-  position:relative;z-index:1;
+  position:relative;z-index:2;
   max-width:1200px;margin:calc(var(--u)*3) auto calc(var(--u)*6);
   padding:0 calc(var(--u)*2);
   overflow-x:clip;
@@ -97,7 +97,9 @@ body::before{
 }
 .score{
   display:flex;flex-wrap:wrap;gap:var(--u) calc(var(--u)*3);
-  padding:var(--u) calc(var(--u)*2) 0;
+  padding:calc(var(--u)*1.5) calc(var(--u)*2) 0;
+  margin-top:var(--u);
+  border-top:2px solid var(--cyan);
   font-family:var(--font-px);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-dim);
 }
 .score .k{color:var(--mute)}
@@ -140,13 +142,13 @@ body::before{
 .ro .pips{display:inline-flex;gap:3px}
 .ro .pips i{display:block;width:6px;height:6px;background:var(--green)}
 
-/* one pink laser under the HUD */
-.laser{
-  height:2px;margin:calc(var(--u)*1) calc(var(--u)*3) 0;
-  background:linear-gradient(90deg,transparent 0%,var(--pink) 18%,var(--pink) 82%,transparent 100%);
-  opacity:0.55;animation:laser 5s steps(6,end) infinite;
+/* cyan / magenta pairing — one hairline, no blur */
+.neon-pair{
+  display:flex;height:2px;margin:calc(var(--u)*1) calc(var(--u)*3) 0;
 }
-@keyframes laser{0%,100%{opacity:0.3}50%{opacity:0.75}}
+.neon-pair i{flex:1;display:block;height:2px}
+.neon-pair i:first-child{background:var(--cyan)}
+.neon-pair i:last-child{background:var(--pink)}
 
 /* ---------- marquee: the cabinet's name plate, above the screen ---------- */
 .marquee{
@@ -193,13 +195,14 @@ body::before{
 .play{
   align-self:center;
   font-family:var(--font-px);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
-  background:var(--panel);color:var(--ink);border:2px solid var(--line-hi);padding:var(--u) calc(var(--u)*2);cursor:pointer;
+  background:var(--panel);color:var(--ink);border:2px solid var(--cyan);padding:var(--u) calc(var(--u)*2);cursor:pointer;
   clip-path:var(--notch);
+  box-shadow:4px 4px 0 var(--cyan);
 }
-.play:hover{color:var(--bg);background:var(--green);border-color:var(--green)}
+.play:hover{color:var(--bg);background:var(--green);border-color:var(--green);box-shadow:4px 4px 0 var(--green-deep)}
 .play .blink{animation:blink 1.2s steps(1,end) infinite}
-body.attract .play{color:var(--green);border-color:var(--green)}
-body.playing .play{color:var(--pink);border-color:var(--pink)}
+body.attract .play{color:var(--green);border-color:var(--green);box-shadow:4px 4px 0 var(--green-deep)}
+body.playing .play{color:var(--pink);border-color:var(--pink);box-shadow:4px 4px 0 var(--pink)}
 .game-msg{
   position:absolute;left:50%;top:27%;transform:translateX(-50%);z-index:3;pointer-events:none;
   font-family:var(--font-px);font-size:clamp(14px,2.6vw,24px);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);
@@ -300,7 +303,7 @@ body.playing .play{color:var(--pink);border-color:var(--pink)}
   display:block;
   width:clamp(300px,46vw,600px);height:auto;aspect-ratio:1/1;
   image-rendering:pixelated;image-rendering:crisp-edges;
-  filter:drop-shadow(6px 6px 0 rgba(57,255,136,0.16));
+  filter:drop-shadow(6px 6px 0 var(--cyan));
   transform-origin:50% 100%;
 }
 .odin.hop .body{animation:hop 0.72s steps(6,end) 1}
@@ -384,12 +387,13 @@ body.playing .play{color:var(--pink);border-color:var(--pink)}
 }
 .pad button{
   height:64px;min-width:64px;flex:1;
-  font-family:var(--font-px);font-size:20px;color:var(--ink);background:var(--panel);border:2px solid var(--line-hi);
+  font-family:var(--font-px);font-size:20px;color:var(--ink);background:var(--panel);border:2px solid var(--cyan);
+  box-shadow:3px 3px 0 var(--cyan);
   cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:none;padding:0;
 }
-.pad button:active,.pad button.down{background:var(--green);color:var(--bg);border-color:var(--green)}
-.pad .fire{flex:2;color:var(--pink);border-color:var(--pink)}
-.pad .fire:active,.pad .fire.down{background:var(--pink);border-color:var(--pink)}
+.pad button:active,.pad button.down{background:var(--green);color:var(--bg);border-color:var(--green);box-shadow:3px 3px 0 var(--green-deep)}
+.pad .fire{flex:2;color:var(--pink);border-color:var(--pink);box-shadow:3px 3px 0 var(--pink)}
+.pad .fire:active,.pad .fire.down{background:var(--pink);border-color:var(--pink);color:var(--bg)}
 .pad .quit{flex:0 0 64px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-dim)}
 @media (pointer:coarse),(max-width:900px){
   body.playing .pad{display:flex}
@@ -403,19 +407,19 @@ body.playing .play{color:var(--pink);border-color:var(--pink)}
   font-family:var(--font-px);font-size:11px;letter-spacing:0.5em;text-transform:uppercase;color:var(--green);
 }
 .chips{display:flex;flex-wrap:wrap;gap:var(--u)}
+.chips:empty{display:none}
 .chip{
   font-family:var(--font-px);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;
-  padding:6px 10px;border:2px solid var(--line);background:var(--panel);color:var(--ink-dim);
+  padding:6px 10px;border:2px solid var(--cyan);background:var(--panel);color:var(--ink-dim);
   display:inline-flex;align-items:center;gap:6px;
+  box-shadow:3px 3px 0 var(--cyan);
 }
 .chip::before{content:"";width:6px;height:6px;background:currentColor}
-.chip.on{color:var(--green);border-color:var(--green-deep)}
-.chip.warn{color:var(--amber)}
-.chip.mute{color:var(--mute)}
-.chip.oneup{color:var(--pink);border-color:var(--pink)}
-.koan{color:var(--ink);font-size:15px;line-height:1.55;max-width:60ch}
-.koan .am{color:var(--amber)}
-.meta{color:var(--mute);font-size:11px;letter-spacing:0.14em;text-transform:uppercase}
+.chip.on{color:var(--green);border-color:var(--green)}
+.chip.warn{color:var(--amber);border-color:var(--amber);box-shadow:3px 3px 0 var(--amber)}
+.chip.mute{color:var(--mute);border-color:var(--line);box-shadow:none}
+.chip.oneup{color:var(--pink);border-color:var(--pink);box-shadow:3px 3px 0 var(--pink)}
+.koan{color:var(--ink);font-family:var(--font-px);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;line-height:1.4;max-width:40ch}
 
 /* ---------- C3i dialog box ---------- */
 .dialog{
@@ -478,13 +482,16 @@ body.playing .play{color:var(--pink);border-color:var(--pink)}
 .door .desc{font-size:12px;color:var(--mute);align-self:start}
 .door .perm{position:absolute;right:calc(var(--u)*2);top:calc(var(--u)*1.5);font-size:9px;letter-spacing:0.08em;color:var(--green-deep)}
 .door .lvl{position:absolute;right:calc(var(--u)*2);bottom:calc(var(--u)*1.5);font-family:var(--font-px);font-size:9px;color:var(--line-hi)}
-.door:hover,.door:focus-visible{border-color:var(--green);background:var(--panel-2);outline:none;transform:translate(0,-4px)}
+.door.primary{border-color:var(--cyan);box-shadow:4px 4px 0 var(--cyan)}
+.door.primary .perm{color:var(--cyan)}
+.door.sat .perm{color:var(--mute)}
+.door:hover,.door:focus-visible{border-color:var(--green);background:var(--panel-2);outline:none;transform:translate(0,-4px);box-shadow:4px 4px 0 var(--green-deep)}
 .door:hover .icon,.door:focus-visible .icon{color:var(--green)}
 .door:hover .name,.door:focus-visible .name{color:var(--green)}
 .door:hover .lvl,.door:focus-visible .lvl{color:var(--green)}
 .door.soon .name{color:var(--ink-dim)}
 .door.soon:hover .name{color:var(--amber)}
-.door.soon:hover{border-color:var(--amber)}
+.door.soon:hover{border-color:var(--amber);box-shadow:4px 4px 0 var(--amber)}
 .door.soon:hover .icon{color:var(--amber)}
 
 /* ---------- readme scroll ---------- */
@@ -518,7 +525,7 @@ body.playing .play{color:var(--pink);border-color:var(--pink)}
   /* phones: the stage comes first so Odin stays in the first fold; the name plate follows it */
   .shell{display:flex;flex-direction:column}
   .shell>*{order:3}
-  .hud,.score,.laser{order:0}
+  .hud,.score,.neon-pair{order:0}
   .hero{order:1}
   .marquee{order:2;margin-top:calc(var(--u)*3)}
   .marquee{grid-template-columns:1fr;justify-items:center;text-align:center;padding:0 calc(var(--u)*2)}
@@ -553,12 +560,13 @@ body.playing .play{color:var(--pink);border-color:var(--pink)}
   .screen{padding:calc(var(--u)*2)}
   .term-in input{font-size:16px}
   .koan{font-size:15px}
-  .laser{margin:var(--u) var(--u) 0}
+  .neon-pair{margin:var(--u) var(--u) 0}
 }
 
 @media (prefers-reduced-motion:reduce){
+  #stars,#snow{display:none}
   .odin .stage,.odin .flip,.odin .body,.odin.hop .body,.odin.spin .stage,.odin.iframes img{animation:none}
-  .laser,.ro.on .pip,.dialog .head .arrow,.coin-blink,.stage-tag .mode,.game-msg.pulse,.score .combo.on{animation:none}
+  .ro.on .pip,.dialog .head .arrow,.coin-blink,.stage-tag .mode,.game-msg.pulse,.score .combo.on{animation:none}
   .hero.shake,.hero.flash::before{animation:none}
   .heart,.pop{animation-duration:0.01s}
   .door:hover,.door:focus-visible{transform:none}

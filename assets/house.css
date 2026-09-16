@@ -105,7 +105,7 @@ body::before{
 .score .ini{color:var(--green)}
 .score.demo #score{color:var(--mute)}
 .score .lives{display:inline-flex;gap:4px;vertical-align:middle}
-.score .lives svg{width:14px;height:12px;fill:var(--green)}
+.score .lives svg{width:14px;height:12px;fill:var(--pink)}
 .score .right{margin-left:auto}
 .score .coord{color:var(--mute)}
 .score .combo{display:none;color:var(--pink)}
@@ -121,7 +121,7 @@ body::before{
 /* arcade button: chunky offset, presses in */
 .arcade-btn{box-shadow:3px 3px 0 var(--line-hi)}
 .arcade-btn:active{transform:translate(3px,3px);box-shadow:none}
-.hud .cart{
+.hud .cart{white-space:nowrap;
   display:flex;align-items:center;gap:var(--u);
   font-family:var(--font-px);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);
 }
@@ -148,12 +148,19 @@ body::before{
 }
 @keyframes laser{0%,100%{opacity:0.3}50%{opacity:0.75}}
 
+/* ---------- marquee: the cabinet's name plate, above the screen ---------- */
+.marquee{
+  display:grid;grid-template-columns:auto 1fr auto;gap:calc(var(--u)*2) calc(var(--u)*4);align-items:center;
+  margin-top:calc(var(--u)*3);padding:0 calc(var(--u)*3);
+}
+.marquee .mark{display:flex;flex-direction:column;gap:var(--u)}
+.marquee-copy{display:flex;flex-direction:column;gap:var(--u);min-width:0}
+
 /* ---------- stage (hero) ---------- */
 .hero{
   position:relative;
-  display:grid;grid-template-columns:minmax(300px,1.15fr) minmax(280px,1fr);
-  gap:calc(var(--u)*4);align-items:end;
-  margin-top:calc(var(--u)*3);
+  display:grid;grid-template-columns:1fr;justify-items:center;align-items:end;
+  margin-top:calc(var(--u)*2);
   padding:calc(var(--u)*30) calc(var(--u)*3) 0;   /* top airspace is the invaders' lane: sky + five rows clear of the ears */
   border-top:2px solid var(--line);
   border-bottom:2px solid var(--line);
@@ -161,8 +168,6 @@ body::before{
 /* invader formation marches across the whole stage, behind Odin and the copy */
 #invaders{position:absolute;inset:0;z-index:0;pointer-events:none;image-rendering:pixelated}
 .hero>*{position:relative;z-index:1}
-.hero.playing .hero-copy{opacity:0.2}
-.hero.attract .hero-copy{opacity:0.85}
 .hero.playing .odin .stage,.hero.playing .odin .flip,
 .hero.attract .odin .stage,.hero.attract .odin .flip{animation:none}
 .hero.playing .odin{cursor:crosshair}
@@ -176,25 +181,25 @@ body::before{
   background:var(--pink);opacity:0.14;animation:blink 0.12s steps(1,end) 2;
 }
 .stage-tag{
-  position:absolute;left:calc(var(--u)*3);top:calc(var(--u)*2);z-index:2;
+  position:absolute;left:calc(var(--u)*3);bottom:var(--u);z-index:2;
   display:flex;align-items:center;gap:var(--u);
 }
 .stage-tag .mode{
   font-family:var(--font-px);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
   color:var(--bg);background:var(--ink-dim);padding:2px 6px;
 }
-.hero.attract .stage-tag .mode{background:var(--amber);animation:blink 1.4s steps(1,end) infinite}
+.hero.attract .stage-tag .mode{background:var(--amber)}
 .hero.playing .stage-tag .mode{background:var(--green)}
 .play{
-  position:absolute;right:calc(var(--u)*3);top:calc(var(--u)*2);z-index:2;
-  font-family:var(--font-px);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  align-self:center;
+  font-family:var(--font-px);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
   background:var(--panel);color:var(--ink);border:2px solid var(--line-hi);padding:var(--u) calc(var(--u)*2);cursor:pointer;
   clip-path:var(--notch);
 }
 .play:hover{color:var(--bg);background:var(--green);border-color:var(--green)}
-.hero.attract .play{color:var(--green);border-color:var(--green)}
 .play .blink{animation:blink 1.2s steps(1,end) infinite}
-.hero.playing .play{color:var(--pink);border-color:var(--pink)}
+body.attract .play{color:var(--green);border-color:var(--green)}
+body.playing .play{color:var(--pink);border-color:var(--pink)}
 .game-msg{
   position:absolute;left:50%;top:27%;transform:translateX(-50%);z-index:3;pointer-events:none;
   font-family:var(--font-px);font-size:clamp(14px,2.6vw,24px);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);
@@ -281,11 +286,11 @@ body::before{
 
 /* Odin — the whole point */
 .odin{
-  position:relative;
+  position:relative;width:100%;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  min-height:clamp(360px,48vw,640px);
+  min-height:0;
   cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;
-  touch-action:none;
+  touch-action:manipulation;   /* the page still scrolls over the rabbit; during play .hero.playing takes the touches */
 }
 .odin .stage{position:relative;animation:patrol 16s steps(48,end) infinite;will-change:transform}
 .odin .flip{animation:flip 16s steps(1,end) infinite}   /* snaps, never squishes */
@@ -392,12 +397,10 @@ body::before{
   body.playing{padding-bottom:104px}
 }
 
-/* hero copy */
-.hero-copy{display:flex;flex-direction:column;gap:calc(var(--u)*2);padding-bottom:calc(var(--u)*3)}
-.wordmark{color:var(--ink);fill:currentColor;width:min(100%,464px);height:auto;display:block;shape-rendering:crispEdges}
+/* marquee copy */
+.wordmark{color:var(--ink);fill:currentColor;width:min(100%,296px);height:auto;display:block;shape-rendering:crispEdges}
 .wordmark-sub{
-  font-family:var(--font-px);font-size:12px;letter-spacing:0.5em;text-transform:uppercase;color:var(--green);
-  margin-top:calc(var(--u)*-1);
+  font-family:var(--font-px);font-size:11px;letter-spacing:0.5em;text-transform:uppercase;color:var(--green);
 }
 .chips{display:flex;flex-wrap:wrap;gap:var(--u)}
 .chip{
@@ -410,7 +413,7 @@ body::before{
 .chip.warn{color:var(--amber)}
 .chip.mute{color:var(--mute)}
 .chip.oneup{color:var(--pink);border-color:var(--pink)}
-.koan{color:var(--ink);font-size:16px;line-height:1.55;max-width:44ch}
+.koan{color:var(--ink);font-size:15px;line-height:1.55;max-width:60ch}
 .koan .am{color:var(--amber)}
 .meta{color:var(--mute);font-size:11px;letter-spacing:0.14em;text-transform:uppercase}
 
@@ -439,7 +442,7 @@ body::before{
   scrollbar-width:thin;scrollbar-color:var(--line-hi) transparent;
 }
 .term-out .sys{color:var(--mute);font-size:11px}
-.term-out .me{color:var(--cyan)}
+.term-out .me{color:var(--ink-dim)}
 .term-out .c3i{color:var(--ink)}
 .term-out .c3i .tag{color:var(--green)}
 .term-out .am{color:var(--amber)}
@@ -503,7 +506,7 @@ body::before{
   display:flex;flex-wrap:wrap;gap:var(--u) calc(var(--u)*3);align-items:center;
   font-family:var(--font-px);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--mute);
 }
-.credits a{color:var(--ink-dim);text-decoration:none}
+.credits a{color:var(--cyan);text-decoration:none}
 .credits a:hover{color:var(--green)}
 .credits .right{margin-left:auto}
 
@@ -512,9 +515,18 @@ body::before{
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .doors{grid-template-columns:repeat(2,1fr)}
-  .hero{grid-template-columns:1fr;align-items:center;padding:calc(var(--u)*22) calc(var(--u)*2) 0}
-  .hero-copy{align-items:center;text-align:center;order:2}
-  .odin{order:1;min-height:0}
+  /* phones: the stage comes first so Odin stays in the first fold; the name plate follows it */
+  .shell{display:flex;flex-direction:column}
+  .shell>*{order:3}
+  .hud,.score,.laser{order:0}
+  .hero{order:1}
+  .marquee{order:2;margin-top:calc(var(--u)*3)}
+  .marquee{grid-template-columns:1fr;justify-items:center;text-align:center;padding:0 calc(var(--u)*2)}
+  .marquee .mark{align-items:center}
+  .marquee-copy{align-items:center}
+  .marquee .play{justify-self:center;padding:calc(var(--u)*1.5) calc(var(--u)*3)}
+  .wordmark{width:min(100%,360px)}
+  .hero{padding:calc(var(--u)*22) calc(var(--u)*2) 0}
   .odin img{width:min(84vw,560px)}
   /* during play Odin becomes a cannon-sized rabbit so he can actually cross the stage, and the lane grows */
   .hero.playing{padding-top:calc(var(--u)*44)}
@@ -522,7 +534,6 @@ body::before{
   .hero.playing .odin .cap,.hero.playing .odin .ground{display:none}
   .chips{justify-content:center}
   .koan{max-width:none}
-  .wordmark{width:min(100%,400px)}
   .stats{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:560px){

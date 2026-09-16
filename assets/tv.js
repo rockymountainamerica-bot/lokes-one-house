@@ -5,7 +5,7 @@
   var power = document.getElementById("crt-power");
   if (!glass || !frame || !power) return;
 
-  var SRC = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=lokes_one&rel=0";
+  var SRC = "https://www.youtube-nocookie.com/embed/Cg5AlW2mzW4?list=UU-Cme4E7OgPOA4xiXScaJ9g&rel=0";
   var on = true;
 
   function setPower(next) {

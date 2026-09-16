@@ -28,6 +28,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/house.css"/>
 <link rel="stylesheet" href="assets/neon.css"/>
+<link rel="stylesheet" href="assets/tv.css"/>
 </head>
 <body>
   <canvas id="stars" aria-hidden="true"></canvas>
@@ -131,6 +132,32 @@
       </form>
     </section>
 
+
+    <!-- CRT TV · @lokes_one -->
+    <section class="section tv-bay" id="tv" aria-label="crt television · youtube @lokes_one">
+      <div class="section-head"><span class="label">./tv/ · phosphor CRT</span><span class="rule" aria-hidden="true"></span><span class="label">@lokes_one</span></div>
+      <div class="crt" id="crt">
+        <div class="crt-top">
+          <span class="crt-brand">LOKES <span class="dim">VISION</span> · MODEL-81</span>
+          <button type="button" class="crt-power on" id="crt-power" aria-pressed="true" title="Power">
+            <span class="lamp" aria-hidden="true"></span>PWR
+          </button>
+        </div>
+        <div class="crt-glass" id="crt-glass">
+          <iframe id="crt-frame" title="YouTube · @lokes_one uploads"
+            src="https://www.youtube-nocookie.com/embed?listType=user_uploads&amp;list=lokes_one&amp;rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <div class="crt-scan" aria-hidden="true"></div>
+        </div>
+        <div class="crt-rail">
+          <button type="button" class="ch on" data-ch="uploads" aria-pressed="true">CH 3 · uploads</button>
+          <a class="ext" href="https://www.youtube.com/@lokes_one" target="_blank" rel="noopener">open channel ↗</a>
+        </div>
+        <p class="crt-foot">Real places only. Embed — no fake footage. Desk: <span class="am">C3i</span>.</p>
+      </div>
+    </section>
+
     <!-- Doors: level select -->
     <section class="section" aria-label="doors">
       <div class="section-head"><span class="label">level select · ./doors/</span><span class="rule" aria-hidden="true"></span><span class="label">6 doors</span></div>
@@ -206,5 +233,6 @@
 <script src="assets/invaders.js"></script>
 <script src="assets/odin.js"></script>
 <script src="assets/c3i.js"></script>
+<script src="assets/tv.js"></script>
 </body>
 </html>

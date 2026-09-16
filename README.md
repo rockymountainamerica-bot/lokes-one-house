@@ -1,6 +1,6 @@
 # lokes.one brand house
 
-Static LOKES ONE brand house. **Better than Shopify vibe — without Shopify.** Neo-tradition under a compute shell. **$0 hosting** (GitHub Pages). The arcade is the front door.
+Static LOKES ONE brand house. **Better than Shopify vibe — without Shopify.** **$0 hosting** (GitHub Pages). The arcade is the front door. Odin is the hero.
 
 ## What's here
 
@@ -15,10 +15,10 @@ Static LOKES ONE brand house. **Better than Shopify vibe — without Shopify.** 
   - **C3i desk** dialog box with typewriter output; it comments on the live run (sectors, boss, combos, table entries), stays quiet during the demo
   - Commands: `help` · `c3i` · `desk` · `whoami` · `odin` · `hop` · `play` · `pilot` · `scores` · `sectors` · `boss` · `coin` · `vanism` · `book` · `doors` · `ride` · `film` · `press` · `credits` · `clear`
   - Hard links: [vanism.ai](https://vanism.ai) · [me.lokes.one](https://me.lokes.one) · [Blood Mutant](https://bloodmutant.com/)
-- `assets/` — `house.css` · `stars.js` (pixel starfield) · `invaders.js` · `odin.js` · `c3i.js` · `sprite.svg` (pixel wordmark, door icons, heart) · `pixel-rabbit.svg` · `pixel-rabbit-portrait.png` · `og-card.png`
+- `assets/` — `house.css` · `snow.js` (binary 0/1 snow, mid-ground, 8px grid) · `stars.js` (thin far starfield + rare pink laser) · `invaders.js` · `odin.js` · `c3i.js` · `sprite.svg` (pixel wordmark, door icons, heart) · `pixel-rabbit.svg` · `pixel-rabbit-portrait.png` · `og-card.png`
 - `samples/` — `og-card.html` (source of `assets/og-card.png`, render headless at 1200×630) · cartridge HUD / phosphor / amber / cyan / brutal variants + `gallery.html`
 
-Script order matters: `stars.js` → `invaders.js` → `odin.js` → `c3i.js` (`c3i` reads `window.LOKES.*`). `window.LOKES.game` exposes `start · stop · toggle · isPlaying · mode · auto · table · state`; `window.LOKES.odin` exposes `hop · spin · hearts`. Game events arrive on `document` as `lokes:game` (`attract · start · kill · hit · combo · ufo · wave · boss · bosskill · win · over · hiscore · stop`).
+Script order matters: `snow.js` → `stars.js` → `invaders.js` → `odin.js` → `c3i.js` (`c3i` reads `window.LOKES.*`). `window.LOKES.game` exposes `start · stop · toggle · isPlaying · mode · auto · table · state`; `window.LOKES.odin` exposes `hop · spin · hearts`. Game events arrive on `document` as `lokes:game` (`attract · start · kill · hit · combo · ufo · wave · boss · bosskill · win · over · hiscore · stop`). Snow and stars go dark under `prefers-reduced-motion`.
 
 ## Law
 
@@ -27,7 +27,7 @@ Script order matters: `stars.js` → `invaders.js` → `odin.js` → `c3i.js` (`
 - **No cross-brand content** anywhere — the rescue-tech company lives in its own repo; the harness greps this house for its three-letter acronym as a whole word and must find none
 - C3i is a warm concise desk greeter — **not** a fake full-AGI claim
 - Blood Mutant book door → https://bloodmutant.com/ (Buy on Amazon). Do not invent ASINs
-- Design: 8px grid, sharp or stepped corners (no `border-radius`), no blur, `steps()` motion only, green = live, amber = parked, pink = laser / top row / hearts, cyan = links. No build step, no npm
+- Design: 8px grid, sharp or stepped corners (no `border-radius`), no blur, `steps()` motion only, green = live, amber = parked, pink = laser / top row / hearts / cartridge, cyan = links + neon chrome. Hard-offset shadows only. No build step, no npm
 
 ## Preview locally
 

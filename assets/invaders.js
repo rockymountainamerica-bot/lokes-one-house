@@ -139,7 +139,7 @@
     clearTimeout(msgTimer);
     if (ms) msgTimer = setTimeout(hideMsg, ms);
   }
-  var PRESS_START = "▶ press start<small>odin vs the invaders · tap · enter · p</small>";
+  var PRESS_START = "▶ start";
   function hideMsg() {
     if (!msgEl) return;
     msgEl.className = "game-msg";
@@ -792,7 +792,7 @@
     odin.classList.remove("face-left"); facing = 1;
     spawnFleet();
     hideMsg();
-    if (reduced.matches) { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } render(0); showMsg("▶ press start<small>odin vs the invaders</small>", ""); }
+    if (reduced.matches) { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } render(0); showMsg("▶ start", ""); }
     else ensureLoop();
   }
   function start() {

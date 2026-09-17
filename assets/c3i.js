@@ -135,13 +135,13 @@
       sayHtml("Vanism — travel OS. Door → " + link(LINKS.vanism, "vanism.ai"));
     },
     book() {
-      sayHtml("Blood Mutant. The book is real → " + link(LINKS.book, "bloodmutant.com") + ". The buy door isn’t open yet.");
-      say("No cart, no invented ASIN. When the door opens, this line changes.");
+      sayHtml("Blood Mutant. Open → " + link(LINKS.book, "bloodmutant.com") + " · buy on Amazon from there.");
+      say("Real book. Real door. No invented cart.");
     },
     doors() {
       sayHtml("Three doors: " + link(LINKS.vanism, "vanism.ai") + " (product) · " +
         link(LINKS.me, "me.lokes.one") + " (man) · lokes.one (this house).");
-      sayHtml("Also: " + link(LINKS.youtube, "YouTube") + " · Blood Mutant (door soon).");
+      sayHtml("Also: " + link(LINKS.youtube, "YouTube") + " · " + link(LINKS.book, "Blood Mutant") + ".");
       say("Shop: parked. Lab: closed.");
     },
     odin() {
@@ -243,7 +243,7 @@
     run("c3i");
   });
   document.getElementById("open-book").addEventListener("click", function () {
-    // the door opens bloodmutant.com in a new tab; the desk explains the buy door is still soon
+    // door opens bloodmutant.com; desk confirms the book door is open
     run("book");
   });
   const coinBtn = document.getElementById("insert-coin");

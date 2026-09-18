@@ -1,7 +1,9 @@
+/* ENGINE-COPY-v3 · body ≥15px */
+:root { --eng-body: 15px; }
 /* C3i Engine product page — harden-format skeleton × LOKES glass */
 .eng-nav{
   display:flex;flex-wrap:wrap;gap:calc(var(--u)*1.25);align-items:center;
-  font-family:var(--font-px);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  font-family:var(--font-px);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
 }
 .eng-nav a{color:var(--ink-dim);text-decoration:none}
 .eng-nav a:hover{color:var(--green)}
@@ -16,7 +18,7 @@
   border-color:var(--line-hi);
 }
 .eng-hero .eyebrow{
-  font-family:var(--font-px);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  font-family:var(--font-px);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
   color:var(--green);margin-bottom:calc(var(--u)*1.5);
 }
 .eng-hero h1{
@@ -34,13 +36,13 @@
 
 .cta-row{display:flex;flex-wrap:wrap;gap:calc(var(--u)*1.5);align-items:center;margin-top:calc(var(--u)*0.5)}
 .cta-row .arcade-btn{
-  display:inline-block;font-family:var(--font-px);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  display:inline-block;font-family:var(--font-px);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
   background:var(--green);color:var(--bg);border:2px solid var(--green);
   padding:var(--u) calc(var(--u)*2);text-decoration:none;clip-path:var(--notch);
 }
 .cta-row .arcade-btn:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .cta-row .ghost{
-  display:inline-block;font-family:var(--font-px);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+  display:inline-block;font-family:var(--font-px);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
   color:var(--cyan);text-decoration:none;border:2px solid var(--line-hi);
   padding:calc(var(--u)*0.875) calc(var(--u)*1.75);clip-path:var(--notch);
 }
@@ -51,9 +53,9 @@
   margin:calc(var(--u)*3) 0;padding:calc(var(--u)*2);
   border:2px solid var(--line);background:var(--panel);clip-path:var(--notch);
 }
-.strip-item{font-size:12px;line-height:1.4;color:var(--ink)}
+.strip-item{font-size:15px;line-height:1.4;color:var(--ink)}
 .strip-item .k{
-  display:block;font-family:var(--font-px);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  display:block;font-family:var(--font-px);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
   color:var(--green);margin-bottom:4px;
 }
 
@@ -67,7 +69,7 @@
   font-family:var(--font-px);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
   color:var(--green);margin-bottom:var(--u);
 }
-.kit-card .d{font-size:13px;line-height:1.55;color:var(--ink-dim)}
+.kit-card .d{font-size:15px;line-height:1.55;color:var(--ink-dim)}
 .kit-card .d .hl{color:var(--ink)}
 
 .eng-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:calc(var(--u)*2)}
@@ -81,21 +83,21 @@
 .eng-steps strong{
   font-family:var(--font-px);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);
 }
-.eng-steps p{margin:6px 0 0;font-size:13px;line-height:1.55;color:var(--ink-dim)}
+.eng-steps p{margin:6px 0 0;font-size:15px;line-height:1.55;color:var(--ink-dim)}
 
 .trust-strip{display:flex;flex-wrap:wrap;gap:calc(var(--u)*1);margin-bottom:calc(var(--u)*2)}
 .trust-strip .pill{
-  font-family:var(--font-px);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  font-family:var(--font-px);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
   color:var(--bg);background:var(--amber);padding:6px 10px;clip-path:var(--notch);
 }
-.trust-copy{font-size:14px;line-height:1.6;color:var(--ink);max-width:62ch}
+.trust-copy{font-size:15px;line-height:1.6;color:var(--ink);max-width:62ch}
 
 .eng-cta{padding:calc(var(--u)*3);margin:calc(var(--u)*4) 0 calc(var(--u)*2);border-color:var(--line-hi)}
 .eng-cta h2{
   font-family:var(--font-px);font-size:clamp(16px,2.8vw,22px);letter-spacing:0.06em;text-transform:uppercase;
   color:var(--ink);margin:0 0 calc(var(--u)*1.5);max-width:28ch;
 }
-.eng-cta .after-line{font-size:13px;line-height:1.55;color:var(--ink-dim);max-width:62ch;margin:0 0 calc(var(--u)*2)}
+.eng-cta .after-line{font-size:15px;line-height:1.55;color:var(--ink-dim);max-width:62ch;margin:0 0 calc(var(--u)*2)}
 
 @media (max-width:800px){
   .eng-strip{grid-template-columns:1fr 1fr}
@@ -106,3 +108,6 @@
 @media (max-width:480px){
   .eng-strip{grid-template-columns:1fr}
 }
+
+/* Pixel hierarchy: market labels stay legible at Silkscreen size. */
+.section-head .label{font-size:12px}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>C3i Engine — install package</title>
+<meta name="description" content="C3i Engine install package. Operating brain for your company — not another chatbot. Vanism is the van/trip copilot; next the same Engine pattern installs into business websites."/>
+<meta name="theme-color" content="#030403"/>
+<link rel="canonical" href="https://lokes.one/engine/"/>
+<link rel="icon" href="../assets/favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/svg+xml" href="../assets/pixel-rabbit.svg"/>
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="LOKES ONE"/>
+<meta property="og:url" content="https://lokes.one/engine/"/>
+<meta property="og:title" content="C3i Engine — install package"/>
+<meta property="og:description" content="Operating brain for your company (chief, floor, eval, data pipes) — not another chatbot."/>
+<meta property="og:image" content="https://lokes.one/assets/og-card.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="C3i Engine — install package"/>
+<meta name="twitter:description" content="Operating brain for your company — not another chatbot."/>
+<meta name="twitter:image" content="https://lokes.one/assets/og-card.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/house.css"/>
+<style>
+  /* install bay — same cartridge house, tighter scroll */
+  .install-bay{margin-top:calc(var(--u)*3)}
+  .install-hero{
+    padding:calc(var(--u)*3);
+    border-color:var(--line-hi);
+  }
+  .install-hero .eyebrow{
+    font-family:var(--font-px);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);
+    margin-bottom:calc(var(--u)*1.5);
+  }
+  .install-hero h1{
+    font-family:var(--font-px);font-size:clamp(18px,3.2vw,28px);letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--ink);line-height:1.25;margin-bottom:calc(var(--u)*2);
+  }
+  .install-hero .promise{
+    font-size:15px;line-height:1.55;color:var(--ink);max-width:62ch;margin-bottom:calc(var(--u)*2);
+  }
+  .install-hero .promise .am{color:var(--amber)}
+  .install-hero .now-next{
+    font-size:13px;line-height:1.6;color:var(--ink-dim);max-width:62ch;
+    padding-top:calc(var(--u)*2);border-top:2px solid var(--line);
+  }
+  .install-hero .now-next strong{color:var(--ink);font-weight:600}
+  .kit-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:calc(var(--u)*2);
+  }
+  .kit-card{
+    padding:calc(var(--u)*2);
+    background:var(--panel);border:2px solid var(--line);clip-path:var(--notch);
+  }
+  .kit-card .t{
+    font-family:var(--font-px);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--green);margin-bottom:var(--u);
+  }
+  .kit-card .d{font-size:13px;line-height:1.55;color:var(--ink-dim)}
+  .kit-card .d .hl{color:var(--ink)}
+  .cta-row{
+    display:flex;flex-wrap:wrap;gap:calc(var(--u)*1.5);align-items:center;
+    margin-top:calc(var(--u)*2);
+  }
+  .cta-row .arcade-btn{
+    display:inline-block;font-family:var(--font-px);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    background:var(--green);color:var(--bg);border:2px solid var(--green);
+    padding:var(--u) calc(var(--u)*2);text-decoration:none;clip-path:var(--notch);
+  }
+  .cta-row .arcade-btn:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+  .cta-row .ghost{
+    display:inline-block;font-family:var(--font-px);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--cyan);text-decoration:none;border:2px solid var(--line-hi);
+    padding:calc(var(--u)*0.875) calc(var(--u)*1.75);clip-path:var(--notch);
+  }
+  .cta-row .ghost:hover{border-color:var(--green);color:var(--green)}
+  .price-tag{
+    font-family:var(--font-px);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--amber);margin-top:calc(var(--u)*2);
+  }
+  .after-line{font-size:13px;line-height:1.55;color:var(--ink-dim);margin-top:var(--u)}
+  @media (max-width:700px){
+    .kit-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <div class="shell" role="main">
+
+    <header class="hud frame">
+      <div class="cart">
+        <span class="bit" aria-hidden="true"></span>
+        <span>LOKES ONE</span>
+        <span class="sub">· engine install</span>
+      </div>
+      <div class="readouts" aria-label="holdings status">
+        <span class="ro on"><span class="pip"></span><span class="k">desk</span> C3i online</span>
+        <span class="ro on"><span class="pip"></span><span class="k">product</span> vanism.ai</span>
+        <span class="ro warn"><span class="pip"></span><span class="k">engine</span> pilot install</span>
+      </div>
+    </header>
+
+    <div class="score" aria-label="arcade readout">
+      <span><span class="k">sector</span> <span class="v">engine</span> <span class="ini">install package</span></span>
+      <a class="coin right" href="/" title="Back to the house">
+        <span class="k">esc</span> · back to house <span class="coin-blink" aria-hidden="true">▮</span>
+      </a>
+    </div>
+    <div class="laser" aria-hidden="true"></div>
+
+    <section class="install-bay" aria-label="C3i Engine install package">
+      <div class="section-head">
+        <span class="label">./engine/ · install package</span>
+        <span class="rule" aria-hidden="true"></span>
+        <span class="label">c3i</span>
+      </div>
+
+      <article class="install-hero frame">
+        <div class="eyebrow">door /engine — template instant</div>
+        <h1>C3i Engine — install package</h1>
+        <p class="promise">
+          Operating brain for your company
+          (<span class="am">chief</span>, <span class="am">floor</span>, <span class="am">eval</span>, <span class="am">data pipes</span>)
+          — not another chatbot.
+        </p>
+        <p class="now-next">
+          <strong>Now:</strong> Vanism is the van/trip copilot.
+          <strong>Next:</strong> same Engine pattern installs into business websites.
+        </p>
+      </article>
+
+      <div class="section" aria-label="what you get">
+        <div class="section-head">
+          <span class="label">what you get</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label">kit</span>
+        </div>
+        <div class="kit-grid">
+          <div class="kit-card">
+            <div class="t">Template Instant kit</div>
+            <div class="d">
+              <span class="hl">C3i</span> + <span class="hl">Mine Boss</span> + eval 90/10
+              + connector pack + routines.
+            </div>
+          </div>
+          <div class="kit-card">
+            <div class="t">Day one</div>
+            <div class="d">
+              Install door → OAuth tools → discovery interview.
+              Embed alone = <span class="hl">thin glass</span>, not the brain.
+            </div>
+          </div>
+          <div class="kit-card">
+            <div class="t">Stays human</div>
+            <div class="d">
+              Spend + outbound need <span class="hl">founder stamps</span>.
+              The desk does not spend or ship alone.
+            </div>
+          </div>
+          <div class="kit-card">
+            <div class="t">Price</div>
+            <div class="d">
+              <span class="hl">Pilot / paid discovery — ask</span>
+              No menu. No dollar amounts on this page.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" aria-label="request install">
+        <div class="section-head">
+          <span class="label">request install</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label">cta</span>
+        </div>
+        <div class="scroll frame">
+          <div class="cmd">$ open mailto · Paid discovery or C3i Engine install</div>
+          <div>
+            Ready when the house is. Warm, short, true.
+            <p class="price-tag">Pilot / paid discovery — ask</p>
+            <p class="after-line">After discovery → Wrapper Eval Report → Wrapper Eval Services.</p>
+            <div class="cta-row">
+              <a class="arcade-btn" href="mailto:nicholas@vanism.ai?subject=Paid%20discovery%20or%20C3i%20Engine%20install">Request paid discovery</a>
+              <a class="ghost" href="mailto:nicholas@vanism.ai?subject=Paid%20discovery%20or%20C3i%20Engine%20install">Request install pilot</a>
+              <a class="ghost" href="/">← house /</a>
+              <a class="ghost" href="/#c3i">door /c3i</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="credits">
+      <span>© LOKES ONE LIMITED CO LLC</span>
+      <a href="mailto:nicholas@vanism.ai">mail</a>
+      <a href="/">house</a>
+      <span class="right">host: GitHub Pages · insert coin</span>
+    </footer>
+  </div>
+
+<script src="../assets/stars.js"></script>
+</body>
+</html>

@@ -774,12 +774,12 @@ body.brand-lokes > * { position: relative; z-index: 1; }
   gap: 0.55rem;
 }
 .nav__mark {
-  width: 22px;
-  height: 22px;
+  width: 36px;
+  height: 36px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   flex: 0 0 auto;
-  opacity: 0.92;
+  opacity: 1;
 }
 .hero__eyebrow,
 .section__label,
@@ -867,3 +867,19 @@ body.brand-lokes > * { position: relative; z-index: 1; }
 .proof__fact p{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink,#121416)}
 @media(max-width:900px){.proof__facts{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.proof__facts{grid-template-columns:1fr}}
+
+
+/* Quiet Odin in footer — readable, not mascot stage */
+.footer__mark {
+  width: 36px;
+  height: 36px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  opacity: 0.85;
+  flex: 0 0 auto;
+}
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}

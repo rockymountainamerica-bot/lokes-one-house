@@ -107,14 +107,14 @@ summary:focus-visible {
   padding: 0;
 }
 
-.nav__links a, .nav-links a {
+.nav__links, .nav-links a {
   text-decoration: none;
   color: var(--ink-muted);
   font-size: 0.9375rem;
   font-weight: 500;
 }
 
-.nav__links a:hover, .nav-links a:hover { color: var(--ink); }
+.nav__links, .nav-links a:hover { color: var(--ink); }
 
 .nav__actions, .nav-actions {
   display: flex;
@@ -129,7 +129,7 @@ summary:focus-visible {
   font-weight: 500;
 }
 
-.nav__house:hover, .nav-house:hover { color: var(--ink); }
+.nav__house, .nav-house:hover { color: var(--ink); }
 
 .nav__toggle, .nav-toggle {
   display: none;
@@ -144,7 +144,7 @@ summary:focus-visible {
   padding: 0;
 }
 
-.nav__toggle span, .nav-toggle span {
+.nav__toggle, .nav-toggle span {
   display: block;
   width: 18px;
   height: 2px;
@@ -152,10 +152,8 @@ summary:focus-visible {
   position: relative;
 }
 
-.nav__toggle span::before,
-.nav__toggle span::after,
-.nav-toggle span::before,
-.nav-toggle span::after {
+.nav__toggle, .nav-toggle span::before,
+.nav__toggle, .nav-toggle span::after {
   content: "";
   position: absolute;
   left: 0;
@@ -164,8 +162,8 @@ summary:focus-visible {
   background: var(--ink);
 }
 
-.nav__toggle span::before, .nav-toggle span::before { top: -6px; }
-.nav__toggle span::after, .nav-toggle span::after { top: 6px; }
+.nav__toggle, .nav-toggle span::before { top: -6px; }
+.nav__toggle, .nav-toggle span::after { top: 6px; }
 
 /* —— Buttons —— */
 .btn {
@@ -190,7 +188,7 @@ summary:focus-visible {
   box-shadow: var(--shadow);
 }
 
-.btn--primary:hover, .btn-primary:hover { background: #030712; }
+.btn--primary, .btn-primary:hover { background: #030712; }
 
 .btn--ghost, .btn-ghost {
   background: transparent;
@@ -198,7 +196,7 @@ summary:focus-visible {
   border-color: var(--line);
 }
 
-.btn--ghost:hover, .btn-ghost:hover {
+.btn--ghost, .btn-ghost:hover {
   background: var(--bg-subtle);
   border-color: #d0d4db;
 }
@@ -219,7 +217,7 @@ summary:focus-visible {
   margin-bottom: 2.5rem;
 }
 
-.section__head h2, .section-head h2 {
+.section__head, .section-head h2 {
   margin: 0 0 0.65rem;
   font-size: clamp(1.5rem, 2.4vw, 2rem);
   letter-spacing: -0.025em;
@@ -227,7 +225,7 @@ summary:focus-visible {
   font-weight: 700;
 }
 
-.section__head p, .section-head p {
+.section__head, .section-head p {
   margin: 0;
   color: var(--ink-muted);
   font-size: 1.0625rem;
@@ -390,13 +388,13 @@ summary:focus-visible {
   color: var(--ink);
 }
 
-.step h3, .step-card h3 {
+.step, .step-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.125rem;
   letter-spacing: -0.02em;
 }
 
-.step p, .step-card p {
+.step, .step-card p {
   margin: 0;
   color: var(--ink-muted);
   font-size: 0.975rem;
@@ -417,13 +415,13 @@ summary:focus-visible {
   box-shadow: var(--shadow);
 }
 
-.pillar h3, .pillar-card h3 {
+.pillar, .pillar-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.125rem;
   letter-spacing: -0.02em;
 }
 
-.pillar p, .pillar-card p {
+.pillar, .pillar-card p {
   margin: 0;
   color: var(--ink-muted);
   font-size: 0.975rem;
@@ -439,7 +437,7 @@ summary:focus-visible {
   padding: 0;
 }
 
-.trust__facts li, .trust-facts li {
+.trust__facts, .trust-facts li {
   display: flex;
   align-items: flex-start;
   gap: 0.55rem;
@@ -460,7 +458,7 @@ summary:focus-visible {
   color: var(--ok);
 }
 
-.trust__check svg, .trust-check svg {
+.trust__check, .trust-check svg {
   display: block;
   width: 18px;
   height: 18px;
@@ -519,7 +517,7 @@ summary:focus-visible {
   color: var(--ink);
 }
 
-.price-card__amount.warn, .price-cell.warn {
+.price-card__amount, .price-cell.warn {
   color: var(--warn);
   font-size: 1.05rem;
   font-weight: 600;
@@ -532,7 +530,7 @@ summary:focus-visible {
   flex: 1;
 }
 
-.price-card__list li, .price-includes li {
+.price-card__list, .price-includes li {
   position: relative;
   padding-left: 1.1rem;
   margin-bottom: 0.45rem;
@@ -540,7 +538,7 @@ summary:focus-visible {
   color: var(--ink-muted);
 }
 
-.price-card__list li::before, .price-includes li::before {
+.price-card__list, .price-includes li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -568,7 +566,7 @@ summary:focus-visible {
   padding: 0;
 }
 
-.faq details summary, .faq-item summary {
+.faq details, .faq-item summary {
   cursor: pointer;
   list-style: none;
   padding: 1.05rem 1.25rem;
@@ -581,9 +579,9 @@ summary:focus-visible {
   gap: 1rem;
 }
 
-.faq details summary::-webkit-details-marker, .faq-item summary::-webkit-details-marker { display: none; }
+.faq details, .faq-item summary::-webkit-details-marker { display: none; }
 
-.faq details summary::after, .faq-item summary::after {
+.faq details, .faq-item summary::after {
   content: "+";
   flex-shrink: 0;
   width: 1.5rem;
@@ -602,7 +600,7 @@ summary:focus-visible {
 
 .faq-item[open] summary::after { content: "–"; }
 
-.faq details .faq__body, .faq-item .faq__body, .faq-a {
+.faq details, .faq-item .faq__body, .faq-a {
   margin: 0;
   padding: 0 1.25rem 1.15rem;
   color: var(--ink-muted);
@@ -614,12 +612,12 @@ summary:focus-visible {
   text-align: center;
 }
 
-.final-cta .section__head, .final-cta .section-head {
+.final-cta .section__head, .section-head {
   margin-inline: auto;
   margin-bottom: 1.5rem;
 }
 
-.final-cta .hero__ctas, .final-cta__ctas, .final-cta .hero-ctas {
+.final-cta .hero__ctas, .final-cta__ctas, .hero-ctas {
   justify-content: center;
 }
 
@@ -652,14 +650,14 @@ summary:focus-visible {
   padding: 0;
 }
 
-.footer__links a, .footer-links a {
+.footer__links, .footer-links a {
   font-size: 0.875rem;
   color: var(--ink-muted);
   text-decoration: none;
   font-weight: 500;
 }
 
-.footer__links a:hover, .footer-links a:hover { color: var(--ink); }
+.footer__links, .footer-links a:hover { color: var(--ink); }
 
 /* —— Mobile —— */
 @media (max-width: 900px) {
@@ -691,7 +689,7 @@ summary:focus-visible {
     display: none;
   }
 
-  .nav.is-open .nav__links, .nav.is-open .nav-links {
+  .nav.is-open .nav__links, .nav-links {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -705,17 +703,17 @@ summary:focus-visible {
     gap: 0.25rem;
   }
 
-  .nav.is-open .nav__links a, .nav.is-open .nav-links a {
+  .nav.is-open .nav__links, .nav-links a {
     padding: 0.65rem 0.25rem;
   }
 
-  .nav.is-open .nav__house, .nav.is-open .nav-house {
+  .nav.is-open .nav__house, .nav-house {
     display: none;
   }
 
   .nav__inner, .nav-inner { position: relative; }
 
-  .hero__ctas .btn, .final-cta__ctas .btn, .hero-ctas .btn,
+  .hero__ctas, .final-cta__ctas, .hero-ctas .btn,
   .final-cta .btn {
     width: 100%;
   }
@@ -776,12 +774,12 @@ body.brand-lokes > * { position: relative; z-index: 1; }
   gap: 0.55rem;
 }
 .nav__mark {
-  width: 36px;
-  height: 36px;
+  width: 22px;
+  height: 22px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   flex: 0 0 auto;
-  opacity: 1;
+  opacity: 0.92;
 }
 .hero__eyebrow,
 .section__label,
@@ -861,50 +859,3 @@ body.brand-lokes > * { position: relative; z-index: 1; }
 
 /* Legacy placeholder kill — logos/quotes must never show */
 .proof__logos, .proof__slot, .proof__quote { display: none !important; }
-
-/* Composition proof facts */
-.proof__facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.75rem}
-.proof__fact{background:var(--bg-card,#FFFcf7);border:1px solid var(--line,#D9D0C4);border-radius:var(--radius,8px);padding:1.25rem 1.35rem;box-shadow:var(--shadow)}
-.proof__fact h3{margin:0 0 .5rem;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent,#B5512C)}
-.proof__fact p{margin:0;font-size:.95rem;line-height:1.5;color:var(--ink,#121416)}
-@media(max-width:900px){.proof__facts{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.proof__facts{grid-template-columns:1fr}}
-
-
-/* Quiet Odin in footer — readable, not mascot stage */
-.footer__mark {
-  width: 36px;
-  height: 36px;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  opacity: 0.85;
-  flex: 0 0 auto;
-}
-.footer__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.hero__stamp {
-  margin: 0 0 0.65rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-.hero__sub {
-  color: var(--ink) !important;
-  font-size: 1.125rem;
-  max-width: 36rem;
-  line-height: 1.45;
-}
-.footer__mark {
-  width: 36px;
-  height: 36px;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  opacity: 0.92;
-  vertical-align: middle;
-  margin-right: 0.45rem;
-}
-.footer__brand { display: inline-flex; align-items: center; }

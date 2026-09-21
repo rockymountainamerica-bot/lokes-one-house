@@ -42,3 +42,102 @@
     background: rgb(255 252 247 / 96%) !important;
   }
 }
+
+/* —— Center + bigger mark (2026-09-21) —— */
+.hero,
+.section__head,
+.final-cta {
+  text-align: center;
+}
+.section__head {
+  margin-inline: auto;
+  max-width: 40rem;
+}
+.hero h1,
+#hero-title,
+.section__title,
+.section__sub,
+.hero__sub,
+.hero__stamp,
+.hero__fine,
+.hero__eyebrow,
+.section__label,
+.trust__comp,
+.proof__label {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero h1,
+#hero-title {
+  max-width: 22ch;
+}
+.hero__sub,
+.section__sub {
+  max-width: 36rem;
+}
+.hero__ctas,
+.final-cta__ctas {
+  justify-content: center;
+}
+.proof__fact,
+.problem,
+.step,
+.pillar,
+.price-card {
+  text-align: center;
+}
+.proof__fact h3,
+.problem h3,
+.step h3,
+.pillar h3,
+.price-card h3,
+.price-card__tier,
+.price-card__for,
+.price-card__amount,
+.proof__fact p,
+.problem p,
+.step p,
+.pillar p {
+  text-align: center;
+}
+.step__num {
+  margin-inline: auto;
+}
+.price-card__list,
+.price-includes {
+  text-align: center;
+  padding-left: 0;
+}
+.price-card__list li,
+.price-includes li {
+  padding-left: 0;
+}
+.price-card__list li::before,
+.price-includes li::before {
+  display: none;
+}
+.faq {
+  margin-inline: auto;
+  text-align: left;
+}
+#faq .section__head {
+  text-align: center;
+}
+.trust__facts {
+  text-align: left;
+}
+.nav__mark,
+.footer__mark {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  flex: 0 0 48px !important;
+  image-rendering: auto !important;
+  border-radius: 10px;
+  object-fit: contain;
+}
+@media (max-width: 900px) {
+  .hero h1, #hero-title { max-width: 100%; }
+}

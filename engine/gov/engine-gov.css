@@ -1,0 +1,8 @@
+/*!
+ * engine-gov.css — thin overrides for Operating Desk for Agencies
+ * Parent: ../engine-saas.css (cream LOKES corporate). ART OFF. No FedRAMP theater.
+ */
+/* Quiet honesty line under trust facts when needed — inherits tokens */
+.trust__facts li strong {
+  font-weight: 600;
+}

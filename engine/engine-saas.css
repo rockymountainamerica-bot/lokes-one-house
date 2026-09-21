@@ -158,3 +158,24 @@
   outline: 1px solid rgb(216 154 74 / 65%);
   outline-offset: 1px;
 }
+
+/* —— Vector mark lock (2026-09-21): square SVG, never stretch —— */
+.nav__mark,
+.footer__mark {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+  aspect-ratio: 1 / 1 !important;
+  flex: 0 0 48px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  image-rendering: auto !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 1px solid rgb(216 154 74 / 65%);
+  outline-offset: 1px;
+}

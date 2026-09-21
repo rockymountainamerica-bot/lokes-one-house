@@ -10,21 +10,21 @@
   if (document.getElementById("c3i-tip-css")) return;
 
   var STYLE = [
-    ".c3i-tip-wrap{position:relative;display:inline-flex;align-items:center;gap:.25rem;vertical-align:middle;margin-left:.7rem;flex-shrink:0}",
+    ".c3i-tip-wrap{position:relative;display:inline-flex;align-items:center;gap:.2rem;vertical-align:middle;margin-left:.45rem;flex-shrink:0}",
     ".c3i-tip-btn{",
-    "display:inline-flex;align-items:center;justify-content:center;gap:.28rem;",
-    "width:auto;height:auto;min-width:44px;min-height:44px;margin:-.5rem -.2rem;",
-    "padding:.2rem .4rem .2rem .2rem;border:1px solid rgba(28,31,34,.22);border-radius:999px;",
-    "background:var(--bg,#F7F3EC);color:var(--ink,#121416);",
-    "font:600 9px/1 var(--font,Inter,system-ui,sans-serif);cursor:pointer;",
-    "letter-spacing:.04em;text-transform:uppercase;box-sizing:border-box",
+    "display:inline-flex;align-items:center;justify-content:center;gap:.22rem;",
+    "width:auto;height:auto;min-width:36px;min-height:36px;margin:-.35rem -.1rem;",
+    "padding:.12rem .3rem .12rem .12rem;border:1px solid rgba(28,31,34,.14);border-radius:999px;",
+    "background:transparent;color:var(--ink,#121416);",
+    "font:500 8px/1 var(--font,Inter,system-ui,sans-serif);cursor:pointer;",
+    "letter-spacing:.03em;text-transform:uppercase;box-sizing:border-box;opacity:.78",
     "}",
     ".c3i-tip-btn:focus-visible{outline:2px solid var(--accent,#B5512C);outline-offset:2px}",
     ".c3i-tip-btn[aria-expanded=\"true\"]{background:var(--brand,#1C1F22);color:var(--brand-ink,#F7F3EC);border-color:var(--brand,#1C1F22)}",
     ".c3i-tip-btn[aria-expanded=\"true\"] .c3i-tip-btn__face{border-color:rgba(247,243,236,.35)}",
     ".c3i-tip-btn__face{",
-    "display:block;width:24px;height:24px;border-radius:50%;object-fit:cover;flex-shrink:0;",
-    "background:#fff;border:1px solid rgba(28,31,34,.14);pointer-events:none",
+    "display:block;width:18px;height:18px;border-radius:50%;object-fit:cover;flex-shrink:0;",
+    "background:#fff;border:1px solid rgba(28,31,34,.1);pointer-events:none;opacity:.9",
     "}",
     ".c3i-tip-btn__ask{opacity:.78;pointer-events:none;user-select:none}",
     ".c3i-tip-btn[aria-expanded=\"true\"] .c3i-tip-btn__ask{opacity:1}",
@@ -59,21 +59,21 @@
       anchor: ".hero__eyebrow",
       label: "Operating Desk",
       title: "What’s an Operating Desk?",
-      body: "You’re worn thin being the whole office. Your site stays a simple front door; behind it a desk answers and drafts — like front-office help that never books a job or spends money until you say yes."
+      body: "You’re worn thin being the whole office. Your site stays a simple front door; behind it a desk answers and drafts, like front-office help that never books a job or spends money until you say yes."
     },
     {
       id: "T2",
       anchor: ".hero__stamp",
       label: "You approve",
       title: "Nothing sends until you stamp",
-      body: "The desk can draft texts, emails, and next steps. It does not send them or spend money on its own. You tap approve — like signing a work order before it goes out."
+      body: "The desk can draft texts, emails, and next steps. It does not send them or spend money on its own. You tap approve, like signing a work order before it goes out."
     },
     {
       id: "T3",
       anchor: "#how .step:nth-of-type(1) h3",
       label: "Audit",
       title: "We look at what’s live",
-      body: "We read your public website as a customer would — pages, offers, how someone books — so the desk is grounded in your real business, not a generic script."
+      body: "We read your public website as a customer would: pages, offers, how someone books. That way the desk is grounded in your real business, not a generic script."
     },
     {
       id: "T4",
@@ -86,7 +86,7 @@
       id: "T5",
       anchor: "#how .step:nth-of-type(3) h3",
       label: "Door",
-      title: "A door on your site — you keep the keys",
+      title: "A door on your site. You keep the keys",
       body: "When you’re ready, a simple door on your site opens the desk for visitors. Deeper hooks (mail, calendar, CRM) wait for your OK."
     },
     {
@@ -101,7 +101,7 @@
       anchor: "#pricing .price-card:first-of-type .price-card__amount",
       label: "Ask",
       title: "Why it says Ask",
-      body: "We don’t put a public price list on this page. First step is paid discovery on your site and one named problem — written scope, hard end — then terms that match that scope."
+      body: "We don’t put a public price list on this page. First step is paid discovery on your site and one named problem: written scope, hard end, then terms that match that scope."
     }
   ];
 

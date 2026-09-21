@@ -1,69 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="C3i">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="C3i" preserveAspectRatio="xMidYMid meet">
+  <title>C3i</title>
   <defs>
-    <linearGradient id="faceTop" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#4a5060"/>
-      <stop offset="100%" stop-color="#0a0b0d"/>
+    <linearGradient id="top" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a20"/><stop offset="100%" stop-color="#3a3a44"/>
     </linearGradient>
-    <linearGradient id="faceLeft" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a1d22"/>
-      <stop offset="100%" stop-color="#050506"/>
+    <linearGradient id="left" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e0e12"/><stop offset="100%" stop-color="#050506"/>
     </linearGradient>
-    <linearGradient id="faceRight" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2e333c"/>
-      <stop offset="100%" stop-color="#0a0b0d"/>
+    <linearGradient id="front" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2a32"/><stop offset="100%" stop-color="#101014"/>
     </linearGradient>
-    <radialGradient id="void" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#2a2e36"/>
-      <stop offset="55%" stop-color="#0e1014"/>
-      <stop offset="100%" stop-color="#000"/>
-    </radialGradient>
-    <linearGradient id="comet" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F7F3EC" stop-opacity="0"/>
-      <stop offset="30%" stop-color="#E8B86A"/>
-      <stop offset="65%" stop-color="#D89A4A"/>
-      <stop offset="100%" stop-color="#B5512C"/>
+    <linearGradient id="o3" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#ff9a3c"/><stop offset="50%" stop-color="#ff6a18"/><stop offset="100%" stop-color="#e04010"/>
     </linearGradient>
-    <linearGradient id="goldRing" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F3D39A"/>
-      <stop offset="40%" stop-color="#D89A4A"/>
-      <stop offset="70%" stop-color="#A9702B"/>
-      <stop offset="100%" stop-color="#E8B86A"/>
-    </linearGradient>
-    <radialGradient id="goldBurst" cx="30%" cy="25%" r="75%">
-      <stop offset="0%" stop-color="#F7E2B8" stop-opacity="0.95"/>
-      <stop offset="45%" stop-color="#D89A4A" stop-opacity="0.85"/>
-      <stop offset="100%" stop-color="#A9702B" stop-opacity="0.55"/>
-    </radialGradient>
-    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="0.8"/>
-    </filter>
-    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="1.4" result="b"/>
-      <feMerge>
-        <feMergeNode in="b"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <filter id="sh" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2.2" flood-opacity="0.32"/>
     </filter>
   </defs>
-
-  <!-- gold burst outer halo (separates from cream page) -->
-  <circle cx="48" cy="48" r="46" fill="none" stroke="url(#goldBurst)" stroke-width="2.2" opacity="0.55" filter="url(#soft)"/>
-  <!-- hard gold separation ring -->
-  <rect x="2.5" y="2.5" width="91" height="91" rx="20" fill="none" stroke="url(#goldRing)" stroke-width="2.4"/>
-  <!-- inner dark plate so cube never sits on cream -->
-  <rect x="6" y="6" width="84" height="84" rx="17" fill="url(#void)" stroke="#1C1F22" stroke-width="1"/>
-
-  <!-- isometric cube sinking -->
-  <g transform="translate(48 50)">
-    <path d="M0,-24 L26,-11 L0,2 L-26,-11 Z" fill="url(#faceTop)" stroke="#D89A4A" stroke-width="0.55" stroke-opacity="0.45" opacity="0.98"/>
-    <path d="M-26,-11 L0,2 L0,28 L-26,15 Z" fill="url(#faceLeft)" stroke="#3a3f48" stroke-width="0.5"/>
-    <path d="M26,-11 L0,2 L0,28 L26,15 Z" fill="url(#faceRight)" stroke="#5C6570" stroke-width="0.5"/>
-    <ellipse cx="0" cy="32" rx="24" ry="5.5" fill="#000" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="64" cy="116" rx="28" ry="4.5" fill="#000" opacity="0.16"/>
+  <g filter="url(#sh)">
+    <polygon points="64,20 102,39 64,58 26,39" fill="url(#top)"/>
+    <polygon points="26,39 64,58 64,100 26,81" fill="url(#left)"/>
+    <polygon points="64,58 102,39 102,81 64,100" fill="url(#front)"/>
+    <g stroke="#555560" stroke-width="0.6" fill="none" opacity="0.45">
+      <path d="M72 66h9v6M77 76h8M88 68v11M71 87h13"/>
+    </g>
   </g>
-
-  <!-- comet-tail C -->
-  <path d="M64 16 C48 8, 26 12, 22 30 C18 48, 34 58, 48 55" fill="none" stroke="url(#comet)" stroke-width="5.8" stroke-linecap="round" filter="url(#glow)" opacity="0.98"/>
-  <circle cx="48" cy="55" r="3.4" fill="#F7F3EC"/>
-  <text x="58" y="63" font-family="Inter, IBM Plex Sans, system-ui, sans-serif" font-size="14" font-weight="700" fill="#E8B86A">3</text>
+  <g transform="translate(78 72)">
+    <path fill="#f5f5f7" d="M9-16A17.5 17.5 0 1 0 9 16 11.2 11.2 0 1 1 9-16Z"/>
+    <path fill="url(#o3)" d="M-1.2-8.2C2.2-11.8 8.2-11.2 9.4-7.2C10.4-4.8 8.8-2.8 6.2-2.2C9.2-1.2 11.2 1.4 10.6 5.4C9.8 11.2-1.2 14.2-5.8 10.2C-3.2 12.2 3.8 11.2 5.8 6.2C6.8 3.4 5.4 1.2 2.2 0.6L6.2-2.2C3.8-3.2 2.2-5.2 2.6-7C3.2-9.2 0-9.4-1.2-8.2Z"/>
+    <rect x="12" y="-1.2" width="3" height="10.8" rx="0.55" fill="#f5f5f7"/>
+    <rect x="12.2" y="-7.8" width="2.6" height="2.6" rx="0.45" fill="#f5f5f7"/>
+  </g>
 </svg>

@@ -142,14 +142,19 @@
   .hero h1, #hero-title { max-width: 100%; }
 }
 
-/* —— Gold burst mark separation (2026-09-21) —— */
+/* —— KEEP cube hairline (2026-09-21) —— */
 .nav__mark,
 .footer__mark {
-  box-shadow:
-    0 0 0 1.5px rgb(216 154 74 / 75%),
-    0 0 0 3px rgb(247 243 236 / 90%),
-    0 4px 14px rgb(18 20 22 / 18%),
-    0 0 18px rgb(216 154 74 / 28%);
-  border-radius: 12px !important;
-  background: #0e1014;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  flex: 0 0 48px !important;
+  image-rendering: auto !important;
+  border-radius: 10px !important;
+  object-fit: contain;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 1px solid rgb(216 154 74 / 65%);
+  outline-offset: 1px;
 }

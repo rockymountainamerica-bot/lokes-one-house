@@ -2,48 +2,68 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="C3i">
   <defs>
     <linearGradient id="faceTop" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#3a3f48"/>
-      <stop offset="100%" stop-color="#121416"/>
+      <stop offset="0%" stop-color="#4a5060"/>
+      <stop offset="100%" stop-color="#0a0b0d"/>
     </linearGradient>
     <linearGradient id="faceLeft" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1c1f22"/>
-      <stop offset="100%" stop-color="#0a0b0c"/>
+      <stop offset="0%" stop-color="#1a1d22"/>
+      <stop offset="100%" stop-color="#050506"/>
     </linearGradient>
     <linearGradient id="faceRight" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2a2e34"/>
-      <stop offset="100%" stop-color="#0e1012"/>
+      <stop offset="0%" stop-color="#2e333c"/>
+      <stop offset="100%" stop-color="#0a0b0d"/>
     </linearGradient>
-    <radialGradient id="void" cx="50%" cy="55%" r="55%">
-      <stop offset="0%" stop-color="#5c6570" stop-opacity="0.35"/>
-      <stop offset="55%" stop-color="#121416" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#000" stop-opacity="1"/>
+    <radialGradient id="void" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2a2e36"/>
+      <stop offset="55%" stop-color="#0e1014"/>
+      <stop offset="100%" stop-color="#000"/>
     </radialGradient>
     <linearGradient id="comet" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#F7F3EC" stop-opacity="0"/>
-      <stop offset="35%" stop-color="#D89A4A" stop-opacity="0.85"/>
-      <stop offset="70%" stop-color="#B5512C"/>
-      <stop offset="100%" stop-color="#F7F3EC"/>
+      <stop offset="30%" stop-color="#E8B86A"/>
+      <stop offset="65%" stop-color="#D89A4A"/>
+      <stop offset="100%" stop-color="#B5512C"/>
     </linearGradient>
-    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="0.6"/>
+    <linearGradient id="goldRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F3D39A"/>
+      <stop offset="40%" stop-color="#D89A4A"/>
+      <stop offset="70%" stop-color="#A9702B"/>
+      <stop offset="100%" stop-color="#E8B86A"/>
+    </linearGradient>
+    <radialGradient id="goldBurst" cx="30%" cy="25%" r="75%">
+      <stop offset="0%" stop-color="#F7E2B8" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#D89A4A" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#A9702B" stop-opacity="0.55"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="0.8"/>
+    </filter>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
-  <!-- void / dark matter field -->
-  <rect width="96" height="96" rx="18" fill="url(#void)"/>
+
+  <!-- gold burst outer halo (separates from cream page) -->
+  <circle cx="48" cy="48" r="46" fill="none" stroke="url(#goldBurst)" stroke-width="2.2" opacity="0.55" filter="url(#soft)"/>
+  <!-- hard gold separation ring -->
+  <rect x="2.5" y="2.5" width="91" height="91" rx="20" fill="none" stroke="url(#goldRing)" stroke-width="2.4"/>
+  <!-- inner dark plate so cube never sits on cream -->
+  <rect x="6" y="6" width="84" height="84" rx="17" fill="url(#void)" stroke="#1C1F22" stroke-width="1"/>
+
   <!-- isometric cube sinking -->
-  <g transform="translate(48 52)">
-    <!-- top -->
-    <path d="M0,-26 L28,-12 L0,2 L-28,-12 Z" fill="url(#faceTop)" stroke="#5C6570" stroke-width="0.6" opacity="0.95"/>
-    <!-- left -->
-    <path d="M-28,-12 L0,2 L0,30 L-28,16 Z" fill="url(#faceLeft)" stroke="#2a2e34" stroke-width="0.5"/>
-    <!-- right -->
-    <path d="M28,-12 L0,2 L0,30 L28,16 Z" fill="url(#faceRight)" stroke="#3a3f48" stroke-width="0.5"/>
-    <!-- sink shadow into void -->
-    <ellipse cx="0" cy="34" rx="26" ry="6" fill="#000" opacity="0.55" filter="url(#soft)"/>
+  <g transform="translate(48 50)">
+    <path d="M0,-24 L26,-11 L0,2 L-26,-11 Z" fill="url(#faceTop)" stroke="#D89A4A" stroke-width="0.55" stroke-opacity="0.45" opacity="0.98"/>
+    <path d="M-26,-11 L0,2 L0,28 L-26,15 Z" fill="url(#faceLeft)" stroke="#3a3f48" stroke-width="0.5"/>
+    <path d="M26,-11 L0,2 L0,28 L26,15 Z" fill="url(#faceRight)" stroke="#5C6570" stroke-width="0.5"/>
+    <ellipse cx="0" cy="32" rx="24" ry="5.5" fill="#000" opacity="0.6" filter="url(#soft)"/>
   </g>
-  <!-- comet-tail C sinking into cube -->
-  <path d="M62 18 C48 10, 28 14, 24 30 C20 48, 34 58, 48 56" fill="none" stroke="url(#comet)" stroke-width="5.5" stroke-linecap="round" opacity="0.95"/>
-  <circle cx="48" cy="56" r="3.2" fill="#F7F3EC"/>
-  <!-- small 3 -->
-  <text x="58" y="64" font-family="Inter, IBM Plex Sans, system-ui, sans-serif" font-size="14" font-weight="700" fill="#D89A4A">3</text>
+
+  <!-- comet-tail C -->
+  <path d="M64 16 C48 8, 26 12, 22 30 C18 48, 34 58, 48 55" fill="none" stroke="url(#comet)" stroke-width="5.8" stroke-linecap="round" filter="url(#glow)" opacity="0.98"/>
+  <circle cx="48" cy="55" r="3.4" fill="#F7F3EC"/>
+  <text x="58" y="63" font-family="Inter, IBM Plex Sans, system-ui, sans-serif" font-size="14" font-weight="700" fill="#E8B86A">3</text>
 </svg>

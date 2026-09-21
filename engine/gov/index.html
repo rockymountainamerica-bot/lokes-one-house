@@ -11,19 +11,19 @@
   <p>Loading Operating Desk for Agencies…</p>
   <script>
   (async function () {
-    var n = 4;
+    var n = 7;
     var parts = [];
     for (var i = 0; i < n; i++) {
-      var r = await fetch("parts/p" + i + ".html.txt?v=20260921gov");
-      if (!r.ok) throw new Error("part " + i);
+      var r = await fetch("b64/p" + i + ".txt?v=20260921gov");
+      if (!r.ok) throw new Error("b64 " + i);
       parts.push(await r.text());
     }
-    var html = parts.join("");
+    var html = atob(parts.join("").replace(/\s/g, ""));
     document.open();
     document.write(html);
     document.close();
   })().catch(function (e) {
-    document.body.innerHTML = "<p>Load failed. <a href=\"/engine/\">Business twin</a>. Not FedRAMP-authorized.</p><pre>" + e + "</pre>";
+    document.body.innerHTML = "<p>Load failed. <a href=\"/engine/\">Business</a>. Not FedRAMP-authorized.</p><pre>" + e + "</pre>";
   });
   </script>
 </body>

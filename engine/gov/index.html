@@ -6,38 +6,25 @@
   <title>C3i Engine | Operating Desk for Agencies</title>
   <meta name="description" content="Operating Desk for Agencies. Not FedRAMP-authorized. No invented customers." />
   <meta name="theme-color" content="#F7F3EC" />
-  <link rel="stylesheet" href="../engine-saas.css?v=20260921gov" />
-  <link rel="stylesheet" href="engine-gov.css?v=20260921gov" />
 </head>
-<body class="brand-lokes">
-  <header class="nav" id="nav">
-    <div class="wrap nav__inner">
-      <a class="nav__brand" href="#top"><img class="nav__mark" src="../c3i-mark.svg?v=20260921gov" width="48" height="48" alt="C3i" />C3i Engine</a>
-      <div class="nav__actions">
-        <a class="nav__house" href="/engine/">Business</a>
-        <a class="nav__house" href="/">House</a>
-        <a class="btn btn--primary" href="mailto:nicholas@vanism.ai?subject=Operating%20Desk%20for%20Agencies%20%E2%80%94%20discovery">Request discovery</a>
-      </div>
-    </div>
-  </header>
-  <main id="top">
-    <section class="hero">
-      <div class="wrap">
-        <p class="hero__eyebrow">C3i Engine · Operating Desk for Agencies</p>
-        <h1>Install an operating brain for citizen-facing ops. Not another chatbot.</h1>
-        <p class="hero__sub">After-hours citizen asks, FOIA and forms backlog, brochure .gov, contractor silos. Publish, notify, spend, and outbound stay human-stamped. Not FedRAMP-authorized.</p>
-        <p class="hero__fine">Full page loading… if you still see this, refresh after Pages lag.</p>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <p class="footer__entity">&copy; LOKES ONE LIMITED CO LLC</p>
-      <ul class="footer__links">
-        <li><a href="/engine/">Business</a></li>
-        <li><a href="/">House</a></li>
-      </ul>
-    </div>
-  </footer>
+<body style="background:#F7F3EC;font-family:system-ui,sans-serif;color:#121416;padding:2rem;">
+  <p>Loading Operating Desk for Agencies…</p>
+  <script>
+  (async function () {
+    var n = 4;
+    var parts = [];
+    for (var i = 0; i < n; i++) {
+      var r = await fetch("parts/p" + i + ".html.txt?v=20260921gov");
+      if (!r.ok) throw new Error("part " + i);
+      parts.push(await r.text());
+    }
+    var html = parts.join("");
+    document.open();
+    document.write(html);
+    document.close();
+  })().catch(function (e) {
+    document.body.innerHTML = "<p>Load failed. <a href=\"/engine/\">Business twin</a>. Not FedRAMP-authorized.</p><pre>" + e + "</pre>";
+  });
+  </script>
 </body>
 </html>

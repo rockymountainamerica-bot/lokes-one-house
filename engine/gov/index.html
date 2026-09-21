@@ -12,13 +12,18 @@
   <script>
   (async function () {
     var n = 9;
-    var parts = [];
+    var fetches = [];
     for (var i = 0; i < n; i++) {
-      var r = await fetch("b64/p" + i + ".txt?v=20260921gov-clean1");
-      if (!r.ok) throw new Error("b64 " + i);
-      parts.push(await r.text());
+      fetches.push(fetch("b64/p" + i + ".txt?v=20260921gov-clean2").then(function (r) {
+        if (!r.ok) throw new Error("b64 fetch failed");
+        return r.text();
+      }));
     }
-    var html = atob(parts.join("").replace(/\s/g, ""));
+    var parts = await Promise.all(fetches);
+    var bin = atob(parts.join("").replace(/\s/g, ""));
+    var bytes = new Uint8Array(bin.length);
+    for (var j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
+    var html = new TextDecoder("utf-8").decode(bytes);
     document.open();
     document.write(html);
     document.close();

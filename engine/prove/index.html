@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>C3i Engine | Prove desk (demo)</title>
+  <meta name="description" content="Cold-walkable demo of stamp trail, assumptions and risks cards, Decision Package export, and stamp refuse. Browser-local demo — not FedRAMP, not fielded C2, not production customer data." />
+  <meta name="theme-color" content="#F7F3EC" />
+  <meta name="robots" content="index,follow" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #F7F3EC;
+      --ink: #121416;
+      --muted: #5c6168;
+      --line: #d9d2c6;
+      --card: #fffdf8;
+      --danger: #8b2e2e;
+      --ok: #2f5d3a;
+      --accent: #3a3f47;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    a { color: var(--ink); }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 1.25rem; }
+    .banner {
+      background: #1c1f24;
+      color: #f3eee6;
+      font-size: 0.85rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid #000;
+    }
+    .banner strong { color: #f0d9a8; }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+    .nav__brand { font-weight: 650; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+    .nav__links { display: flex; gap: 0.85rem; flex-wrap: wrap; font-size: 0.9rem; }
+    h1 { font-size: 1.65rem; margin: 1.25rem 0 0.4rem; letter-spacing: -0.02em; }
+    .lede { color: var(--muted); max-width: 42rem; margin: 0 0 1.25rem; }
+    .grid { display: grid; gap: 1rem; }
+    @media (min-width: 800px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 1rem 1.1rem;
+    }
+    .card h2 {
+      margin: 0 0 0.65rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; }
+    button, .btn {
+      appearance: none;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--cream);
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 0.75rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button.ghost, .btn.ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+    button.danger {
+      background: transparent;
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    ul.list { list-style: none; margin: 0; padding: 0; }
+    ul.list li {
+      border-top: 1px solid var(--line);
+      padding: 0.55rem 0;
+      font-size: 0.9rem;
+    }
+    ul.list li:first-child { border-top: 0; }
+    .meta { color: var(--muted); font-size: 0.78rem; }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      padding: 0.1rem 0.35rem;
+      margin-right: 0.35rem;
+    }
+    .tag.refused { border-color: var(--danger); color: var(--danger); }
+    .tag.unknown { border-color: #9a7b2f; color: #7a5f18; }
+    form.inline { display: grid; gap: 0.45rem; margin-bottom: 0.75rem; }
+    input, select, textarea {
+      font: inherit;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 0.45rem 0.55rem;
+      width: 100%;
+    }
+    textarea { min-height: 3.2rem; resize: vertical; }
+    .foot {
+      margin: 2rem 0 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .empty { color: var(--muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="banner" role="status">
+    <div class="wrap">
+      <strong>DEMO PROVE · browser-local.</strong>
+      Stamp trail, cards, and Decision Package export run in this tab (localStorage).
+      Not FedRAMP. Not fielded Army C2. Not production customer data. House dogfood ritual, public cold walk.
+    </div>
+  </div>
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__brand" href="/engine/">C3i Engine · Prove</a>
+      <div class="nav__links">
+        <a href="/engine/">Operating Desk</a>
+        <a href="/engine/gov/">Control Room</a>
+        <a href="/">LOKES house</a>
+      </div>
+    </nav>
+
+    <h1>Prove desk (demo)</h1>
+    <p class="lede">
+      Cold-walk the human-gated ritual: refuse spend or outbound and watch the stamp trail,
+      add assumption and risk cards (blank confidence stays UNKNOWN), then export a Decision Package.
+      Data stays in your browser until you clear it.
+    </p>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="gates-title">
+        <h2 id="gates-title">Stamp gates</h2>
+        <div class="row">
+          <button type="button" class="danger" id="btn-refuse-spend">Refuse spend</button>
+          <button type="button" class="danger" id="btn-refuse-outbound">Refuse outbound</button>
+          <button type="button" class="ghost" id="btn-allow-note">Record allowed note</button>
+          <button type="button" class="ghost" id="btn-clear">Clear demo state</button>
+        </div>
+        <p class="meta">Irreversible actions stay gated. Refuse records actor / action / result / timestamp. Missing actor → UNKNOWN.</p>
+      </section>
+
+      <section class="card" aria-labelledby="trail-title">
+        <h2 id="trail-title">Stamp trail</h2>
+        <ul class="list" id="stamp-trail"></ul>
+      </section>
+
+      <div class="grid grid-2">
+        <section class="card" aria-labelledby="asm-title">
+          <h2 id="asm-title">Assumptions</h2>
+          <form class="inline" id="form-assumption">
+            <textarea id="asm-text" placeholder="Assumption text" required maxlength="500"></textarea>
+            <select id="asm-confidence" aria-label="Confidence">
+              <option value="">Confidence (blank = UNKNOWN)</option>
+              <option value="low">low</option>
+              <option value="med">med</option>
+              <option value="high">high</option>
+            </select>
+            <button type="submit">Add assumption</button>
+          </form>
+          <ul class="list" id="asm-list"></ul>
+        </section>
+
+        <section class="card" aria-labelledby="risk-title">
+          <h2 id="risk-title">Risks</h2>
+          <form class="inline" id="form-risk">
+            <textarea id="risk-text" placeholder="Risk text" required maxlength="500"></textarea>
+            <select id="risk-severity" aria-label="Severity">
+              <option value="">Severity (blank = UNKNOWN)</option>
+              <option value="low">low</option>
+              <option value="med">med</option>
+              <option value="high">high</option>
+            </select>
+            <button type="submit">Add risk</button>
+          </form>
+          <ul class="list" id="risk-list"></ul>
+        </section>
+      </div>
+
+      <section class="card" aria-labelledby="dp-title">
+        <h2 id="dp-title">Decision Package export</h2>
+        <div class="row">
+          <a class="btn" id="export-json" href="#" download="decision-package.json">Download JSON</a>
+          <a class="btn ghost" id="export-md" href="#" download="decision-package.md">Download Markdown</a>
+        </div>
+        <p class="meta">Stub schema for demo and Phase I sketch — not a sold SKU, not Army-certified.</p>
+      </section>
+    </div>
+
+    <p class="foot">
+      © LOKES ONE LIMITED CO LLC · STREET · ART OFF ·
+      Face doors: <a href="/engine/">/engine/</a> · <a href="/engine/gov/">/engine/gov/</a> ·
+      This page: <a href="/engine/prove/">/engine/prove/</a>
+    </p>
+  </div>
+
+  <script>
+  (function () {
+    var KEY = "c3i.engine.prove.demo.v1";
+    var actorDefault = "cold-visitor";
+
+    function nowIso() {
+      return new Date().toISOString();
+    }
+
+    function load() {
+      try {
+        var raw = localStorage.getItem(KEY);
+        if (!raw) return { trail: [], assumptions: [], risks: [] };
+        var data = JSON.parse(raw);
+        return {
+          trail: Array.isArray(data.trail) ? data.trail : [],
+          assumptions: Array.isArray(data.assumptions) ? data.assumptions : [],
+          risks: Array.isArray(data.risks) ? data.risks : []
+        };
+      } catch (e) {
+        return { trail: [], assumptions: [], risks: [] };
+      }
+    }
+
+    function save(state) {
+      localStorage.setItem(KEY, JSON.stringify(state));
+    }
+
+    var state = load();
+
+    function uid(prefix) {
+      return prefix + "-" + Math.random().toString(36).slice(2, 9);
+    }
+
+    function recordStamp(action, result, actor) {
+      var entry = {
+        id: uid("st"),
+        actor: actor && String(actor).trim() ? String(actor).trim() : "UNKNOWN",
+        action: action,
+        result: result,
+        timestamp: nowIso()
+      };
+      state.trail.unshift(entry);
+      save(state);
+      render();
+    }
+
+    function renderTrail() {
+      var el = document.getElementById("stamp-trail");
+      if (!state.trail.length) {
+        el.innerHTML = "<li class='empty'>No stamps yet — try Refuse spend.</li>";
+        return;
+      }
+      el.innerHTML = state.trail.map(function (t) {
+        var cls = t.result === "refused" ? "refused" : "";
+        var actorCls = t.actor === "UNKNOWN" ? " unknown" : "";
+        return (
+          "<li><span class='tag " + cls + "'>" + escapeHtml(t.result) + "</span>" +
+          "<span class='tag" + actorCls + "'>" + escapeHtml(t.actor) + "</span>" +
+          "<strong>" + escapeHtml(t.action) + "</strong>" +
+          "<div class='meta'>" + escapeHtml(t.timestamp) + "</div></li>"
+        );
+      }).join("");
+    }
+
+    function renderCards(elId, items, kind) {
+      var el = document.getElementById(elId);
+      if (!items.length) {
+        el.innerHTML = "<li class='empty'>None yet.</li>";
+        return;
+      }
+      el.innerHTML = items.map(function (c) {
+        var conf = c.confidence || c.severity || "UNKNOWN";
+        var confCls = conf === "UNKNOWN" ? " unknown" : "";
+        return (
+          "<li><span class='tag" + confCls + "'>" + escapeHtml(String(conf)) + "</span>" +
+          escapeHtml(c.text) +
+          "<div class='meta'>" + escapeHtml(kind) + " · " + escapeHtml(c.status || "open") +
+          " · " + escapeHtml(c.updatedAt || "") + "</div></li>"
+        );
+      }).join("");
+    }
+
+    function packagePayload() {
+      return {
+        schema: "c3i.decision-package.demo.v1",
+        source: "operating_desk_public_prove_demo",
+        honesty: "Browser-local demo. Not FedRAMP. Not fielded Army C2. Not production customer data.",
+        exportedAt: nowIso(),
+        stampTrail: state.trail,
+        assumptions: state.assumptions,
+        risks: state.risks
+      };
+    }
+
+    function toMarkdown(pkg) {
+      var lines = [
+        "# Decision Package (demo)",
+        "",
+        "- Exported: " + pkg.exportedAt,
+        "- Source: " + pkg.source,
+        "- Honesty: " + pkg.honesty,
+        "",
+        "## Stamp trail",
+        ""
+      ];
+      if (!pkg.stampTrail.length) lines.push("_None._");
+      pkg.stampTrail.forEach(function (t) {
+        lines.push("- [" + t.result + "] " + t.action + " · actor=" + t.actor + " · " + t.timestamp);
+      });
+      lines.push("", "## Assumptions", "");
+      if (!pkg.assumptions.length) lines.push("_None._");
+      pkg.assumptions.forEach(function (a) {
+        lines.push("- (" + (a.confidence || "UNKNOWN") + ") " + a.text);
+      });
+      lines.push("", "## Risks", "");
+      if (!pkg.risks.length) lines.push("_None._");
+      pkg.risks.forEach(function (r) {
+        lines.push("- (" + (r.severity || "UNKNOWN") + ") " + r.text);
+      });
+      lines.push("");
+      return lines.join("\n");
+    }
+
+    function wireExports() {
+      var pkg = packagePayload();
+      var jsonBlob = new Blob([JSON.stringify(pkg, null, 2)], { type: "application/json" });
+      var mdBlob = new Blob([toMarkdown(pkg)], { type: "text/markdown" });
+      var j = document.getElementById("export-json");
+      var m = document.getElementById("export-md");
+      if (j._url) URL.revokeObjectURL(j._url);
+      if (m._url) URL.revokeObjectURL(m._url);
+      j._url = URL.createObjectURL(jsonBlob);
+      m._url = URL.createObjectURL(mdBlob);
+      j.href = j._url;
+      m.href = m._url;
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;");
+    }
+
+    function render() {
+      renderTrail();
+      renderCards("asm-list", state.assumptions, "assumption");
+      renderCards("risk-list", state.risks, "risk");
+      wireExports();
+    }
+
+    document.getElementById("btn-refuse-spend").addEventListener("click", function () {
+      recordStamp("spend", "refused", actorDefault);
+    });
+    document.getElementById("btn-refuse-outbound").addEventListener("click", function () {
+      recordStamp("outbound", "refused", actorDefault);
+    });
+    document.getElementById("btn-allow-note").addEventListener("click", function () {
+      recordStamp("note", "allowed", actorDefault);
+    });
+    document.getElementById("btn-clear").addEventListener("click", function () {
+      state = { trail: [], assumptions: [], risks: [] };
+      save(state);
+      render();
+    });
+
+    document.getElementById("form-assumption").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var text = document.getElementById("asm-text").value.trim();
+      var conf = document.getElementById("asm-confidence").value;
+      if (!text) return;
+      state.assumptions.unshift({
+        id: uid("asm"),
+        type: "assumption",
+        text: text,
+        status: "open",
+        confidence: conf || "UNKNOWN",
+        updatedAt: nowIso()
+      });
+      document.getElementById("asm-text").value = "";
+      document.getElementById("asm-confidence").value = "";
+      save(state);
+      render();
+    });
+
+    document.getElementById("form-risk").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var text = document.getElementById("risk-text").value.trim();
+      var sev = document.getElementById("risk-severity").value;
+      if (!text) return;
+      state.risks.unshift({
+        id: uid("risk"),
+        type: "risk",
+        text: text,
+        status: "open",
+        severity: sev || "UNKNOWN",
+        updatedAt: nowIso()
+      });
+      document.getElementById("risk-text").value = "";
+      document.getElementById("risk-severity").value = "";
+      save(state);
+      render();
+    });
+
+    render();
+  })();
+  </script>
+</body>
+</html>

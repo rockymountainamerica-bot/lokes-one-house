@@ -14,7 +14,7 @@
     var n = 18;
     var fetches = [];
     for (var i = 0; i < n; i++) {
-      fetches.push(fetch("b64/p" + i + ".txt?v=20260921gov-clean3").then(function (r) {
+      fetches.push(fetch("b64/p" + i + ".txt?v=20260921c3i").then(function (r) {
         if (!r.ok) throw new Error("b64 fetch failed");
         return r.text();
       }));
@@ -27,6 +27,20 @@
     document.open();
     document.write(html);
     document.close();
+    (function () {
+      var v = "20260921c3i";
+      var c = document.createElement("script");
+      c.src = "../c3i-sales-config.js?v=" + v;
+      c.async = false;
+      c.onload = function () {
+        var s = document.createElement("script");
+        s.src = "../c3i-sales.js?v=" + v;
+        s.async = false;
+        s.setAttribute("data-face", "gov");
+        document.documentElement.appendChild(s);
+      };
+      document.documentElement.appendChild(c);
+    })();
   })().catch(function (e) {
     document.body.innerHTML = "<p>Load failed. <a href=\"/engine/\">Business</a>. Not FedRAMP-authorized.</p><pre>" + e + "</pre>";
   });

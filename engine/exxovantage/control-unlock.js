@@ -41,6 +41,7 @@
           }
           try {
             sessionStorage.setItem(KEY, "1");
+            sessionStorage.setItem("exxo.demo.ok", HASH);
           } catch (x) {}
           location.reload();
         });

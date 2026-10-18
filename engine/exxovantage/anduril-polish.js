@@ -1,5 +1,7 @@
 /* Anduril-leaning sales polish — inject cinematic proof rail after unlock */
 (function () {
+  var path = (location.pathname || "").toLowerCase();
+  if (path.indexOf("/control") >= 0 || path.indexOf("/admin") >= 0) return;
   var BASE = "/engine/exxovantage/";
   if (document.querySelector('link[data-exxo-polish]')) return;
 

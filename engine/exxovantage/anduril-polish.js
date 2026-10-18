@@ -1,7 +1,7 @@
-/* Anduril-leaning sales polish — market-separated proof rails */
+/* Anduril-leaning sales polish: market-separated proof rails */
 (function () {
   var path = (location.pathname || "").toLowerCase();
-  if (path.indexOf("/control") >= 0 || path.indexOf("/admin") >= 0) return;
+  if (path.indexOf("/x/") < 0) return; /* merged front door, checkout and control stay clean: packet pages only */
   var BASE = "/engine/exxovantage/";
   if (document.querySelector('link[data-exxo-polish]')) return;
 
@@ -21,7 +21,7 @@
 
   var PRODUCT = {
     src: BASE + "img/lift-cutout.png",
-    caption: "ExxoLift™ — product",
+    caption: "ExxoLift™: product",
     cls: "span2 cut",
   };
   var HERO = {
@@ -38,32 +38,32 @@
         PRODUCT,
         {
           src: BASE + "img/markets/aerospace/hangar-panel.jpg",
-          caption: "Hangar — panel handling",
+          caption: "Hangar: panel handling",
           cls: "span2",
         },
         {
           src: BASE + "img/markets/aerospace/engine-fixture.jpg",
-          caption: "MRO — tooling & fixtures",
+          caption: "MRO: tooling & fixtures",
         },
         {
           src: BASE + "img/markets/aerospace/fuselage-walk.jpg",
-          caption: "Line side — fuselage ops",
+          caption: "Line side: fuselage ops",
         },
         {
           src: BASE + "img/markets/aerospace/sat-bay.jpg",
-          caption: "Assembly bay — large structures",
+          caption: "Assembly bay: large structures",
         },
         HERO,
       ],
     },
     defense: {
       kicker: "Defense proof",
-      line: "Depot and sustainment — public imagery only.",
+      line: "Depot and sustainment: public imagery only.",
       shots: [
         PRODUCT,
         {
           src: BASE + "img/markets/defense/flightline.jpg",
-          caption: "Flight line — crates & kits",
+          caption: "Flight line: crates & kits",
           cls: "span2",
         },
         {
@@ -81,12 +81,12 @@
         PRODUCT,
         {
           src: BASE + "img/markets/warehouse/dock-load.jpg",
-          caption: "Dock — truck loading",
+          caption: "Dock: truck loading",
           cls: "span2",
         },
         {
           src: BASE + "img/markets/warehouse/pick-aisle.jpg",
-          caption: "Aisle — cases & totes",
+          caption: "Aisle: cases & totes",
           cls: "span2",
         },
         HERO,
@@ -95,7 +95,7 @@
     /* Construction never shares aerospace media */
     construction: {
       kicker: "Construction (preview)",
-      line: "Packet not launched — no aerospace imagery here.",
+      line: "Packet not launched: no aerospace imagery here.",
       shots: [PRODUCT, HERO],
     },
     home: {
@@ -117,7 +117,7 @@
     var sec = document.createElement("section");
     sec.id = "exxo-proof";
     sec.setAttribute("data-market", m);
-    sec.setAttribute("aria-label", "ExxoLift proof — " + m);
+    sec.setAttribute("aria-label", "ExxoLift proof: " + m);
     sec.innerHTML =
       '<div class="rail-head"><div><div class="kicker">' +
       railCfg.kicker +
@@ -151,11 +151,8 @@
     }
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mountProof);
-  } else {
-    mountProof();
-  }
-  setTimeout(mountProof, 800);
-  setTimeout(mountProof, 2000);
+  /* mount only after React hydration finishes, so the injected rail never causes a hydration mismatch */
+  function later() { setTimeout(mountProof, 1200); }
+  if (document.readyState === "complete") later(); else window.addEventListener("load", later);
+  setTimeout(mountProof, 4000);
 })();

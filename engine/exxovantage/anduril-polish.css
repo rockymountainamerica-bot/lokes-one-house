@@ -1,4 +1,4 @@
-/* Anduril-leaning sales polish for Exxovantage static demo — additive only */
+/* Anduril-leaning sales polish for Exxovantage static demo: additive only */
 
 :root {
   --exxo-y: #f7c029;
@@ -18,7 +18,7 @@
   opacity: 0.25;
 }
 
-/* Product becomes the star — bigger, slower turn like the Silicon Slopes brief */
+/* Product becomes the star: bigger, slower turn like the Silicon Slopes brief */
 .float {
   width: min(96%, 620px) !important;
   animation: exxo-orbit 14s ease-in-out infinite !important;
@@ -52,7 +52,7 @@ main section h1.h {
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.65);
 }
 
-/* Photo rail — Anduril-style product proof under the fold */
+/* Photo rail: Anduril-style product proof under the fold */
 #exxo-proof {
   position: relative;
   z-index: 10;

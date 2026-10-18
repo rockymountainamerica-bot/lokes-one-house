@@ -1,4 +1,4 @@
-/* Exxovantage private demo gate — client-side only (GitHub Pages). */
+/* Exxovantage private demo gate, client-side only (GitHub Pages). */
 (function () {
   var KEY = "exxo.demo.ok";
   var HASH = "a943c51c73eb452971b88973ed7da6ddb8b14e9964e56fd09ffb77ce007d2c59";
@@ -34,7 +34,7 @@
     if (document.getElementById("exxo-gate")) return;
     var el = document.createElement("div");
     el.id = "exxo-gate";
-    el.innerHTML = '<div class="box"><h1>Exxovantage</h1><p>Private demo — enter the access password.</p>' +
+    el.innerHTML = '<div class="box"><h1>Exxovantage</h1><p>Private demo. Enter the access password.</p>' +
       '<form id="exxo-gate-form"><input type="password" id="exxo-gate-pw" autocomplete="current-password" ' +
       'placeholder="Password" aria-label="Demo password" autofocus/>' +
       '<button type="submit">Enter</button><div class="err" id="exxo-gate-err"></div></form></div>';

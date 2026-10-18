@@ -1,4 +1,4 @@
-/* Anduril-leaning sales polish — inject cinematic proof rail after unlock */
+/* Anduril-leaning sales polish — market-separated proof rails */
 (function () {
   var path = (location.pathname || "").toLowerCase();
   if (path.indexOf("/control") >= 0 || path.indexOf("/admin") >= 0) return;
@@ -11,34 +11,120 @@
   link.setAttribute("data-exxo-polish", "1");
   document.documentElement.appendChild(link);
 
+  function marketFromPath() {
+    if (path.indexOf("/x/aerospace") >= 0) return "aerospace";
+    if (path.indexOf("/x/defense") >= 0) return "defense";
+    if (path.indexOf("/x/warehouse") >= 0) return "warehouse";
+    if (path.indexOf("/x/construction") >= 0) return "construction";
+    return "home";
+  }
+
+  var PRODUCT = {
+    src: BASE + "img/lift-cutout.png",
+    caption: "ExxoLift™ — product",
+    cls: "span2 cut",
+  };
+  var HERO = {
+    src: BASE + "img/exxolift-hero.webp",
+    caption: "Augmented biomechanics",
+    cls: "span2",
+  };
+
+  var RAILS = {
+    aerospace: {
+      kicker: "Aerospace proof",
+      line: "Hangar floors. Component lifts. No construction stock.",
+      shots: [
+        PRODUCT,
+        {
+          src: BASE + "img/markets/aerospace/hangar-panel.jpg",
+          caption: "Hangar — panel handling",
+          cls: "span2",
+        },
+        {
+          src: BASE + "img/markets/aerospace/engine-fixture.jpg",
+          caption: "MRO — tooling & fixtures",
+        },
+        {
+          src: BASE + "img/markets/aerospace/fuselage-walk.jpg",
+          caption: "Line side — fuselage ops",
+        },
+        {
+          src: BASE + "img/markets/aerospace/sat-bay.jpg",
+          caption: "Assembly bay — large structures",
+        },
+        HERO,
+      ],
+    },
+    defense: {
+      kicker: "Defense proof",
+      line: "Depot and sustainment — public imagery only.",
+      shots: [
+        PRODUCT,
+        {
+          src: BASE + "img/markets/defense/flightline.jpg",
+          caption: "Flight line — crates & kits",
+          cls: "span2",
+        },
+        {
+          src: BASE + "img/markets/defense/sustainment.jpg",
+          caption: "Sustainment hangar",
+          cls: "span2",
+        },
+        HERO,
+      ],
+    },
+    warehouse: {
+      kicker: "Warehouse proof",
+      line: "Picks, docks, and volume shifts.",
+      shots: [
+        PRODUCT,
+        {
+          src: BASE + "img/markets/warehouse/dock-load.jpg",
+          caption: "Dock — truck loading",
+          cls: "span2",
+        },
+        {
+          src: BASE + "img/markets/warehouse/pick-aisle.jpg",
+          caption: "Aisle — cases & totes",
+          cls: "span2",
+        },
+        HERO,
+      ],
+    },
+    /* Construction never shares aerospace media */
+    construction: {
+      kicker: "Construction (preview)",
+      line: "Packet not launched — no aerospace imagery here.",
+      shots: [PRODUCT, HERO],
+    },
+    home: {
+      kicker: "Product proof",
+      line: "Market packets keep their own floors. This rail stays product-only.",
+      shots: [PRODUCT, HERO],
+    },
+  };
+
   function mountProof() {
     if (document.getElementById("exxo-proof")) return;
     var host = document.querySelector(".relative.z-10") || document.body;
     if (!host) return;
 
-    var shots = [
-      {
-        src: BASE + "img/lift-cutout.png",
-        caption: "ExxoLift™ — product",
-        cls: "span2 cut",
-      },
-      { src: BASE + "img/gallery-1.jpg", caption: "Field ops" },
-      { src: BASE + "img/gallery-2.jpg", caption: "Workforce" },
-      { src: BASE + "img/gallery-3.jpg", caption: "Industrial" },
-      { src: BASE + "img/gallery-4.jpg", caption: "Deployed" },
-      {
-        src: BASE + "img/exxolift-hero.webp",
-        caption: "Augmented biomechanics",
-        cls: "span2",
-      },
-    ];
+    var m = marketFromPath();
+    var railCfg = RAILS[m] || RAILS.home;
+    var shots = railCfg.shots;
 
     var sec = document.createElement("section");
     sec.id = "exxo-proof";
-    sec.setAttribute("aria-label", "ExxoLift in the field");
+    sec.setAttribute("data-market", m);
+    sec.setAttribute("aria-label", "ExxoLift proof — " + m);
     sec.innerHTML =
-      '<div class="rail-head"><div><div class="kicker">Product proof</div>' +
-      '<div class="line">Built for the floor — not the brochure.</div></div></div>' +
+      '<div class="rail-head"><div><div class="kicker">' +
+      railCfg.kicker +
+      "</div>" +
+      '<div class="line">' +
+      railCfg.line +
+      "</div></div></div>" +
       '<div class="rail"></div>';
 
     var rail = sec.querySelector(".rail");
@@ -70,7 +156,6 @@
   } else {
     mountProof();
   }
-  // Next hydration can rebuild the tree — remount once
   setTimeout(mountProof, 800);
   setTimeout(mountProof, 2000);
 })();

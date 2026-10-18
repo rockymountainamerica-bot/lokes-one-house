@@ -1,0 +1,147 @@
+/* Anduril-leaning sales polish for Exxovantage static demo — additive only */
+
+:root {
+  --exxo-y: #f7c029;
+  --exxo-ink: #050100;
+}
+
+/* Cinematic stage behind the host */
+.bgfx {
+  background:
+    linear-gradient(90deg, rgba(5, 1, 0, 0.92) 0%, rgba(5, 1, 0, 0.55) 42%, rgba(5, 1, 0, 0.35) 100%),
+    radial-gradient(ellipse 70% 60% at 78% 48%, rgba(247, 192, 41, 0.1), transparent 62%),
+    url("/engine/exxovantage/img/scene-earth.jpg") center / cover no-repeat fixed !important;
+  opacity: 1;
+}
+
+.dots {
+  opacity: 0.25;
+}
+
+/* Product becomes the star — bigger, slower turn like the Silicon Slopes brief */
+.float {
+  width: min(96%, 620px) !important;
+  animation: exxo-orbit 14s ease-in-out infinite !important;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 40px 80px rgba(247, 192, 41, 0.18));
+}
+
+.float img {
+  transform: scale(1.06);
+}
+
+@keyframes exxo-orbit {
+  0%,
+  100% {
+    transform: translateY(0) rotateY(-10deg) rotateZ(-1deg);
+  }
+  50% {
+    transform: translateY(-14px) rotateY(12deg) rotateZ(1deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float {
+    animation: none !important;
+  }
+}
+
+/* Hero copy: stark / defense-sales */
+main section h1.h {
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.65);
+}
+
+/* Photo rail — Anduril-style product proof under the fold */
+#exxo-proof {
+  position: relative;
+  z-index: 10;
+  margin: 0;
+  padding: 0 4vw 8vh;
+  background: linear-gradient(180deg, transparent, #050100 18%);
+}
+
+#exxo-proof .rail-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+#exxo-proof .rail-head .kicker {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #aaaaaa;
+}
+
+#exxo-proof .rail-head .line {
+  font-size: clamp(22px, 2.4vw, 34px);
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+#exxo-proof .rail {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  #exxo-proof .rail {
+    grid-template-columns: 1fr 1fr;
+  }
+  #exxo-proof .rail .span2 {
+    grid-column: 1 / -1;
+  }
+}
+
+#exxo-proof figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #241d1a;
+  background: #0a0200;
+  min-height: 180px;
+}
+
+#exxo-proof figure.span2 {
+  min-height: 280px;
+}
+
+#exxo-proof img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.8s steps(12);
+  filter: saturate(0.92) contrast(1.05);
+}
+
+#exxo-proof figure:hover img {
+  transform: scale(1.06);
+}
+
+#exxo-proof figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px 14px 12px;
+  background: linear-gradient(transparent, rgba(5, 1, 0, 0.92));
+  color: #e6e1de;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#exxo-proof .cut {
+  object-fit: contain;
+  background:
+    radial-gradient(ellipse at 50% 70%, rgba(247, 192, 41, 0.12), transparent 55%),
+    #0a0200;
+  padding: 8%;
+}

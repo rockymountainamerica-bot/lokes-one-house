@@ -11,12 +11,10 @@
   link.setAttribute("data-exxo-polish", "1");
   document.documentElement.appendChild(link);
 
+  var NAMES = { astronautics: "Astronautics", aerospace: "Aerospace", aviation: "Aviation", defense: "Defense", homeland: "Homeland Security", mining: "Mining", manufacturing: "Manufacturing", healthcare: "Healthcare", construction: "Construction", warehouse: "Logistics", retail: "Retail", primary: "Primary Industries", horticulture: "Horticulture" };
   function marketFromPath() {
-    if (path.indexOf("/x/aerospace") >= 0) return "aerospace";
-    if (path.indexOf("/x/defense") >= 0) return "defense";
-    if (path.indexOf("/x/warehouse") >= 0) return "warehouse";
-    if (path.indexOf("/x/construction") >= 0) return "construction";
-    return "home";
+    var m = path.match(/\/x\/([a-z]+)/);
+    return m && NAMES[m[1]] ? m[1] : "home";
   }
 
   var PRODUCT = {
@@ -92,12 +90,6 @@
         HERO,
       ],
     },
-    /* Construction never shares aerospace media */
-    construction: {
-      kicker: "Construction (preview)",
-      line: "Packet not launched: no aerospace imagery here.",
-      shots: [PRODUCT, HERO],
-    },
     home: {
       kicker: "Product proof",
       line: "Market packets keep their own floors. This rail stays product-only.",
@@ -111,7 +103,7 @@
     if (!host) return;
 
     var m = marketFromPath();
-    var railCfg = RAILS[m] || RAILS.home;
+    var railCfg = RAILS[m] || (NAMES[m] ? { kicker: NAMES[m] + ": product", line: "Market photography from Exxovantage to come [SPEC]. Product imagery only, no other market's media.", shots: [PRODUCT, HERO] } : RAILS.home);
     var shots = railCfg.shots;
 
     var sec = document.createElement("section");

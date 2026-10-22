@@ -6,13 +6,24 @@
   <title>C3i Engine | Operating Desk</title>
   <meta name="description" content="Operating Desk: self-driving AI for the business. Install an operating brain behind a thin website door. You keep the wheel on money and outbound." />
   <meta name="theme-color" content="#F7F3EC" />
-  <link rel="stylesheet" href="engine-saas.css?v=20260921c3i" />
+  <link rel="stylesheet" href="engine-saas.css?v=20261022nav" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body class="brand-lokes">
   <header class="nav" id="nav">
     <div class="wrap nav__inner">
       <a class="nav__brand" href="#top"><img class="nav__mark" src="c3i-mark.svg?v=20260921c3i" width="36" height="36" alt="C3i" />C3i Engine</a>
+      <nav aria-label="Menu">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span>
+        </button>
+        <ul class="nav__links nav__links--menu" id="nav-links">
+          <li><a href="mailto:nicholas@vanism.ai">Mail</a></li>
+          <li><a href="/engine/gov/">Government</a></li>
+          <li><a href="/">House</a></li>
+          <li><a href="https://vanism.ai">Vanism</a></li>
+        </ul>
+      </nav>
       <div class="nav__actions">
         <a class="nav__house" href="/engine/gov/">Government</a>
         <a class="nav__house" href="/">LOKES house</a>
@@ -70,6 +81,7 @@
     </section>
   </main>
   <footer class="footer"><div class="wrap footer__inner"><p class="footer__entity footer__brand"><img class="footer__mark" src="c3i-mark.svg?v=20260921c3i" width="36" height="36" alt="C3i" /><span>&copy; LOKES ONE LIMITED CO LLC</span></p><ul class="footer__links"><li><a href="mailto:nicholas@vanism.ai">Mail</a></li><li><a href="/engine/gov/">Government</a></li><li><a href="/">House</a></li><li><a href="https://vanism.ai">Vanism</a></li></ul></div></footer>
+  <script>(function(){var nav=document.getElementById("nav");var toggle=nav&&nav.querySelector(".nav__toggle");if(!toggle)return;toggle.addEventListener("click",function(){var open=nav.classList.toggle("is-open");toggle.setAttribute("aria-expanded",open?"true":"false");toggle.setAttribute("aria-label",open?"Close menu":"Open menu")});nav.querySelectorAll(".nav__links a").forEach(function(a){a.addEventListener("click",function(){nav.classList.remove("is-open");toggle.setAttribute("aria-expanded","false");toggle.setAttribute("aria-label","Open menu")})})})();</script>
   <script src="c3i-sales-config.js?v=20260921c3i"></script>
   <script src="c3i-sales.js?v=20260921c3i" defer data-face="b2b"></script>
 </body>

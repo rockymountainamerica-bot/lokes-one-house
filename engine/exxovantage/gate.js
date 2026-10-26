@@ -1,7 +1,7 @@
 /* Exxovantage private demo gate, client-side only (GitHub Pages). */
 (function () {
   var KEY = "exxo.demo.ok";
-  var HASH = "a943c51c73eb452971b88973ed7da6ddb8b14e9964e56fd09ffb77ce007d2c59";
+  var HASH = "ed0d78dc83c0ae37933c0ffe7904e91d03a247145e0b3a100392504630244828";
   var ROOT = "/engine/exxovantage/";
 
   function unlocked() {

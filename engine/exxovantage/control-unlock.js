@@ -1,8 +1,8 @@
 /* Control Room unlock: keeps working even if an old webpack chunk is cached. */
 (function () {
   var KEY = "exxo_ctl_demo";
-  var HASH = "a943c51c73eb452971b88973ed7da6ddb8b14e9964e56fd09ffb77ce007d2c59"; // site gate passcode
-  var HASHES = [HASH].concat((window.EXXO_CTL_HASHES || "fa4199e917edef979d46985e7ad72219b93982cbe6ef261a7a65aa67ca26568c").split(",")); // + Control Room demo passcode
+  var HASH = "ed0d78dc83c0ae37933c0ffe7904e91d03a247145e0b3a100392504630244828"; // site gate passcode
+  var HASHES = [HASH];
 
   function hex(buf) {
     return Array.from(new Uint8Array(buf))

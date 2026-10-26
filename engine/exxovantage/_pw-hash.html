@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>LOKES gate hash (temp)</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0A0200; color: #e6e1de; font: 15px/1.5 system-ui, sans-serif; }
+  body { display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; }
+  .box { width: min(420px, 92vw); border: 1px solid #3a302b; background: #140f0c; padding: 28px 24px; }
+  h1 { margin: 0 0 18px; font-size: 16px; color: #F7C029; letter-spacing: .04em; font-weight: 600; }
+  input { width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid #3a302b; background: #0A0200; color: #fff; font-size: 15px; outline: none; }
+  input:focus { border-color: #F7C029; }
+  button { margin-top: 12px; width: 100%; padding: 12px; border: 0; background: #F7C029; color: #0A0200; font-weight: 600; cursor: pointer; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; }
+  #out { margin-top: 16px; min-height: 1.4em; font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: #e6e1de; word-break: break-all; user-select: all; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>LOKES gate hash (temp)</h1>
+  <input type="password" id="pw" placeholder="Password" autocomplete="off" aria-label="Password"/>
+  <button type="button" id="go">Hash</button>
+  <div id="out" aria-live="polite"></div>
+</div>
+<script>
+(function () {
+  function hex(buf) {
+    return Array.from(new Uint8Array(buf)).map(function (b) {
+      return b.toString(16).padStart(2, "0");
+    }).join("");
+  }
+
+  document.getElementById("go").addEventListener("click", function () {
+    var input = document.getElementById("pw");
+    var out = document.getElementById("out");
+    if (!window.crypto || !crypto.subtle) {
+      out.textContent = "Web Crypto unavailable (requires HTTPS or localhost).";
+      return;
+    }
+    crypto.subtle.digest("SHA-256", new TextEncoder().encode(input.value || "")).then(function (buf) {
+      out.textContent = "SHA256=" + hex(buf);
+      input.value = "";
+    });
+  });
+})();
+</script>
+</body>
+</html>
